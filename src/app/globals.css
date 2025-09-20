@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
 }
 
 @theme inline {
@@ -12,15 +12,170 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 文本截断类 */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* 动画类 */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 卡片悬停 */
+.game-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.game-card-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* 原型：卡片局部细节 */
+.game-rating-badge {
+  box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.2) inset;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  /* 移动端触摸优化 - 排除自定义尺寸按钮 */
+  button:not(.custom-size), [role="button"]:not(.custom-size) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 移动端字体大小调整 */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* 移动端滚动优化 */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 移动端input样式 */
+  input {
+    -webkit-appearance: none;
+    font-size: 16px; /* 防止iOS缩放 */
+  }
+  
+  /* 保持搜索框圆角 */
+  input[type="text"] {
+    border-radius: inherit;
+  }
+  
+  /* 移动端搜索框特殊优化 */
+  input[type="text"], input[type="search"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    border: none;
+  }
+  
+  /* 确保搜索框圆角在所有设备上生效 */
+  input[placeholder*="搜索"] {
+    border-radius: 16px !important;
+    -webkit-border-radius: 16px !important;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  /* Header布局优化 */
+  .header-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  /* 搜索框在超小屏幕上的优化 */
+  .mobile-search-input {
+    height: 32px;
+    padding-left: 24px;
+    padding-right: 44px;
+    font-size: 14px;
+  }
+  
+  /* 移动端Logo文字大小 */
+  .mobile-logo {
+    font-size: 16px;
+  }
+}
+
+/* iOS安全区域适配 */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
+
+/* 防止选择文本在移动端的误触 */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 移动端点击反馈 */
+.touch-feedback:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
 }

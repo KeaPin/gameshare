@@ -1,88 +1,157 @@
-import Image from "next/image";
+"use client";
+
+import Image from 'next/image';
+import GameCard from '@/components/GameCard';
+import GuideCard from '@/components/GuideCard';
+import { guides } from '@/data/guides';
+import { featuredGames} from '@/data/games';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="px-3 sm:px-4 py-4 sm:py-6">
+      <div className="max-w-[1208px] mx-auto">
+        {/* Hero：固定宽高比例 */}
+        <div className="relative rounded-xl sm:rounded-2xl bg-[#6b6f3a] overflow-hidden">
+          <div className="relative aspect-[5/2]">
+            <Image src="/default.webp" alt="banner" fill className="object-cover opacity-20" />
+            <div className="absolute inset-0 z-10 p-3 sm:p-4 md:p-6 grid grid-cols-12 gap-3 sm:gap-4 items-stretch">
+              <div className="col-span-12 xl:col-span-9 flex flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 bg-white/20 text-white text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full">
+                    <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white" /> 今日焦点
+                  </div>
+                </div>
+                <div>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold drop-shadow">TapTap 专属折扣中！</h2>
+                </div>
+              </div>
+              <div className="col-span-12 xl:col-span-3 mt-4 xl:mt-0">
+                <div className="rounded-lg sm:rounded-xl bg-black/10 p-3 sm:p-4">
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+                    <div className="relative aspect-[4/3] rounded-md sm:rounded-lg overflow-hidden bg-white/20">
+                      <Image src="/default.webp" alt="thumb" fill className="object-cover" />
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-md sm:rounded-lg overflow-hidden bg-white/20">
+                      <Image src="/default.webp" alt="thumb" fill className="object-cover" />
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-md sm:rounded-lg overflow-hidden bg-white/20">
+                      <Image src="/default.webp" alt="thumb" fill className="object-cover" />
+                    </div>
+                  </div>
+                  <div className="mt-2 sm:mt-3 text-white">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold text-sm sm:text-base">无主之地 4</h3>
+                      <div className="flex items-center gap-1 text-teal-100">
+                        <span className="text-xs sm:text-sm">★</span>
+                        <span className="font-semibold text-xs sm:text-sm">8.2</span>
+                      </div>
+                    </div>
+                    <div className="mt-1 sm:mt-2 text-xs text-white/90">
+                      角色扮演<span className="px-1">·</span>冒险<span className="px-1">·</span>动作
+                    </div>
+                    <p className="mt-1 sm:mt-2 text-xs text-white/85 line-clamp-2 sm:line-clamp-3">《无主之地4》中靠激烈的战斗、以夸张的战斗体验，以及数十亿件狂野武器的搭配，全球玩家在一个荒诞最荒诞的宇宙中展开紧张刺激的冒险。</p>
+                    <div className="mt-2 sm:mt-3 text-xs text-white/90 grid grid-cols-3 gap-1 sm:gap-2">
+                      <div className="space-y-1"><div className="opacity-80">心愿单</div><div className="font-semibold">98</div></div>
+                      <div className="space-y-1"><div className="opacity-80">开发商</div><div className="font-semibold text-xs">Gearbox</div></div>
+                      <div className="space-y-1"><div className="opacity-80">热度</div><div className="font-semibold">2K</div></div>
+                    </div>
+                    <div className="mt-3 sm:mt-4 flex items-center gap-2">
+                      <button className="flex-1 bg-white text-black rounded-full px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold hover:bg-white/90">领券购买</button>
+                      <button className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-white/20" aria-label="心愿单" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* 从上到下：六个分组，每组最多 8 条 */}
+
+        {/* 安卓游戏 */}
+        <div className="mt-4 sm:mt-6">
+          <div className="mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-white">安卓游戏</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+            {featuredGames.slice(0, 8).map((game, idx) => (
+              <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
+                <GameCard game={game} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* PC 游戏 */}
+        <div className="mt-6 sm:mt-8">
+          <div className="mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-white">PC游戏</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+            {featuredGames.slice(0, 8).map((game, idx) => (
+              <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
+                <GameCard game={game} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 怀旧游戏 */}
+        <div className="mt-6 sm:mt-8">
+          <div className="mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-white">怀旧游戏</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+            {featuredGames.slice(0, 8).map((game, idx) => (
+              <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
+                <GameCard game={game} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Swift 游戏 */}
+        <div className="mt-6 sm:mt-8">
+          <div className="mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-white">Swift游戏</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+            {featuredGames.slice(0, 8).map((game, idx) => (
+              <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
+                <GameCard game={game} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 游戏模拟器 */}
+        <div className="mt-6 sm:mt-8">
+          <div className="mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-white">游戏模拟器</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+            {featuredGames.slice(0, 8).map((game, idx) => (
+              <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
+                <GameCard game={game} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 游戏攻略 */}
+        <div className="mt-6 sm:mt-8">
+          <div className="mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-white">游戏攻略</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+            {guides.slice(0, 8).map((g, idx) => (
+              <div key={g.id} className="fade-in" style={{ animationDelay: `${idx * 0.02}s` }}>
+                <GuideCard guide={g} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
