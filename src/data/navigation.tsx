@@ -9,12 +9,12 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { name: '首页', href: '/', active: true, icon: 'home' },
-  { name: '安卓游戏', href: '/games', active: false, icon: 'smartphone' },
-  { name: 'PC游戏', href: '/ranking', active: false, icon: 'monitor' },
-  { name: '怀旧游戏', href: '/cloud', active: false, icon: 'history' },
-  { name: 'Swift游戏', href: '/feeds', active: false, icon: 'zap' },
-  { name: '游戏模拟器', href: '/feeds', active: false, icon: 'cpu' },
-  { name: '游戏攻略', href: '/feeds', active: false, icon: 'book' },
+  { name: '安卓游戏', href: '/games/android', active: false, icon: 'smartphone' },
+  { name: 'PC游戏', href: '/games/pc', active: false, icon: 'monitor' },
+  { name: '怀旧游戏', href: '/games/retro', active: false, icon: 'history' },
+  { name: 'Swift游戏', href: '/games/switch', active: false, icon: 'zap' },
+  { name: '游戏模拟器', href: '/games/simulator', active: false, icon: 'cpu' },
+  { name: '游戏攻略', href: '/articles', active: false, icon: 'book' },
 ];
 
 interface IconProps {

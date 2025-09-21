@@ -28,7 +28,7 @@ export default function GameCard({ game }: GameCardProps) {
   const ratingText = hasRating ? (game.rating as number).toFixed(1) : '暂无评分';
 
   return (
-    <Link href={`/games/${game.id}`} className="block">
+    <Link href={`/game/${game.id}`} className="block">
       <div className="relative group">
         {/* 原始卡片 - 保持原有大小和位置 */}
         <div className="rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 border border-transparent group-hover:border-gray-600">
