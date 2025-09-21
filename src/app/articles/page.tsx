@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import GuideCard from '@/components/GuideCard';
+import ArticleCard from '@/components/ArticleCard';
 import { guides } from '@/data/guides';
 
 // 文章分类
@@ -42,7 +42,7 @@ export default function ArticlesPage() {
 
   return (
     <div className="px-3 sm:px-4 py-4 sm:py-6">
-      <div className="max-w-[1208px] mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* 面包屑导航 */}
         <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 overflow-x-auto scrollbar-hide">
           <Link href="/" className="hover:text-white transition-colors whitespace-nowrap touch-manipulation min-h-[32px] flex items-center">
@@ -61,7 +61,7 @@ export default function ArticlesPage() {
         <div className="mb-6 flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
-              <button
+              <div
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer select-none touch-manipulation ${
@@ -71,7 +71,7 @@ export default function ArticlesPage() {
                 }`}
               >
                 {category.name}
-              </button>
+              </div>
             ))}
           </div>
 
@@ -94,14 +94,14 @@ export default function ArticlesPage() {
         </div>
 
         {/* 文章列表 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
           {sortedGuides.map((guide, idx) => (
             <div 
               key={guide.id} 
               className="fade-in" 
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              <GuideCard guide={guide} />
+              <ArticleCard guide={guide} />
             </div>
           ))}
         </div>
@@ -114,7 +114,7 @@ export default function ArticlesPage() {
             </div>
             <button
               onClick={() => setSelectedCategory('all')}
-              className="text-blue-500 hover:text-blue-400 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
+              className="text-blue-500 hover:text-blue-600 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
             >
               查看全部文章
             </button>

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
-import GuideCard from '@/components/GuideCard';
+import ArticleCard from '@/components/ArticleCard';
 import { guides } from '@/data/guides';
 import { featuredGames} from '@/data/games';
 import { getNavIcon } from '@/data/navigation';
@@ -232,7 +232,7 @@ export default function Home() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {guides.slice(0, 8).map((g, idx) => (
               <div key={g.id} className="fade-in" style={{ animationDelay: `${idx * 0.02}s` }}>
-                <GuideCard guide={g} />
+                <ArticleCard guide={g} />
               </div>
             ))}
           </div>

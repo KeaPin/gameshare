@@ -94,7 +94,7 @@ export default function GameCard({ game }: GameCardProps) {
                 {game.tags.filter(Boolean).map((tag, index) => (
                   <span 
                     key={index}
-                    className="px-2 py-1 text-[10px] text-blue-300 bg-blue-400/20 rounded-full"
+                    className="px-2 py-1 text-[10px] text-blue-300 bg-blue-600/20 rounded-full"
                   >
                     {tag}
                   </span>

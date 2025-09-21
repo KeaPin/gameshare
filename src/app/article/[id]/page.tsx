@@ -4,7 +4,7 @@ import { use, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import GuideCard from '@/components/GuideCard';
+import ArticleCard from '@/components/ArticleCard';
 import { guides } from '@/data/guides';
 
 interface ArticleDetailPageProps {
@@ -299,7 +299,7 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
                 </div>
                 <Link
                   href="/articles"
-                  className="block w-full mt-4 py-2 text-center text-blue-400 hover:text-blue-300 text-sm transition-colors"
+                  className="block w-full mt-4 py-2 text-center text-blue-600 hover:text-blue-300 text-sm transition-colors"
                 >
                   查看更多文章
                 </Link>

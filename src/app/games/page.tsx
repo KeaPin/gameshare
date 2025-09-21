@@ -90,7 +90,7 @@ export default function GamesPage() {
                   )}
                 </div>
                 
-                <div className="text-blue-400 text-sm group-hover:text-blue-300 transition-colors">
+                <div className="text-blue-600 text-sm group-hover:text-blue-300 transition-colors">
                   浏览 {name} →
                 </div>
               </Link>

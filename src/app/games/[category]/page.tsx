@@ -138,7 +138,7 @@ export default function GamesCategoryPage({ params }: GamesCategoryPageProps) {
             </div>
             <a
               href="/games/android"
-              className="text-blue-500 hover:text-blue-400 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
+              className="text-blue-500 hover:text-blue-600 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
             >
               查看安卓游戏
             </a>

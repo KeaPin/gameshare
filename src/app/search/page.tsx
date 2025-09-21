@@ -89,7 +89,7 @@ export default function SearchPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="搜索游戏..."
-                className="w-full h-8 sm:h-10 rounded-3xl bg-white/10 text-white placeholder-white/50 pl-8 pr-14 sm:pl-12 sm:pr-20 outline-none focus:ring-2 focus:ring-blue-400/50 text-sm sm:text-base border-0"
+                className="w-full h-8 sm:h-10 rounded-3xl bg-white/10 text-white placeholder-white/50 pl-8 pr-14 sm:pl-12 sm:pr-20 outline-none focus:ring-2 focus:ring-blue-600/50 text-sm sm:text-base border-0"
               />
               <div className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 text-white/40">
                 <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -98,7 +98,7 @@ export default function SearchPage() {
               </div>
               <button
                 type="submit"
-                className="custom-size absolute right-0.5 sm:right-1.5 top-1/2 -translate-y-1/2 px-2 sm:px-4 h-6 sm:h-8 rounded-3xl bg-blue-400 text-black text-xs sm:text-sm font-medium hover:bg-blue-300 transition-colors flex-shrink-0"
+                className="custom-size absolute right-0.5 sm:right-1.5 top-1/2 -translate-y-1/2 px-2 sm:px-4 h-6 sm:h-8 rounded-3xl bg-blue-600 text-black text-xs sm:text-sm font-medium hover:bg-blue-300 transition-colors flex-shrink-0"
               >
                 搜索
               </button>
@@ -147,7 +147,7 @@ export default function SearchPage() {
                 setQuery('');
                 router.push('/search');
               }}
-              className="text-blue-500 hover:text-blue-400 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
+              className="text-blue-500 hover:text-blue-600 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {

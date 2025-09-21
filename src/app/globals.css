@@ -3,15 +3,40 @@
 :root {
   --background: #0a0a0a;
   --foreground: #f5f5f5;
+  
+  /* 主题色系统 - 以 blue-600 为主题色 */
+  --color-primary: #2563eb; /* blue-600 作为主题色 */
+  --color-primary-hover: #1d4ed8; /* blue-700 */
+  --color-primary-light: #3b82f6; /* blue-500 */
+  --color-primary-lighter: #2563eb; /* blue-600 */
+  --color-primary-accent: #93c5fd; /* blue-300 */
+  
+  /* 保留原有的蓝色变量以确保兼容性 */
   --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
   --color-blue-500: #3b82f6;
-  --color-blue-400: #60a5fa;
+  --color-blue-400: #2563eb;
   --color-blue-300: #93c5fd;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  /* 主题色系统集成到 Tailwind */
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-lighter: var(--color-primary-lighter);
+  --color-primary-accent: var(--color-primary-accent);
+  
+  /* 蓝色系统 - 确保 Tailwind 可以使用这些颜色 */
+  --color-blue-600: var(--color-blue-600);
+  --color-blue-700: var(--color-blue-700);
+  --color-blue-500: var(--color-blue-500);
+  --color-blue-400: var(--color-blue-400);
+  --color-blue-300: var(--color-blue-300);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
