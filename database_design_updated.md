@@ -2,19 +2,13 @@
 
 基于当前项目的数据结构分析，设计以下6个核心数据库表：
 
-## 🔑 ID字段说明
-- 所有ID字段使用 **VARCHAR(32)** 类型，存储32位字符串
-- 推荐使用UUID去掉连字符的格式，例如：`6a9d4b8c3e7f1a2b5c8e9d0f3a6b7c8d`
-- 应用程序需要在插入数据时生成32位唯一字符串ID
-- 不再使用AUTO_INCREMENT，改为应用程序控制ID生成
-
 ## 1. 分类表 (category)
 
 | 字段名 | 数据类型 | 长度 | 是否为空 | 默认值 | 说明 |
 |-------|---------|------|---------|--------|------|
-| id | VARCHAR | 32 | NOT NULL | - | 主键，分类ID |
+| id | INT | - | NOT NULL | AUTO_INCREMENT | 主键，分类ID |
 | level | INT | - | NOT NULL | 0 | 分类层级 |
-| parent_id | VARCHAR | 32 | NULL | NULL | 父分类ID |
+| parent_id | INT | - | NOT NULL | 0 | 父分类ID |
 | type | VARCHAR | 50 | NOT NULL | - | 分类类型，如Android、iOS、Windows等 |
 | name | VARCHAR | 100 | NOT NULL | - | 分类名称 |
 | alias | VARCHAR | 255 | NULL | NULL | 分类别名 |
@@ -35,7 +29,7 @@
 
 | 字段名 | 数据类型 | 长度 | 是否为空 | 默认值 | 说明 |
 |-------|---------|------|---------|--------|------|
-| id | VARCHAR | 32 | NOT NULL | - | 主键，资源ID |
+| id | INT | - | NOT NULL | AUTO_INCREMENT | 主键，资源ID |
 | name | VARCHAR | 255 | NOT NULL | - | 资源名称 |
 | alias | VARCHAR | 255 | NULL | NULL | 资源别名 |
 | description | VARCHAR | 512 | NULL | NULL | 资源描述 |
@@ -75,8 +69,8 @@
 
 | 字段名 | 数据类型 | 长度 | 是否为空 | 默认值 | 说明 |
 |-------|---------|------|---------|--------|------|
-| id | VARCHAR | 32 | NOT NULL | - | 主键，链接ID |
-| resource_id | VARCHAR | 32 | NOT NULL | - | 资源ID，外键 |
+| id | INT | - | NOT NULL | AUTO_INCREMENT | 主键，链接ID |
+| resource_id | INT | - | NOT NULL | - | 资源ID，外键 |
 | platform | VARCHAR | 100 | NOT NULL | - | 网盘平台名称 |
 | url | VARCHAR | 1000 | NOT NULL | - | 下载链接 |
 | password | VARCHAR | 50 | NULL | NULL | 提取密码 |
@@ -96,7 +90,7 @@
 
 | 字段名 | 数据类型 | 长度 | 是否为空 | 默认值 | 说明 |
 |-------|---------|------|---------|--------|------|
-| id | VARCHAR | 32 | NOT NULL | - | 主键，文章ID |
+| id | INT | - | NOT NULL | AUTO_INCREMENT | 主键，文章ID |
 | title | VARCHAR | 512 | NOT NULL | - | 文章标题 |
 | summary | TEXT | - | NULL | NULL | 文章摘要 |
 | content | TEXT | - | NOT NULL | - | 文章内容 |
@@ -122,9 +116,9 @@
 
 | 字段名 | 数据类型 | 长度 | 是否为空 | 默认值 | 说明 |
 |-------|---------|------|---------|--------|------|
-| id | VARCHAR | 32 | NOT NULL | - | 主键，关系ID |
-| resource_id | VARCHAR | 32 | NOT NULL | - | 资源ID，外键 |
-| category_id | VARCHAR | 32 | NOT NULL | - | 分类ID，外键 |
+| id | INT | - | NOT NULL | AUTO_INCREMENT | 主键，关系ID |
+| resource_id | INT | - | NOT NULL | - | 资源ID，外键 |
+| category_id | INT | - | NOT NULL | - | 分类ID，外键 |
 | created_time | DATETIME | - | NOT NULL | CURRENT_TIMESTAMP | 创建时间 |
 
 **索引：**
@@ -140,9 +134,9 @@
 
 | 字段名 | 数据类型 | 长度 | 是否为空 | 默认值 | 说明 |
 |-------|---------|------|---------|--------|------|
-| id | VARCHAR | 32 | NOT NULL | - | 主键，关系ID |
-| article_id | VARCHAR | 32 | NOT NULL | - | 文章ID，外键 |
-| category_id | VARCHAR | 32 | NOT NULL | - | 分类ID，外键 |
+| id | INT | - | NOT NULL | AUTO_INCREMENT | 主键，关系ID |
+| article_id | INT | - | NOT NULL | - | 文章ID，外键 |
+| category_id | INT | - | NOT NULL | - | 分类ID，外键 |
 | created_time | DATETIME | - | NOT NULL | CURRENT_TIMESTAMP | 创建时间 |
 
 **索引：**
@@ -180,31 +174,23 @@
 
 ### 3. 设计特点
 
-1. **32位字符串ID系统**：
-   - 使用VARCHAR(32)替代INT AUTO_INCREMENT
-   - 支持分布式系统，避免ID冲突
-   - ID由应用程序生成，便于数据迁移和同步
-   - 更好的安全性，不易被猜测
-
-2. **灵活的分类系统**：
+1. **灵活的分类系统**：
    - 支持多层级分类结构
    - 支持按平台类型（Android、iOS等）分类
    - 支持图标和别名
 
-3. **多对多关系**：
+2. **多对多关系**：
    - 资源和文章都可以属于多个分类
    - 提高了数据的灵活性和可扩展性
 
-4. **统一的字段命名**：
+3. **统一的字段命名**：
    - 统一使用`created_time`和`updated_time`
    - 状态字段统一为VARCHAR类型
-   - 所有ID字段统一为VARCHAR(32)类型
 
-5. **性能优化**：
+4. **性能优化**：
    - 为常用查询字段添加索引
    - 使用唯一索引防止重复关联
    - 合理的外键约束保证数据完整性
-   - 字符串ID在MySQL中仍有良好的索引性能
 
 ## 查询示例
 
@@ -231,28 +217,5 @@ WHERE a.status = 'active';
 SELECT r.* 
 FROM resource r
 JOIN resource_category rc ON r.id = rc.resource_id
-WHERE rc.category_id = '6a9d4b8c3e7f1a2b5c8e9d0f3a6b7c8d' AND r.status = 'active';
-```
-
-### ID生成建议
-
-**推荐方案1：UUID去连字符**
-```javascript
-// JavaScript示例
-const id = crypto.randomUUID().replace(/-/g, '');
-// 结果：6a9d4b8c3e7f1a2b5c8e9d0f3a6b7c8d
-```
-
-**推荐方案2：自定义32位字符串**
-```javascript
-// 使用时间戳+随机数组合
-const timestamp = Date.now().toString(16);
-const random = Math.random().toString(16).substr(2);
-const id = (timestamp + random).padEnd(32, '0').substr(0, 32);
-```
-
-**推荐方案3：纳米ID（NanoID）**
-```javascript
-import { nanoid } from 'nanoid';
-const id = nanoid(32);
+WHERE rc.category_id = ? AND r.status = 'active';
 ```
