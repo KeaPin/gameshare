@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { navItems, getNavIcon } from '@/data/navigation';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -9,14 +10,7 @@ interface MobileNavProps {
 }
 
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
-  const navItems = [
-    { name: '首页', href: '/', active: true },
-    { name: '游戏分类', href: '/discover', active: false },
-    { name: '排行榜', href: '/ranking', active: false },
-    { name: '系列游戏', href: '/cloud', active: false },
-    { name: '游戏攻略', href: '/feeds', active: false },
-    { name: '游戏预告', href: '/feeds', active: false },
-  ];
+
 
   return (
     <>
@@ -38,14 +32,14 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           {/* 头部 */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
             <Link href="/" className="flex items-center gap-2" onClick={onClose}>
-              <span className="text-2xl font-extrabold leading-none text-teal-300">TapTap</span>
+              <span className="text-2xl font-extrabold leading-none text-blue-300">TapTap</span>
             </Link>
-            <button
+            <div
               onClick={onClose}
               className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:bg-white/20"
             >
               ✕
-            </button>
+            </div>
           </div>
 
           {/* 导航菜单 */}
@@ -59,8 +53,10 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   item.active ? 'bg-white/10 ring-1 ring-white/10 text-white' : 'hover:bg-white/5 text-white/80'
                 }`}
               >
-                {item.active && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-teal-300" />}
-                <span className="inline-block w-5 h-5 rounded-full bg-white/20" />
+                {item.active && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-blue-300" />}
+                <span className="text-white/80">
+                  {getNavIcon(item.icon, 20)}
+                </span>
                 <span className="text-base font-medium">{item.name}</span>
               </Link>
             ))}

@@ -18,7 +18,7 @@ export default function RankingBoard({ title, subtitle, games, accentClass }: Ra
     <section className="space-y-2 sm:space-y-3">
       <div className="flex items-center justify-between">
         <h3 className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
-          <span className={`inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded ${accentClass ?? 'bg-teal-300'}`} />
+          <span className={`inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded ${accentClass ?? 'bg-blue-300'}`} />
           {title}
         </h3>
         {subtitle && (

@@ -3,6 +3,10 @@
 :root {
   --background: #0a0a0a;
   --foreground: #f5f5f5;
+  --color-blue-600: #2563eb;
+  --color-blue-500: #3b82f6;
+  --color-blue-400: #60a5fa;
+  --color-blue-300: #93c5fd;
 }
 
 @theme inline {
@@ -86,7 +90,7 @@ body {
 
 /* 原型：卡片局部细节 */
 .game-rating-badge {
-  box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.2) inset;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2) inset;
 }
 
 /* 移动端优化 */

@@ -1,10 +1,12 @@
 "use client";
 
 import Image from 'next/image';
+import Link from 'next/link';
 import GameCard from '@/components/GameCard';
 import GuideCard from '@/components/GuideCard';
 import { guides } from '@/data/guides';
 import { featuredGames} from '@/data/games';
+import { getNavIcon } from '@/data/navigation';
 
 export default function Home() {
   return (
@@ -41,7 +43,7 @@ export default function Home() {
                   <div className="mt-2 sm:mt-3 text-white">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-sm sm:text-base">无主之地 4</h3>
-                      <div className="flex items-center gap-1 text-teal-100">
+                      <div className="flex items-center gap-1 text-blue-100">
                         <span className="text-xs sm:text-sm">★</span>
                         <span className="font-semibold text-xs sm:text-sm">8.2</span>
                       </div>
@@ -56,8 +58,8 @@ export default function Home() {
                       <div className="space-y-1"><div className="opacity-80">热度</div><div className="font-semibold">2K</div></div>
                     </div>
                     <div className="mt-3 sm:mt-4 flex items-center gap-2">
-                      <button className="flex-1 bg-white text-black rounded-full px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold hover:bg-white/90">领券购买</button>
-                      <button className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-white/20" aria-label="心愿单" />
+                      <div className="flex-1 bg-white text-black rounded-full px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold hover:bg-white/90 active:bg-white/80 cursor-pointer select-none touch-manipulation transition-all duration-200 text-center">领券购买</div>
+                      <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-white/20 cursor-pointer select-none touch-manipulation hover:bg-white/30 active:bg-white/10 transition-all duration-200" aria-label="心愿单" />
                     </div>
                   </div>
                 </div>
@@ -70,8 +72,22 @@ export default function Home() {
 
         {/* 安卓游戏 */}
         <div className="mt-4 sm:mt-6">
-          <div className="mb-2 sm:mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-white">安卓游戏</h2>
+          <div className="mb-2 sm:mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-white">
+                {getNavIcon('smartphone', 20)}
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">安卓游戏</h2>
+            </div>
+            <Link 
+              href="/games"
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
+            >
+              查看更多
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9,18 15,12 9,6"/>
+              </svg>
+            </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {featuredGames.slice(0, 8).map((game, idx) => (
@@ -84,8 +100,22 @@ export default function Home() {
 
         {/* PC 游戏 */}
         <div className="mt-6 sm:mt-8">
-          <div className="mb-2 sm:mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-white">PC游戏</h2>
+          <div className="mb-2 sm:mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-white">
+                {getNavIcon('monitor', 20)}
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">PC游戏</h2>
+            </div>
+            <Link 
+              href="/games"
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
+            >
+              查看更多
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9,18 15,12 9,6"/>
+              </svg>
+            </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {featuredGames.slice(0, 8).map((game, idx) => (
@@ -98,8 +128,22 @@ export default function Home() {
 
         {/* 怀旧游戏 */}
         <div className="mt-6 sm:mt-8">
-          <div className="mb-2 sm:mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-white">怀旧游戏</h2>
+          <div className="mb-2 sm:mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-white">
+                {getNavIcon('history', 20)}
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">怀旧游戏</h2>
+            </div>
+            <Link 
+              href="/games"
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
+            >
+              查看更多
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9,18 15,12 9,6"/>
+              </svg>
+            </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {featuredGames.slice(0, 8).map((game, idx) => (
@@ -112,8 +156,22 @@ export default function Home() {
 
         {/* Swift 游戏 */}
         <div className="mt-6 sm:mt-8">
-          <div className="mb-2 sm:mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-white">Swift游戏</h2>
+          <div className="mb-2 sm:mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-white">
+                {getNavIcon('zap', 20)}
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">Swift游戏</h2>
+            </div>
+            <Link 
+              href="/games"
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
+            >
+              查看更多
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9,18 15,12 9,6"/>
+              </svg>
+            </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {featuredGames.slice(0, 8).map((game, idx) => (
@@ -126,8 +184,22 @@ export default function Home() {
 
         {/* 游戏模拟器 */}
         <div className="mt-6 sm:mt-8">
-          <div className="mb-2 sm:mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-white">游戏模拟器</h2>
+          <div className="mb-2 sm:mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-white">
+                {getNavIcon('cpu', 20)}
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">游戏模拟器</h2>
+            </div>
+            <Link 
+              href="/games"
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
+            >
+              查看更多
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9,18 15,12 9,6"/>
+              </svg>
+            </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {featuredGames.slice(0, 8).map((game, idx) => (
@@ -140,8 +212,22 @@ export default function Home() {
 
         {/* 游戏攻略 */}
         <div className="mt-6 sm:mt-8">
-          <div className="mb-2 sm:mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-white">游戏攻略</h2>
+          <div className="mb-2 sm:mb-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="text-white">
+                {getNavIcon('book', 20)}
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white">游戏攻略</h2>
+            </div>
+            <Link 
+              href="/games"
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
+            >
+              查看更多
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9,18 15,12 9,6"/>
+              </svg>
+            </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {guides.slice(0, 8).map((g, idx) => (

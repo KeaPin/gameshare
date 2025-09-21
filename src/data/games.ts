@@ -6,38 +6,86 @@ export const featuredGames: GameData[] = [
     title: '大侠立志传外传',
     rating: 9.4,
     image: '/default.webp',
+    images: ['/default.webp', '/file.svg', '/globe.svg', '/next.svg'],
     tags: ['模拟', '角色扮演', '冒险'],
-    description: '正式上线，TapTap专属折扣开启中！国产原始题材生存沙盒游戏，从零开始壮大氏族'
+    description: '正式上线，TapTap专属折扣开启中！国产原始题材生存沙盒游戏，从零开始壮大氏族',
+    downloadLinks: [
+      {
+        name: '百度网盘',
+        url: 'https://pan.baidu.com/s/1xxxxx',
+        password: 'abcd',
+        size: '2.1GB'
+      },
+      {
+        name: '阿里云盘',
+        url: 'https://www.aliyundrive.com/s/xxxxx',
+        size: '2.1GB'
+      }
+    ]
   },
   {
     id: 2,
     title: '灵魂面甲',
     rating: 7.8,
     image: '/default.webp',
+    images: ['/default.webp', '/window.svg', '/globe.svg'],
     tags: ['模拟', '大型多人在线', '冒险'],
-    description: '广州灵犀互动娱乐有限公司出品，原始题材生存沙盒游戏'
+    description: '广州灵犀互动娱乐有限公司出品，原始题材生存沙盒游戏',
+    downloadLinks: [
+      {
+        name: '百度网盘',
+        url: 'https://pan.baidu.com/s/1yyyyy',
+        password: 'efgh',
+        size: '3.2GB'
+      }
+    ]
   },
   {
     id: 3,
     title: '崩坏：因缘精灵',
     rating: 8.4,
     image: '/default.webp',
+    images: ['/default.webp', '/file.svg', '/next.svg', '/window.svg', '/globe.svg'],
     tags: ['冒险', '宠物', '自走棋'],
-    description: '全新宠物养成系统，体验自走棋的乐趣与策略'
+    description: '全新宠物养成系统，体验自走棋的乐趣与策略',
+    downloadLinks: [
+      {
+        name: '123云盘',
+        url: 'https://www.123pan.com/s/xxxxx',
+        password: 'ijkl',
+        size: '1.8GB'
+      },
+      {
+        name: '蓝奏云',
+        url: 'https://lanzoux.com/xxxxx',
+        password: 'mnop',
+        size: '1.8GB'
+      }
+    ]
   },
   {
     id: 4,
     title: '洛克王国：世界',
     rating: 7.5,
     image: '/default.webp',
+    images: ['/default.webp', '/next.svg', '/window.svg'],
     tags: ['抓宠', '回合制', '养成'],
-    description: '经典宠物抓捕与回合制战斗，体验精彩的养成乐趣'
+    description: '经典宠物抓捕与回合制战斗，体验精彩的养成乐趣',
+    downloadLinks: [
+      {
+        name: '天翼云盘',
+        url: 'https://cloud.189.cn/t/xxxxx',
+        password: 'qrst',
+        size: '2.5GB'
+      }
+    ]
   },
   {
     id: 5,
     title: '超自然行动组',
     rating: 7.0,
     image: '/default.webp',
+    images: ['/default.webp', '/globe.svg', '/file.svg'],
     tags: ['合作', '密室', '盗墓'],
     description: '团队合作解谜，探索神秘密室与古代遗迹'
   },
@@ -46,6 +94,7 @@ export const featuredGames: GameData[] = [
     title: '终极角逐',
     rating: null,
     image: '/default.webp',
+    images: ['/default.webp', '/window.svg'],
     tags: ['高画质', '竞技', '多人联机'],
     description: '高画质竞技对抗，支持多人在线实时对战'
   },
@@ -54,6 +103,7 @@ export const featuredGames: GameData[] = [
     title: '星际争霸重制版',
     rating: 9.1,
     image: '/default.webp',
+    images: ['/default.webp', '/file.svg', '/globe.svg', '/next.svg'],
     tags: ['策略', 'RTS', '经典'],
     description: '经典RTS游戏重制，全新画面呈现经典策略对战'
   },
@@ -62,6 +112,7 @@ export const featuredGames: GameData[] = [
     title: '赛博朋克2088',
     rating: 8.7,
     image: '/default.webp',
+    images: ['/default.webp', '/next.svg', '/window.svg', '/globe.svg'],
     tags: ['RPG', '开放世界', '冒险'],
     description: '未来科技与人性的碰撞，探索开放世界的赛博朋克之旅'
   }
