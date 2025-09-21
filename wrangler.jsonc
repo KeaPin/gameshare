@@ -11,6 +11,16 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets"
   },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "9d030398267f4296a84aec1a4b24ea7e",
+      "localConnectionString": "mysql://games:nxxbf2kJBfS4zjHN@1.12.227.13:3306/games"
+    }
+  ],
+  "vars": {
+    "NODE_ENV": "production"
+  },
   "observability": {
     "enabled": true
   },

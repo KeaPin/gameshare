@@ -4,9 +4,27 @@
 declare namespace Cloudflare {
 	interface Env {
 		ASSETS: Fetcher;
+		HYPERDRIVE: Hyperdrive;
+		NODE_ENV?: string;
 	}
 }
 interface CloudflareEnv extends Cloudflare.Env {}
+
+// 数据库环境变量类型定义
+declare global {
+	namespace NodeJS {
+		interface ProcessEnv {
+			DB_HOST: string;
+			DB_PORT: string;
+			DB_USER: string;
+			DB_PASSWORD: string;
+			DB_NAME: string;
+			DB_CHARSET: string;
+			NODE_ENV: 'development' | 'production';
+			HYPERDRIVE_ID: string;
+		}
+	}
+}
 
 // Begin runtime types
 /*! *****************************************************************************
