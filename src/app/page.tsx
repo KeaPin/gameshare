@@ -1,5 +1,3 @@
-"use client";
-
 import Image from 'next/image';
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
@@ -7,6 +5,13 @@ import ArticleCard from '@/components/ArticleCard';
 import { guides } from '@/data/guides';
 import { featuredGames} from '@/data/games';
 import { getNavIcon } from '@/data/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '游戏分享 - 发现精品游戏',
+  description: '探索最新最热门的游戏，包括安卓游戏、PC游戏、怀旧游戏等，还有详细的游戏攻略指南。',
+  keywords: '游戏下载,游戏攻略,安卓游戏,PC游戏,游戏分享',
+};
 
 export default function Home() {
   return (

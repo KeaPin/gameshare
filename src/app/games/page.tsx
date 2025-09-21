@@ -1,9 +1,13 @@
-"use client";
-
-import { useState } from 'react';
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
-import { featuredGames, categories } from '@/data/games';
+import { featuredGames } from '@/data/games';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '游戏分类 - 精品游戏合集',
+  description: '浏览各个平台的精品游戏，包括安卓游戏、PC游戏、怀旧游戏、Swift游戏和游戏模拟器。',
+  keywords: '游戏分类,安卓游戏,PC游戏,游戏模拟器,游戏下载',
+};
 
 // 定义分类映射关系，与 /games/[category] 保持一致
 const categoryMapping: Record<string, string[]> = {
@@ -24,6 +28,7 @@ const categoryNames: Record<string, string> = {
 };
 
 export default function GamesPage() {
+
   return (
     <div className="px-3 sm:px-4 py-4 sm:py-6">
       <div className="max-w-[1208px] mx-auto">

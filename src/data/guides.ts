@@ -1,7 +1,5 @@
 import { GuideData } from '@/components/ArticleCard';
 
-const baseSummary = '在经历了一场毁灭性的战争过后，高级生物决定不再进行无意义的厮杀，开始探索新的文明秩序与生存之道。';
-
 // 更丰富的文章攻略数据
 export const guides: GuideData[] = [
   {
