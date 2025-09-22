@@ -4,6 +4,7 @@
  */
 
 import mysql, { Pool, PoolConnection, RowDataPacket, ResultSetHeader, OkPacket } from 'mysql2/promise';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { getDbConfig, isProduction, LOCAL_DB_CONFIG } from './db-config';
 
 // 全局连接池实例
@@ -62,6 +63,33 @@ export async function query<T extends RowDataPacket[]>(
   sql: string, 
   params?: any[]
 ): Promise<T> {
+  // 优先在 Cloudflare Workers 环境下使用 Hyperdrive 的直连方式
+  try {
+    const { env, ctx } = getCloudflareContext();
+    if (env && (env as any).HYPERDRIVE) {
+      const connection = await mysql.createConnection({
+        host: (env as any).HYPERDRIVE.host,
+        user: (env as any).HYPERDRIVE.user,
+        password: (env as any).HYPERDRIVE.password,
+        database: (env as any).HYPERDRIVE.database,
+        port: (env as any).HYPERDRIVE.port,
+        disableEval: true,
+      } as any);
+      try {
+        const [rows] = await connection.execute<T>(sql, params);
+        // 在 Worker 被销毁前清理连接
+        ctx.waitUntil(connection.end());
+        return rows;
+      } catch (error) {
+        // 若执行失败，确保连接关闭
+        ctx.waitUntil(connection.end());
+        throw error;
+      }
+    }
+  } catch (_) {
+    // 本地/非 Worker 环境，继续走连接池
+  }
+
   const connection = getConnectionPool();
   const [rows] = await connection.execute<T>(sql, params);
   return rows;
@@ -77,6 +105,31 @@ export async function execute(
   sql: string, 
   params?: any[]
 ): Promise<ResultSetHeader> {
+  // 优先在 Cloudflare Workers 环境下使用 Hyperdrive 的直连方式
+  try {
+    const { env, ctx } = getCloudflareContext();
+    if (env && (env as any).HYPERDRIVE) {
+      const connection = await mysql.createConnection({
+        host: (env as any).HYPERDRIVE.host,
+        user: (env as any).HYPERDRIVE.user,
+        password: (env as any).HYPERDRIVE.password,
+        database: (env as any).HYPERDRIVE.database,
+        port: (env as any).HYPERDRIVE.port,
+        disableEval: true,
+      } as any);
+      try {
+        const [result] = await connection.execute<ResultSetHeader>(sql, params);
+        ctx.waitUntil(connection.end());
+        return result;
+      } catch (error) {
+        ctx.waitUntil(connection.end());
+        throw error;
+      }
+    }
+  } catch (_) {
+    // 本地/非 Worker 环境，继续走连接池
+  }
+
   const connection = getConnectionPool();
   const [result] = await connection.execute<ResultSetHeader>(sql, params);
   return result;
