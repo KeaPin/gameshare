@@ -5,6 +5,9 @@ import { CategoryModel } from '@/lib/models/CategoryModel';
 import { ResourceModel } from '@/lib/models/ResourceModel';
 import { Resource, Category } from '@/types/database';
 
+// 该页面依赖数据库实时数据，强制动态渲染，避免构建期静态预渲染超时
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: '游戏分类 - 精品游戏合集',
   description: '浏览各个平台的精品游戏，包括安卓游戏、PC游戏、怀旧游戏、Swift游戏和游戏模拟器。',
@@ -30,49 +33,47 @@ const categoryNames: Record<string, string> = {
 };
 
 export default async function GamesPage() {
-  // 从数据库获取分类信息和资源数据
+  // 从数据库获取分类信息和资源数据（全部并行）
   const [categories, featuredResources, hotResources] = await Promise.all([
     CategoryModel.getTopLevelCategories(),
     ResourceModel.getFeaturedResources(8),
     ResourceModel.getHotResources(8)
   ]);
 
-  // 获取每个分类下的资源数量
-  const categoryResourceCounts: Record<string, number> = {};
-  
-  for (const [key, dbAlias] of Object.entries(categoryAliasMapping)) {
-    // 1. 查询父级分类 (level=0 且 alias匹配)
-    const parentCategory = categories.find(cat => 
-      cat.level === 0 && cat.alias === dbAlias
-    );
-    
-    if (parentCategory) {
-      // 2. 查询子分类
-      const childCategories = await CategoryModel.getSubCategories(parentCategory.id);
-      
-      if (childCategories.length === 0) {
-        // 如果没有子分类，查询父分类的资源
-        const result = await ResourceModel.getResources({
-          category_id: parentCategory.id,
-          limit: 1
-        });
-        categoryResourceCounts[key] = result.total;
-      } else {
-        // 如果有子分类，查询所有子分类的资源总数
-        let totalCount = 0;
-        for (const childCat of childCategories) {
-          const result = await ResourceModel.getResources({
-            category_id: childCat.id,
-            limit: 1
-          });
-          totalCount += result.total;
-        }
-        categoryResourceCounts[key] = totalCount;
-      }
-    } else {
-      categoryResourceCounts[key] = 0;
-    }
-  }
+  // 预构建：alias -> 父分类
+  const parentByAlias: Record<string, Category | undefined> = Object.fromEntries(
+    Object.entries(categoryAliasMapping).map(([key, alias]) => [key, categories.find(c => c.level === 0 && c.alias === alias)])
+  );
+
+  // 并行获取所有父分类的子分类
+  const subCategoriesEntries = await Promise.all(
+    Object.entries(parentByAlias).map(async ([key, parent]) => {
+      if (!parent) return [key, [] as Category[]] as const;
+      const subs = await CategoryModel.getSubCategories(parent.id);
+      return [key, subs] as const;
+    })
+  );
+  const subCategoriesByKey = Object.fromEntries(subCategoriesEntries as Array<[string, Category[]]>);
+
+  // 为每个大类计算用于查询的分类ID集合（若无子类则使用父类ID）
+  const categoryIdsByKey: Record<string, string[]> = Object.fromEntries(
+    Object.keys(categoryAliasMapping).map(key => {
+      const parent = parentByAlias[key];
+      const subs = subCategoriesByKey[key] ?? [];
+      if (!parent) return [key, []];
+      return [key, subs.length > 0 ? subs.map(s => s.id) : [parent.id]];
+    })
+  );
+
+  // 并行按多个分类ID聚合查询总数（一次查询解决一个大类，避免 N+1）
+  const countsEntries = await Promise.all(
+    Object.entries(categoryIdsByKey).map(async ([key, ids]) => {
+      if (ids.length === 0) return [key, 0] as const;
+      const result = await ResourceModel.getResourcesByCategoryIds(ids, { limit: 1 });
+      return [key, result.total] as const;
+    })
+  );
+  const categoryResourceCounts: Record<string, number> = Object.fromEntries(countsEntries);
 
   // 获取分类下的标签，用于显示
   const getCategoryTags = (dbAlias: string): string[] => {
