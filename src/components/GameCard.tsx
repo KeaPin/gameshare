@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Resource } from '@/types/database';
 
 export interface DownloadLink {
   name: string;
@@ -9,21 +10,44 @@ export interface DownloadLink {
 }
 
 export interface GameData {
-  id: number;
-  title: string;
+  id: number | string;
+  title?: string;
+  name?: string;
   rating?: number | null;
-  image: string;
-  images?: string[]; // 轮播图片数组
-  tags: string[];
-  description: string;
-  downloadLinks?: DownloadLink[]; // 网盘下载链接
+  image?: string;
+  thumbnail?: string;
+  images?: string[];
+  tags?: string[] | string;
+  description?: string;
+  downloadLinks?: DownloadLink[];
 }
 
 interface GameCardProps {
-  game: GameData;
+  game: GameData | Resource;
 }
 
 export default function GameCard({ game }: GameCardProps) {
+  // 适配不同的数据格式
+  const gameTitle = ('title' in game && game.title) || ('name' in game && game.name) || '未知游戏';
+  const gameImage = ('image' in game && game.image) || ('thumbnail' in game && game.thumbnail) || '/default.webp';
+  const gameDescription = ('description' in game && game.description) || '暂无介绍';
+  
+  // 处理标签数据
+  let gameTags: string[] = [];
+  if ('tags' in game && game.tags) {
+    if (typeof game.tags === 'string') {
+      // 如果是字符串，尝试解析为数组
+      try {
+        gameTags = JSON.parse(game.tags);
+      } catch {
+        // 如果解析失败，按逗号分割
+        gameTags = game.tags.split(',').map(tag => tag.trim()).filter(Boolean);
+      }
+    } else if (Array.isArray(game.tags)) {
+      gameTags = game.tags;
+    }
+  }
+
   const hasRating = typeof game.rating === 'number' && !Number.isNaN(game.rating);
   const ratingText = hasRating ? (game.rating as number).toFixed(1) : '暂无评分';
 
@@ -34,8 +58,8 @@ export default function GameCard({ game }: GameCardProps) {
         <div className="rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 border border-transparent group-hover:border-gray-600">
           <div className="relative aspect-[15/7] overflow-hidden rounded-xl sm:rounded-2xl">
             <Image
-              src={game.image}
-              alt={game.title}
+              src={gameImage}
+              alt={gameTitle}
               fill
               className="object-cover transition-transform duration-300 rounded-xl sm:rounded-2xl"
               sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
@@ -45,7 +69,7 @@ export default function GameCard({ game }: GameCardProps) {
           <div className="pt-2 sm:pt-3 pb-2 sm:pb-3">
             <div className="flex items-start justify-between gap-1 sm:gap-2">
               <h3 className="font-bold text-white text-[12px] sm:text-[14px] leading-[16px] sm:leading-[18px] line-clamp-1 flex-1 min-w-0">
-                {game.title}
+                {gameTitle}
               </h3>
               <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-[12px] font-semibold text-blue-300 flex-shrink-0">
                 {hasRating && <span className="text-blue-300">★</span>}
@@ -54,7 +78,7 @@ export default function GameCard({ game }: GameCardProps) {
             </div>
             <div className="mt-0.5 sm:mt-1 text-[9px] sm:text-[11px] text-white/60 leading-[14px] sm:leading-[16px]">
               <span className="line-clamp-1">
-                {game.tags.filter(Boolean).join(' · ')}
+                {gameTags.slice(0, 3).join(' · ')}
               </span>
             </div>
           </div>
@@ -65,8 +89,8 @@ export default function GameCard({ game }: GameCardProps) {
           <div className="bg-[#131313] rounded-2xl overflow-hidden shadow-2xl border border-gray-600">
             <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
               <Image
-                src={game.image}
-                alt={game.title}
+                src={gameImage}
+                alt={gameTitle}
                 fill
                 className="object-cover rounded-2xl"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -76,7 +100,7 @@ export default function GameCard({ game }: GameCardProps) {
             <div className="p-4">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="font-bold text-blue-300 text-[15px] leading-[20px] line-clamp-1 flex-1 min-w-0">
-                  {game.title}
+                  {gameTitle}
                 </h3>
                 <div className="flex items-center gap-1 text-[13px] font-semibold text-blue-300 flex-shrink-0">
                   {hasRating && <span className="text-blue-300">★</span>}
@@ -86,12 +110,12 @@ export default function GameCard({ game }: GameCardProps) {
               
               {/* 游戏简介 */}
               <div className="mt-2 text-[12px] text-white/80 leading-[16px] line-clamp-2">
-                {game.description}
+                {gameDescription}
               </div>
               
               {/* 圆角标签 */}
               <div className="mt-3 flex flex-wrap gap-1">
-                {game.tags.filter(Boolean).map((tag, index) => (
+                {gameTags.slice(0, 6).map((tag, index) => (
                   <span 
                     key={index}
                     className="px-2 py-1 text-[10px] text-blue-300 bg-blue-600/20 rounded-full"

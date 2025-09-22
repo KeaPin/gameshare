@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
-import { featuredGames } from '@/data/games';
 import { Metadata } from 'next';
+import { CategoryModel } from '@/lib/models/CategoryModel';
+import { ResourceModel } from '@/lib/models/ResourceModel';
+import { Resource, Category } from '@/types/database';
 
 export const metadata: Metadata = {
   title: '游戏分类 - 精品游戏合集',
@@ -9,13 +11,13 @@ export const metadata: Metadata = {
   keywords: '游戏分类,安卓游戏,PC游戏,游戏模拟器,游戏下载',
 };
 
-// 定义分类映射关系，与 /games/[category] 保持一致
-const categoryMapping: Record<string, string[]> = {
-  'android': ['模拟', '角色扮演', '冒险', '休闲', '射击'],
-  'pc': ['策略', 'RTS', 'RPG', '开放世界', 'FPS'],  
-  'retro': ['经典', '像素', '回合制', '战棋'],
-  'switch': ['多人联机', '合作', '竞技'],
-  'simulator': ['模拟', '模拟经营', '养成', '放置']
+// 分类键值映射到数据库alias字段（父级分类）  
+const categoryAliasMapping: Record<string, string> = {
+  'android': 'android',
+  'pc': 'pc',  
+  'retro': 'retro',
+  'switch': 'switch',
+  'simulator': 'simulator'
 };
 
 // 分类显示名称
@@ -27,7 +29,69 @@ const categoryNames: Record<string, string> = {
   'simulator': '游戏模拟器'
 };
 
-export default function GamesPage() {
+export default async function GamesPage() {
+  // 从数据库获取分类信息和资源数据
+  const [categories, featuredResources, hotResources] = await Promise.all([
+    CategoryModel.getTopLevelCategories(),
+    ResourceModel.getFeaturedResources(8),
+    ResourceModel.getHotResources(8)
+  ]);
+
+  // 获取每个分类下的资源数量
+  const categoryResourceCounts: Record<string, number> = {};
+  
+  for (const [key, dbAlias] of Object.entries(categoryAliasMapping)) {
+    // 1. 查询父级分类 (level=0 且 alias匹配)
+    const parentCategory = categories.find(cat => 
+      cat.level === 0 && cat.alias === dbAlias
+    );
+    
+    if (parentCategory) {
+      // 2. 查询子分类
+      const childCategories = await CategoryModel.getSubCategories(parentCategory.id);
+      
+      if (childCategories.length === 0) {
+        // 如果没有子分类，查询父分类的资源
+        const result = await ResourceModel.getResources({
+          category_id: parentCategory.id,
+          limit: 1
+        });
+        categoryResourceCounts[key] = result.total;
+      } else {
+        // 如果有子分类，查询所有子分类的资源总数
+        let totalCount = 0;
+        for (const childCat of childCategories) {
+          const result = await ResourceModel.getResources({
+            category_id: childCat.id,
+            limit: 1
+          });
+          totalCount += result.total;
+        }
+        categoryResourceCounts[key] = totalCount;
+      }
+    } else {
+      categoryResourceCounts[key] = 0;
+    }
+  }
+
+  // 获取分类下的标签，用于显示
+  const getCategoryTags = (dbAlias: string): string[] => {
+    const category = categories.find(cat => cat.level === 0 && cat.alias === dbAlias);
+    if (category?.description) {
+      // 如果数据库中有描述，可以从描述中解析标签
+      // 这里使用简单的逗号分割，实际项目中可能需要更复杂的逻辑
+      return category.description.split(',').slice(0, 4);
+    }
+    // 回退到默认标签
+    const defaultTags: Record<string, string[]> = {
+      'android': ['模拟', '角色扮演', '冒险', '休闲'],
+      'pc': ['策略', 'RTS', 'RPG', '开放世界'],
+      'retro': ['经典', '像素', '回合制', '战棋'],
+      'switch': ['多人联机', '合作', '竞技'],
+      'simulator': ['模拟', '模拟经营', '养成', '放置']
+    };
+    return defaultTags[dbAlias] || [];
+  };
 
   return (
     <div className="px-3 sm:px-4 py-4 sm:py-6">
@@ -49,15 +113,9 @@ export default function GamesPage() {
         {/* 主要游戏分类 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {Object.entries(categoryNames).map(([key, name]) => {
-            const tags = categoryMapping[key];
-            const categoryGames = featuredGames.filter(game =>
-              game.tags.some(tag => 
-                tags.some(catTag => 
-                  tag.toLowerCase().includes(catTag.toLowerCase()) ||
-                  catTag.toLowerCase().includes(tag.toLowerCase())
-                )
-              )
-            );
+            const dbAlias = categoryAliasMapping[key];
+            const tags = getCategoryTags(dbAlias);
+            const gameCount = categoryResourceCounts[key] || 0;
             
             return (
               <Link
@@ -75,7 +133,7 @@ export default function GamesPage() {
                     <h3 className="text-white font-bold text-lg group-hover:text-blue-300 transition-colors">
                       {name}
                     </h3>
-                    <p className="text-gray-400 text-sm">{categoryGames.length} 款游戏</p>
+                    <p className="text-gray-400 text-sm">{gameCount} 款游戏</p>
                   </div>
                 </div>
                 
@@ -107,13 +165,13 @@ export default function GamesPage() {
         <div className="mb-6">
           <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">热门游戏</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {featuredGames.slice(0, 8).map((game, idx) => (
+            {(hotResources.length > 0 ? hotResources : featuredResources).slice(0, 8).map((resource, idx) => (
               <div 
-                key={game.id} 
+                key={resource.id} 
                 className="fade-in" 
                 style={{ animationDelay: `${idx * 0.05}s` }}
               >
-                <GameCard game={game} />
+                <GameCard game={resource} />
               </div>
             ))}
           </div>

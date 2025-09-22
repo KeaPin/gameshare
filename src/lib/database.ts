@@ -30,8 +30,7 @@ export function getConnectionPool(): Pool {
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
-        acquireTimeout: 60000,
-        timeout: 60000,
+        connectTimeout: 60000,
       });
     } else {
       // 本地开发环境：直连数据库
@@ -45,8 +44,7 @@ export function getConnectionPool(): Pool {
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
-        acquireTimeout: 60000,
-        timeout: 60000,
+        connectTimeout: 60000,
       });
     }
   }

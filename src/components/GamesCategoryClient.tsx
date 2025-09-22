@@ -3,23 +3,26 @@
 import { useState } from 'react';
 import GameCard from '@/components/GameCard';
 import Link from 'next/link';
+import { Resource } from '@/types/database';
 
 interface GamesCategoryClientProps {
   category: string;
   categoryNames: Record<string, string>;
-  filteredGames: {
-    id: number;
-    title: string;
-    image: string;
-    rating?: number;
-    tags: string[];
-  }[];
+  filteredGames: Resource[];
+  totalCount?: number;
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
 }
 
 export default function GamesCategoryClient({ 
   category, 
   categoryNames, 
-  filteredGames 
+  filteredGames,
+  totalCount,
+  currentPage,
+  totalPages,
+  pageSize
 }: GamesCategoryClientProps) {
   const [sortBy, setSortBy] = useState('newest');
 
@@ -29,10 +32,14 @@ export default function GamesCategoryClient({
       case 'rating':
         return (b.rating || 0) - (a.rating || 0);
       case 'name':
-        return a.title.localeCompare(b.title);
+        return a.name.localeCompare(b.name);
+      case 'download':
+        return b.download_count - a.download_count;
+      case 'view':
+        return b.view_count - a.view_count;
       case 'newest':
       default:
-        return b.id - a.id;
+        return new Date(b.created_time).getTime() - new Date(a.created_time).getTime();
     }
   });
 
@@ -64,6 +71,8 @@ export default function GamesCategoryClient({
             className="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-sm border border-gray-700 focus:border-blue-500 focus:outline-none"
           >
             <option value="newest">最新</option>
+            <option value="download">下载量</option>
+            <option value="view">浏览量</option>
             <option value="rating">评分</option>
             <option value="name">名称</option>
           </select>
@@ -71,7 +80,11 @@ export default function GamesCategoryClient({
       </div>
 
       <div className="mb-4 text-gray-400 text-sm">
-        共找到 {sortedGames.length} 款 {categoryNames[category]}
+        共找到 {totalCount || sortedGames.length} 款 {categoryNames[category]}
+        {/* 调试信息 */}
+        <span className="ml-4 text-xs text-blue-400">
+          (当前页显示: {sortedGames.length}/{pageSize}, 第{currentPage}/{totalPages}页)
+        </span>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -98,6 +111,71 @@ export default function GamesCategoryClient({
           >
             查看安卓游戏
           </Link>
+        </div>
+      )}
+
+      {/* 分页导航 */}
+      {totalPages > 1 && (
+        <div className="mt-8 flex justify-center items-center gap-2">
+          {/* 上一页 */}
+          {currentPage > 1 ? (
+            <Link
+              href={`/games/${category}?page=${currentPage - 1}`}
+              className="px-3 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              上一页
+            </Link>
+          ) : (
+            <span className="px-3 py-2 bg-gray-900 text-gray-500 rounded-lg cursor-not-allowed">
+              上一页
+            </span>
+          )}
+
+          {/* 页码 */}
+          <div className="flex gap-1">
+            {Array.from({ length: Math.min(7, totalPages) }, (_, i) => {
+              let pageNum;
+              if (totalPages <= 7) {
+                pageNum = i + 1;
+              } else {
+                if (currentPage <= 4) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 3) {
+                  pageNum = totalPages - 6 + i;
+                } else {
+                  pageNum = currentPage - 3 + i;
+                }
+              }
+
+              return (
+                <Link
+                  key={pageNum}
+                  href={`/games/${category}?page=${pageNum}`}
+                  className={`px-3 py-2 rounded-lg transition-colors ${
+                    pageNum === currentPage
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                >
+                  {pageNum}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* 下一页 */}
+          {currentPage < totalPages ? (
+            <Link
+              href={`/games/${category}?page=${currentPage + 1}`}
+              className="px-3 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              下一页
+            </Link>
+          ) : (
+            <span className="px-3 py-2 bg-gray-900 text-gray-500 rounded-lg cursor-not-allowed">
+              下一页
+            </span>
+          )}
         </div>
       )}
     </>
