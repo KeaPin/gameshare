@@ -26,7 +26,16 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
   return {
     title: `${game.title} - 游戏详情`,
     description: game.description || `下载和了解更多关于${game.title}的信息，包括游戏截图、评价和系统要求。`,
-    keywords: `${game.title},游戏下载,${game.tags.join(',')},游戏评价`,
+    keywords: [
+      game.title,
+      '游戏下载',
+      ...(
+        Array.isArray(game.tags)
+          ? game.tags
+          : (typeof game.tags === 'string' ? [game.tags] : [])
+      ),
+      '游戏评价'
+    ],
   };
 }
 
