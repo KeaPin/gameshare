@@ -7,11 +7,11 @@ export interface GuideData {
   image: string;
   summary: string;
   author?: string;
-  publishDate?: string;
+  publishDate: string;
   readTime?: string;
-  category?: string;
+  category: string;
   tags?: string[];
-  views?: number;
+  views: number;
   content?: string;
 }
 
