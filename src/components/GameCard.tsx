@@ -13,11 +13,11 @@ export interface GameData {
   id: number | string;
   title?: string;
   name?: string;
-  rating?: number | null;
+  rating?: number;
   image?: string;
   thumbnail?: string;
   images?: string[];
-  tags?: string[] | string;
+  tags?: string[];
   description?: string;
   downloadLinks?: DownloadLink[];
 }

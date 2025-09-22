@@ -5,16 +5,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GameImageCarousel from '@/components/GameImageCarousel';
 import DownloadDialog from '@/components/DownloadDialog';
+import type { DownloadLink } from '@/components/GameCard';
 
 interface GameDetailClientProps {
   game: {
-    id: number;
+    id: string;
     title: string;
     image: string;
     rating?: number;
     tags: string[];
     description?: string;
-    downloadLinks?: string[];
+    downloadLinks?: DownloadLink[];
     images?: string[];
   };
   gameDetail: {
@@ -31,7 +32,7 @@ interface GameDetailClientProps {
     announcement: string;
   };
   reviews: {
-    id: number;
+    id: string;
     username: string;
     rating: number;
     date: string;
@@ -40,7 +41,7 @@ interface GameDetailClientProps {
     device: string;
   }[];
   relatedGames: {
-    id: number;
+    id: string;
     title: string;
     image: string;
     rating?: number;

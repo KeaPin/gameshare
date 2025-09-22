@@ -6,14 +6,13 @@ import GameDetailClient from '@/components/GameDetailClient';
 import { Metadata } from 'next';
 
 interface GameDetailPageProps {
-    params: Promise<{
+    params: {
         id: string;
-    }>;
+    };
 }
 
 export async function generateMetadata({ params }: GameDetailPageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const gameId = parseInt(resolvedParams.id);
+  const gameId = parseInt(params.id, 10);
   const game = featuredGames.find(g => g.id === gameId);
   
   if (!game) {
@@ -27,7 +26,7 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
     title: `${game.title} - 游戏详情`,
     description: game.description || `下载和了解更多关于${game.title}的信息，包括游戏截图、评价和系统要求。`,
     keywords: [
-      game.title,
+      game.title ?? '',
       '游戏下载',
       ...(
         Array.isArray(game.tags)
@@ -40,16 +39,36 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
 }
 
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
-    const resolvedParams = await params;
-    const gameId = parseInt(resolvedParams.id);
+    const gameId = parseInt(params.id, 10);
     const game = featuredGames.find(g => g.id === gameId);
 
     if (!game) {
         notFound();
     }
 
-    // 获取相关游戏推荐（随机选择不同的游戏）
-    const relatedGames = featuredGames.filter(g => g.id !== gameId).slice(0, 8);
+    // 获取相关游戏推荐（转换为组件所需的字符串 id 与规范化字段）
+    const relatedGames = featuredGames
+        .filter(g => g.id !== gameId)
+        .slice(0, 8)
+        .map(g => ({
+            id: String(g.id),
+            title: g.title || '未知游戏',
+            image: g.image || '/default.webp',
+            rating: typeof g.rating === 'number' ? g.rating : undefined,
+            tags: Array.isArray(g.tags) ? g.tags : (typeof g.tags === 'string' ? [g.tags] : []),
+        }));
+
+    // 确保 game 对象符合 GameDetailClientProps 的要求
+    const gameForClient = {
+        id: String(game.id),
+        title: game.title || '未知游戏',
+        image: game.image || '/default.webp',
+        rating: game.rating,
+        tags: Array.isArray(game.tags) ? game.tags : [],
+        description: game.description,
+        downloadLinks: (game.downloadLinks || []) as any,
+        images: game.images
+    };
 
     // 模拟游戏详细数据
     const gameDetail = {
@@ -70,7 +89,7 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
     // 模拟用户评价数据
     const reviews = [
         {
-            id: 1,
+            id: '1',
             username: "心动",
             rating: 5,
             date: "1打",
@@ -79,7 +98,7 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
             device: "Redmi K70 Pro"
         },
         {
-            id: 2,
+            id: '2',
             username: "学不会",
             rating: 5,
             date: "19小时前",
@@ -108,7 +127,7 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
             
             <div className="max-w-[1208px] mx-auto px-3 sm:px-4 py-4 sm:py-6">
                 <GameDetailClient 
-                    game={game}
+                    game={gameForClient}
                     gameDetail={gameDetail}
                     reviews={reviews}
                     relatedGames={relatedGames}
