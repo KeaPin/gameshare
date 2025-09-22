@@ -66,23 +66,16 @@ export async function query<T extends RowDataPacket[]>(
   // 优先在 Cloudflare Workers 环境下使用 Hyperdrive 的直连方式
   try {
     const { env, ctx } = getCloudflareContext();
-    if (env && (env as any).HYPERDRIVE) {
-      const connection = await mysql.createConnection({
-        host: (env as any).HYPERDRIVE.host,
-        user: (env as any).HYPERDRIVE.user,
-        password: (env as any).HYPERDRIVE.password,
-        database: (env as any).HYPERDRIVE.database,
-        port: (env as any).HYPERDRIVE.port,
-        disableEval: true,
-      } as any);
+    if (env && (env as any).HYPERDRIVE && typeof (env as any).HYPERDRIVE.connectionString === 'string') {
+      const connection = await mysql.createConnection((env as any).HYPERDRIVE.connectionString);
       try {
         const [rows] = await connection.execute<T>(sql, params);
         // 在 Worker 被销毁前清理连接
-        ctx.waitUntil(connection.end());
+        ctx?.waitUntil?.(connection.end());
         return rows;
       } catch (error) {
         // 若执行失败，确保连接关闭
-        ctx.waitUntil(connection.end());
+        ctx?.waitUntil?.(connection.end());
         throw error;
       }
     }
@@ -108,21 +101,14 @@ export async function execute(
   // 优先在 Cloudflare Workers 环境下使用 Hyperdrive 的直连方式
   try {
     const { env, ctx } = getCloudflareContext();
-    if (env && (env as any).HYPERDRIVE) {
-      const connection = await mysql.createConnection({
-        host: (env as any).HYPERDRIVE.host,
-        user: (env as any).HYPERDRIVE.user,
-        password: (env as any).HYPERDRIVE.password,
-        database: (env as any).HYPERDRIVE.database,
-        port: (env as any).HYPERDRIVE.port,
-        disableEval: true,
-      } as any);
+    if (env && (env as any).HYPERDRIVE && typeof (env as any).HYPERDRIVE.connectionString === 'string') {
+      const connection = await mysql.createConnection((env as any).HYPERDRIVE.connectionString);
       try {
         const [result] = await connection.execute<ResultSetHeader>(sql, params);
-        ctx.waitUntil(connection.end());
+        ctx?.waitUntil?.(connection.end());
         return result;
       } catch (error) {
-        ctx.waitUntil(connection.end());
+        ctx?.waitUntil?.(connection.end());
         throw error;
       }
     }
