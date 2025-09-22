@@ -185,6 +185,86 @@ export class ResourceModel {
   }
 
   /**
+   * 按多个分类ID一次性查询资源并分页（避免对每个子分类分别查询造成的性能问题）
+   * @param categoryIds 分类ID数组
+   * @param params 查询与分页参数
+   */
+  static async getResourcesByCategoryIds(
+    categoryIds: string[],
+    params: QueryParams = {}
+  ): Promise<PaginatedResult<Resource>> {
+    if (!Array.isArray(categoryIds) || categoryIds.length === 0) {
+      return {
+        data: [],
+        total: 0,
+        page: params.page ?? 1,
+        limit: params.limit ?? 12,
+        totalPages: 0
+      };
+    }
+
+    const {
+      page = 1,
+      limit = 12,
+      status = 'active',
+      sort = 'download_count',
+      order = 'desc'
+    } = params;
+
+    const offset = (page - 1) * limit;
+
+    // 统计总数（去重资源ID）
+    const placeholders = categoryIds.map(() => '?').join(',');
+    const countSql = `
+      SELECT COUNT(DISTINCT r.id) AS total
+      FROM resource r
+      INNER JOIN resource_category rc ON rc.resource_id = r.id
+      WHERE r.status = ? AND rc.category_id IN (${placeholders})
+    `;
+    const countRows = await query<RowDataPacket[]>(countSql, [status, ...categoryIds]);
+    const total = countRows[0]?.total ?? 0;
+
+    // 查询数据：先取到去重后的资源ID，再回表拿完整字段，保证排序与分页正确且避免 DISTINCT 全行的性能开销
+    const idSql = `
+      SELECT DISTINCT r.id
+      FROM resource r
+      INNER JOIN resource_category rc ON rc.resource_id = r.id
+      WHERE r.status = ? AND rc.category_id IN (${placeholders})
+      ORDER BY r.${sort} ${order.toUpperCase()}
+      LIMIT ? OFFSET ?
+    `;
+    const idRows = await query<(RowDataPacket & { id: string })[]>(idSql, [status, ...categoryIds, limit, offset]);
+    const ids = idRows.map(r => r.id);
+
+    if (ids.length === 0) {
+      return {
+        data: [],
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit)
+      };
+    }
+
+    const dataPlaceholders = ids.map(() => '?').join(',');
+    const dataSql = `
+      SELECT r.*
+      FROM resource r
+      WHERE r.id IN (${dataPlaceholders})
+      ORDER BY r.${sort} ${order.toUpperCase()}
+    `;
+    const resources = await query<(Resource & RowDataPacket)[]>(dataSql, ids);
+
+    return {
+      data: resources,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    };
+  }
+
+  /**
    * 增加资源浏览次数
    * @param id 资源ID
    */

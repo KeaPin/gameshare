@@ -97,54 +97,17 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
     var totalCount = resourcesResult.total;
     var totalPages = resourcesResult.totalPages;
   } else {
-    // 3. 查询所有子分类关联的resource（应用层分页）
-    // 由于跨分类分页的复杂性，我们采用应用层分页方案
-    
-    // 首先获取所有子分类的资源总数
-    const totalCountPromises = childCategories.map(childCat => 
-      ResourceModel.getResources({
-        category_id: childCat.id,
-        limit: 1  // 只获取总数
-      })
-    );
-    
-    const totalCountResults = await Promise.all(totalCountPromises);
-    var totalCount = totalCountResults.reduce((sum, result) => sum + result.total, 0);
-    var totalPages = Math.ceil(totalCount / pageSize);
-    
-    // 为了准确分页，我们需要获取当前页面范围内的所有资源
-    // 计算需要获取的资源范围
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    
-    // 获取足够的资源以确保能正确分页（获取到当前页+1页的数据）
-    const requiredLimit = Math.min(endIndex + pageSize, 200); // 最多获取200个避免性能问题
-    
-    const allResourcesPromises = childCategories.map(childCat => 
-      ResourceModel.getResources({
-        category_id: childCat.id,
-        limit: requiredLimit,
-        sort: 'download_count',
-        order: 'desc'
-      })
-    );
-    
-    const allResourcesResults = await Promise.all(allResourcesPromises);
-    
-    // 合并所有资源并去重，按下载量排序
-    const allResources = allResourcesResults.flatMap(result => result.data);
-    const uniqueResources = Array.from(
-      new Map(allResources.map(resource => [resource.id, resource])).values()
-    ).sort((a, b) => b.download_count - a.download_count);
-    
-    // 严格应用层分页 - 确保只返回16个
-    var filteredGames = uniqueResources.slice(startIndex, startIndex + pageSize);
-    
-    // 如果获取的资源数量少于总数，需要重新计算总数和页数
-    if (uniqueResources.length < totalCount) {
-      var totalCount = uniqueResources.length;
-      var totalPages = Math.ceil(totalCount / pageSize);
-    }
+    // 3. 跨子分类一次性分页查询（避免 N+1 慢查询）
+    const childCategoryIds = childCategories.map(c => c.id);
+    const result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
+      page: currentPage,
+      limit: pageSize,
+      sort: 'download_count',
+      order: 'desc'
+    });
+    var filteredGames = result.data;
+    var totalCount = result.total;
+    var totalPages = result.totalPages;
   }
 
   return (
