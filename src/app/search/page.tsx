@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import SearchClient from '@/components/SearchClient';
 import { featuredGames, rankingHotDownloads, rankingTopRated, rankingBetaHot } from '@/data/games';
 import { GameData } from '@/components/GameCard';
@@ -26,7 +27,9 @@ export default function SearchPage() {
   return (
     <div className="px-3 sm:px-4 py-4 sm:py-6">
       <div className="max-w-[1208px] mx-auto">
-        <SearchClient uniqueGames={uniqueGames} />
+        <Suspense fallback={<div className="text-gray-400">加载中...</div>}>
+          <SearchClient uniqueGames={uniqueGames} />
+        </Suspense>
       </div>
     </div>
   );

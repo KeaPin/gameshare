@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import ArticleCard from '@/components/ArticleCard';
+import type { GuideData } from '@/components/ArticleCard';
 
 interface ArticleDetailClientProps {
   article: {
@@ -15,13 +16,7 @@ interface ArticleDetailClientProps {
     views: number;
     tags?: string[];
   };
-  relatedArticles: {
-    id: number;
-    title: string;
-    image: string;
-    category: string;
-    tags?: string[];
-  }[];
+  relatedArticles: GuideData[];
 }
 
 export default function ArticleDetailClient({ article, relatedArticles }: ArticleDetailClientProps) {

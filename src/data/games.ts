@@ -92,7 +92,6 @@ export const featuredGames: GameData[] = [
   {
     id: "6",
     title: '终极角逐',
-    rating: null,
     image: '/default.webp',
     images: ['/default.webp', '/window.svg'],
     tags: ['高画质', '竞技', '多人联机'],

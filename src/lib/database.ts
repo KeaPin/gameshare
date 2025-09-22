@@ -137,25 +137,24 @@ export async function testConnection(): Promise<boolean> {
 export function createWorkerDatabase(env: CloudflareEnv) {
   return {
     async query<T extends RowDataPacket[]>(sql: string, params?: any[]): Promise<T> {
-      // 在 Cloudflare Workers 中，需要使用 env.HYPERDRIVE 进行连接
-      // 这是一个示例实现，具体实现取决于 Hyperdrive 的 API
-      const stmt = env.HYPERDRIVE.prepare(sql);
-      const result = params ? await stmt.bind(...params).all() : await stmt.all();
-      return result.results as T;
+      // 在 Cloudflare Workers 中通过 Hyperdrive 的 connectionString 使用标准驱动
+      const connection = await mysql.createConnection(env.HYPERDRIVE.connectionString);
+      try {
+        const [rows] = await connection.execute<T>(sql, params);
+        return rows;
+      } finally {
+        await connection.end();
+      }
     },
     
     async execute(sql: string, params?: any[]): Promise<ResultSetHeader> {
-      const stmt = env.HYPERDRIVE.prepare(sql);
-      const result = params ? await stmt.bind(...params).run() : await stmt.run();
-      return {
-        affectedRows: result.changes || 0,
-        insertId: result.meta?.last_row_id || 0,
-        warningStatus: 0,
-        info: '',
-        serverStatus: 0,
-        fieldCount: 0,
-        changedRows: 0
-      } as ResultSetHeader;
+      const connection = await mysql.createConnection(env.HYPERDRIVE.connectionString);
+      try {
+        const [result] = await connection.execute<ResultSetHeader>(sql, params);
+        return result;
+      } finally {
+        await connection.end();
+      }
     }
   };
 }

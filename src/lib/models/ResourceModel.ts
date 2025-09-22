@@ -5,7 +5,7 @@
 
 import { RowDataPacket } from 'mysql2/promise';
 import { query, execute } from '../database';
-import { Resource, ResourceDetail, ResourceLink, QueryParams, PaginatedResult } from '../../types/database';
+import { Resource, ResourceDetail, ResourceLink, QueryParams, PaginatedResult, Category } from '../../types/database';
 import { generateId } from '../utils/id-generator';
 
 /**
@@ -100,7 +100,7 @@ export class ResourceModel {
       INNER JOIN resource_category rc ON c.id = rc.category_id
       WHERE rc.resource_id = ? AND c.status = ?
     `;
-    const categories = await query<RowDataPacket[]>(categorySql, [id, 'active']);
+    const categories = await query<(Category & RowDataPacket)[]>(categorySql, [id, 'active']);
 
     // 获取下载链接
     const linkSql = 'SELECT * FROM resource_link WHERE resource_id = ? AND status = ? ORDER BY weight DESC';

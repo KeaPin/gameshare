@@ -6,13 +6,14 @@ import GameDetailClient from '@/components/GameDetailClient';
 import { Metadata } from 'next';
 
 interface GameDetailPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 export async function generateMetadata({ params }: GameDetailPageProps): Promise<Metadata> {
-  const gameId = parseInt(params.id, 10);
+  const resolvedParams = await params;
+  const gameId = parseInt(resolvedParams.id, 10);
   const game = featuredGames.find(g => g.id === gameId);
   
   if (!game) {
@@ -39,7 +40,8 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
 }
 
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
-    const gameId = parseInt(params.id, 10);
+    const resolvedParams = await params;
+    const gameId = parseInt(resolvedParams.id, 10);
     const game = featuredGames.find(g => g.id === gameId);
 
     if (!game) {

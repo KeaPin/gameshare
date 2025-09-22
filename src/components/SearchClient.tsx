@@ -25,13 +25,28 @@ export default function SearchClient({ uniqueGames }: SearchClientProps) {
   useEffect(() => {
     let filteredGames = uniqueGames;
 
+    const normalizeTags = (tags: string[] | string | null | undefined): string[] => {
+      if (Array.isArray(tags)) return tags;
+      if (typeof tags === 'string') {
+        try {
+          const parsed = JSON.parse(tags);
+          if (Array.isArray(parsed)) return parsed as string[];
+        } catch {}
+        return String(tags).split(',').map(t => t.trim()).filter(Boolean);
+      }
+      return [];
+    };
+
     // 如果有搜索关键词，进行搜索过滤
     if (query.trim()) {
       const searchTerm = query.toLowerCase().trim();
       filteredGames = uniqueGames.filter(game => {
-        const titleMatch = game.title.toLowerCase().includes(searchTerm);
-        const tagsMatch = game.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-        const descriptionMatch = game.description?.toLowerCase().includes(searchTerm) || false;
+        const titleText = (game.title ?? '').toLowerCase();
+        const titleMatch = titleText.includes(searchTerm);
+        const tagsArr = normalizeTags(game.tags);
+        const tagsMatch = tagsArr.some(tag => tag.toLowerCase().includes(searchTerm));
+        const descriptionText = (game.description ?? '').toLowerCase();
+        const descriptionMatch = descriptionText.includes(searchTerm);
         
         return titleMatch || tagsMatch || descriptionMatch;
       });
@@ -40,18 +55,24 @@ export default function SearchClient({ uniqueGames }: SearchClientProps) {
       filteredGames.sort((a, b) => {
         const getRelevanceScore = (game: GameData) => {
           let score = 0;
-          if (game.title.toLowerCase().includes(searchTerm)) score += 100;
-          game.tags.forEach(tag => {
+          const titleText = (game.title ?? '').toLowerCase();
+          if (titleText.includes(searchTerm)) score += 100;
+          normalizeTags(game.tags).forEach(tag => {
             if (tag.toLowerCase().includes(searchTerm)) score += 50;
           });
-          if (game.description?.toLowerCase().includes(searchTerm)) score += 10;
+          const descText = (game.description ?? '').toLowerCase();
+          if (descText.includes(searchTerm)) score += 10;
           return score;
         };
         return getRelevanceScore(b) - getRelevanceScore(a);
       });
     } else {
       // 如果没有搜索关键词，按ID倒序显示所有游戏
-      filteredGames = [...uniqueGames].sort((a, b) => b.id - a.id);
+      filteredGames = [...uniqueGames].sort((a, b) => {
+        const aId = Number(a.id);
+        const bId = Number(b.id);
+        return (isNaN(bId) ? 0 : bId) - (isNaN(aId) ? 0 : aId);
+      });
     }
 
     setResults(filteredGames);

@@ -5,7 +5,7 @@
 
 import { RowDataPacket } from 'mysql2/promise';
 import { query, execute } from '../database';
-import { Article, ArticleDetail, QueryParams, PaginatedResult } from '../../types/database';
+import { Article, ArticleDetail, QueryParams, PaginatedResult, Category } from '../../types/database';
 import { generateId } from '../utils/id-generator';
 
 /**
@@ -100,7 +100,7 @@ export class ArticleModel {
       INNER JOIN article_category ac ON c.id = ac.category_id
       WHERE ac.article_id = ? AND c.status = ?
     `;
-    const categories = await query<RowDataPacket[]>(categorySql, [id, 'active']);
+    const categories = await query<(Category & RowDataPacket)[]>(categorySql, [id, 'active']);
 
     // 解析标签
     let tags_parsed: string[] = [];
