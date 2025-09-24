@@ -1,12 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
-import ArticleCard from '@/components/ArticleCard';
-import { guides } from '@/data/guides';
-import { featuredGames} from '@/data/games';
 import { getNavIcon } from '@/data/navigation';
 import { Metadata } from 'next';
-import { ResourceModel } from '@/lib/models/ResourceModel';
+import { getCachedResourcesByCategoryAlias, getCachedHotGames } from '@/lib/utils/cache';
 
 export const metadata: Metadata = {
   title: '游戏分享 - 发现精品游戏',
@@ -15,12 +12,17 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // 缓存1小时
 
 export default async function Home() {
-  // 从数据库随机获取 8 条安卓与 8 条 PC 游戏
-  const [androidGames, pcGames] = await Promise.all([
-    ResourceModel.getRandomResourcesByCategoryAlias('android', 8),
-    ResourceModel.getRandomResourcesByCategoryAlias('pc', 8)
+  // 并行获取所有数据以提升性能（使用缓存版本）
+  const [androidGames, pcGames, retroGames, switchGames, simulatorGames, hotGames] = await Promise.all([
+    getCachedResourcesByCategoryAlias('android', 8),
+    getCachedResourcesByCategoryAlias('pc', 8),
+    getCachedResourcesByCategoryAlias('retro', 8),
+    getCachedResourcesByCategoryAlias('switch', 8),
+    getCachedResourcesByCategoryAlias('simulator', 8),
+    getCachedHotGames(8)
   ]);
   return (
     <div className="px-3 sm:px-4 py-4 sm:py-6">
@@ -105,7 +107,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {androidGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
-                <GameCard game={game} />
+                <GameCard game={game} priority={idx < 4} index={idx} />
               </div>
             ))}
           </div>
@@ -133,7 +135,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {pcGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
-                <GameCard game={game} />
+                <GameCard game={game} index={idx + 8} />
               </div>
             ))}
           </div>
@@ -148,7 +150,7 @@ export default async function Home() {
               </div>
               <h2 className="text-base sm:text-lg font-bold text-white">怀旧游戏</h2>
             </div>
-            <Link 
+            <Link
               href="/games"
               className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
             >
@@ -159,24 +161,24 @@ export default async function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-            {featuredGames.slice(0, 8).map((game, idx) => (
+            {retroGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
-                <GameCard game={game} />
+                <GameCard game={game} index={idx + 16} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Swift 游戏 */}
+        {/* Switch 游戏 */}
         <div className="mt-6 sm:mt-8">
           <div className="mb-2 sm:mb-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="text-white">
                 {getNavIcon('zap', 20)}
               </div>
-              <h2 className="text-base sm:text-lg font-bold text-white">Swift游戏</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white">Switch游戏</h2>
             </div>
-            <Link 
+            <Link
               href="/games"
               className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
             >
@@ -187,9 +189,9 @@ export default async function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-            {featuredGames.slice(0, 8).map((game, idx) => (
+            {switchGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
-                <GameCard game={game} />
+                <GameCard game={game} index={idx + 24} />
               </div>
             ))}
           </div>
@@ -204,7 +206,7 @@ export default async function Home() {
               </div>
               <h2 className="text-base sm:text-lg font-bold text-white">游戏模拟器</h2>
             </div>
-            <Link 
+            <Link
               href="/games"
               className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
             >
@@ -215,25 +217,25 @@ export default async function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-            {featuredGames.slice(0, 8).map((game, idx) => (
+            {simulatorGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
-                <GameCard game={game} />
+                <GameCard game={game} index={idx + 32} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* 游戏攻略 */}
+        {/* 热门游戏攻略 */}
         <div className="mt-6 sm:mt-8">
           <div className="mb-2 sm:mb-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="text-white">
                 {getNavIcon('book', 20)}
               </div>
-              <h2 className="text-base sm:text-lg font-bold text-white">游戏攻略</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white">热门攻略</h2>
             </div>
-            <Link 
-              href="/games"
+            <Link
+              href="/articles"
               className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
             >
               查看更多
@@ -243,9 +245,9 @@ export default async function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-            {guides.slice(0, 8).map((g, idx) => (
-              <div key={g.id} className="fade-in" style={{ animationDelay: `${idx * 0.02}s` }}>
-                <ArticleCard guide={g} />
+            {hotGames.slice(0, 8).map((game, idx) => (
+              <div key={`hot-${game.id}`} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
+                <GameCard game={game} index={idx + 40} />
               </div>
             ))}
           </div>

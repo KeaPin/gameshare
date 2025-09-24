@@ -4,7 +4,6 @@ import Link from 'next/link';
 import GameDetailClient from '@/components/GameDetailClient';
 import { Metadata } from 'next';
 import { getGameDetail } from '@/lib/services/gameService';
-import { ResourceModel } from '@/lib/models/ResourceModel';
 
 interface GameDetailPageProps {
     params: Promise<{
@@ -43,25 +42,19 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
     const resolvedParams = await params;
     const gameId = resolvedParams.id;
-    
-    // 从数据库获取游戏详情数据
+
+    // 从服务层获取优化后的游戏详情数据（包含完整资源信息）
     const gameDetailData = await getGameDetail(gameId);
 
     if (!gameDetailData) {
         notFound();
     }
 
-    const { game, detailedData, reviews, relatedGames } = gameDetailData;
+    const { game, detailedData, reviews, relatedGames, resourceDetail } = gameDetailData;
 
-    // 获取完整的资源字段（包含 Resource 的所有字段）
-    const resourceDetail = await ResourceModel.getResourceById(gameId);
-    if (!resourceDetail) {
-        notFound();
-    }
-
-    // 合并生成前端所需的 game 对象：包含 Resource 全字段 + 兼容的前端字段
+    // 使用服务层返回的完整资源数据，避免重复查询
     const gameForClient = {
-        ...resourceDetail,
+        ...resourceDetail, // 使用服务层返回的完整资源数据
         title: game.title,
         image: game.image,
         rating: game.rating,

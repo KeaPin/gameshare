@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
 import { Metadata } from 'next';
+import { getCachedTopLevelCategories, getCachedFeaturedGames, getCachedHotGames } from '@/lib/utils/cache';
 import { CategoryModel } from '@/lib/models/CategoryModel';
 import { ResourceModel } from '@/lib/models/ResourceModel';
 import { Resource, Category } from '@/types/database';
 
-// 该页面依赖数据库实时数据，强制动态渲染，避免构建期静态预渲染超时
+// 该页面依赖数据库实时数据，但可以短时间缓存
 export const dynamic = 'force-dynamic';
+export const revalidate = 1800; // 缓存30分钟
 
 export const metadata: Metadata = {
   title: '游戏分类 - 精品游戏合集',
@@ -33,11 +35,11 @@ const categoryNames: Record<string, string> = {
 };
 
 export default async function GamesPage() {
-  // 从数据库获取分类信息和资源数据（全部并行）
+  // 从数据库获取分类信息和资源数据（使用缓存版本）
   const [categories, featuredResources, hotResources] = await Promise.all([
-    CategoryModel.getTopLevelCategories(),
-    ResourceModel.getFeaturedResources(8),
-    ResourceModel.getHotResources(8)
+    getCachedTopLevelCategories(),
+    getCachedFeaturedGames(8),
+    getCachedHotGames(8)
   ]);
 
   // 预构建：alias -> 父分类
@@ -45,15 +47,26 @@ export default async function GamesPage() {
     Object.entries(categoryAliasMapping).map(([key, alias]) => [key, categories.find(c => c.level === 0 && c.alias === alias)])
   );
 
-  // 并行获取所有父分类的子分类
-  const subCategoriesEntries = await Promise.all(
-    Object.entries(parentByAlias).map(async ([key, parent]) => {
-      if (!parent) return [key, [] as Category[]] as const;
-      const subs = await CategoryModel.getSubCategories(parent.id);
-      return [key, subs] as const;
-    })
+  // 一次性获取所有父分类的子分类（批量查询避免N+1问题）
+  const parentIds = Object.values(parentByAlias).filter(Boolean).map(p => p!.id);
+  const allSubCategories = parentIds.length > 0 ? await CategoryModel.getBatchSubCategories(parentIds) : [];
+
+  // 按父分类ID分组子分类
+  const subCategoriesGrouped: Record<string, Category[]> = {};
+  allSubCategories.forEach(sub => {
+    if (!subCategoriesGrouped[sub.parent_id!]) {
+      subCategoriesGrouped[sub.parent_id!] = [];
+    }
+    subCategoriesGrouped[sub.parent_id!].push(sub);
+  });
+
+  // 构建每个key对应的子分类
+  const subCategoriesByKey: Record<string, Category[]> = Object.fromEntries(
+    Object.entries(parentByAlias).map(([key, parent]) => [
+      key,
+      parent ? (subCategoriesGrouped[parent.id] || []) : []
+    ])
   );
-  const subCategoriesByKey = Object.fromEntries(subCategoriesEntries as Array<[string, Category[]]>);
 
   // 为每个大类计算用于查询的分类ID集合（若无子类则使用父类ID）
   const categoryIdsByKey: Record<string, string[]> = Object.fromEntries(
@@ -65,15 +78,18 @@ export default async function GamesPage() {
     })
   );
 
-  // 并行按多个分类ID聚合查询总数（一次查询解决一个大类，避免 N+1）
-  const countsEntries = await Promise.all(
-    Object.entries(categoryIdsByKey).map(async ([key, ids]) => {
-      if (ids.length === 0) return [key, 0] as const;
-      const result = await ResourceModel.getResourcesByCategoryIds(ids, { limit: 1 });
-      return [key, result.total] as const;
-    })
-  );
-  const categoryResourceCounts: Record<string, number> = Object.fromEntries(countsEntries);
+  // 一次性批量获取所有分类的资源统计（避免多次查询）
+  const allCategoryIds = Object.values(categoryIdsByKey).flat();
+  const categoryResourceCounts: Record<string, number> = {};
+
+  if (allCategoryIds.length > 0) {
+    const batchCounts = await ResourceModel.getBatchResourceCountsByCategoryIds(allCategoryIds);
+
+    // 聚合每个key的总数
+    Object.entries(categoryIdsByKey).forEach(([key, ids]) => {
+      categoryResourceCounts[key] = ids.reduce((sum, id) => sum + (batchCounts[id] || 0), 0);
+    });
+  }
 
   // 获取分类下的标签，用于显示
   const getCategoryTags = (dbAlias: string): string[] => {

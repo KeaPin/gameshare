@@ -338,6 +338,31 @@ export class ResourceModel {
   }
 
   /**
+   * 批量获取多个分类ID的资源统计数量
+   * @param categoryIds 分类ID数组
+   * @returns 每个分类ID对应的资源数量
+   */
+  static async getBatchResourceCountsByCategoryIds(categoryIds: string[]): Promise<Record<string, number>> {
+    if (categoryIds.length === 0) return {};
+
+    const placeholders = categoryIds.map(() => '?').join(',');
+    const sql = `
+      SELECT rc.category_id, COUNT(DISTINCT r.id) as total
+      FROM resource r
+      INNER JOIN resource_category rc ON rc.resource_id = r.id
+      WHERE r.status = ? AND rc.category_id IN (${placeholders})
+      GROUP BY rc.category_id
+    `;
+
+    const result = await query<(RowDataPacket & { category_id: string; total: number })[]>(
+      sql,
+      ['active', ...categoryIds]
+    );
+
+    return Object.fromEntries(result.map(row => [row.category_id, row.total]));
+  }
+
+  /**
    * 搜索资源
    * @param keyword 搜索关键词
    * @param params 其他查询参数

@@ -24,14 +24,16 @@ export interface GameData {
 
 interface GameCardProps {
   game: GameData | Resource;
+  priority?: boolean; // 是否优先加载
+  index?: number; // 卡片索引，用于判断是否在首屏
 }
 
-export default function GameCard({ game }: GameCardProps) {
+export default function GameCard({ game, priority = false, index = 0 }: GameCardProps) {
   // 适配不同的数据格式
   const gameTitle = ('title' in game && game.title) || ('name' in game && game.name) || '未知游戏';
   const gameImage = ('image' in game && game.image) || ('thumbnail' in game && game.thumbnail) || '/default.webp';
   const gameDescription = ('description' in game && game.description) || '暂无介绍';
-  
+
   // 处理标签数据
   let gameTags: string[] = [];
   if ('tags' in game && game.tags) {
@@ -49,7 +51,11 @@ export default function GameCard({ game }: GameCardProps) {
   }
 
   const hasRating = game.rating;
-  const ratingText = game.rating?game.rating : '暂无评分';
+  const ratingText = game.rating ? game.rating : '暂无评分';
+
+  // 优化图片加载策略
+  const isFirstRow = index < 4; // 假设每行4个，首行优先加载
+  const shouldPreload = priority || isFirstRow;
 
   return (
     <Link href={`/game/${game.id}`} className="block">
@@ -62,7 +68,11 @@ export default function GameCard({ game }: GameCardProps) {
               alt={gameTitle}
               fill
               className="object-cover transition-transform duration-300 rounded-xl sm:rounded-2xl"
-              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
+              sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
+              priority={shouldPreload}
+              loading={shouldPreload ? "eager" : "lazy"}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyb5v3elyNat6zWqSC1+UUCmgDaKGTZJOQRQ=="
             />
           </div>
 
@@ -94,6 +104,9 @@ export default function GameCard({ game }: GameCardProps) {
                 fill
                 className="object-cover rounded-2xl"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyb5v3elyNat6zWqSC1+UUCmgDaKGTZJOQRQ=="
               />
             </div>
 

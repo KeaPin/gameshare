@@ -77,6 +77,24 @@ export class CategoryModel {
   }
 
   /**
+   * 批量获取多个父分类的子分类
+   * @param parentIds 父分类ID数组
+   * @returns 子分类列表
+   */
+  static async getBatchSubCategories(parentIds: string[]): Promise<Category[]> {
+    if (parentIds.length === 0) return [];
+
+    const placeholders = parentIds.map(() => '?').join(',');
+    const sql = `
+      SELECT * FROM category
+      WHERE parent_id IN (${placeholders}) AND status = ?
+      ORDER BY parent_id, weight DESC, name ASC
+    `;
+
+    return await query<(Category & RowDataPacket)[]>(sql, [...parentIds, 'active']);
+  }
+
+  /**
    * 获取分类树结构
    * @param type 分类类型筛选（可选）
    * @returns 分类树

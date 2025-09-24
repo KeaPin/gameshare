@@ -3,6 +3,7 @@
  * 提供游戏相关的业务逻辑和数据处理
  */
 
+import { getCachedResourceById } from '../utils/cache';
 import { ResourceModel } from '../models/ResourceModel';
 import { ResourceDetail, Resource } from '../../types/database';
 
@@ -49,6 +50,7 @@ export interface GameDetailData {
   };
   reviews: ReviewData[];
   relatedGames: GameData[];
+  resourceDetail?: any; // 完整的资源数据
 }
 
 export interface ReviewData {
@@ -199,19 +201,30 @@ function generateMockReviews(gameId: string): ReviewData[] {
 }
 
 /**
- * 根据游戏ID获取游戏详情
+ * 根据游戏ID获取游戏详情（优化版本，避免重复查询）
  */
 export async function getGameDetail(gameId: string): Promise<GameDetailData | null> {
   try {
-    // 从数据库获取游戏详情
-    const resourceDetail = await ResourceModel.getResourceById(gameId);
-    
+    // 使用缓存版本一次性从数据库获取完整的游戏详情数据
+    const resourceDetail = await getCachedResourceById(gameId);
+
     if (!resourceDetail) {
       return null;
     }
 
     // 转换为前端数据格式
     const game = convertResourceToGameData(resourceDetail);
+
+    // 并行获取相关数据和增加浏览次数
+    const [relatedResourcesResult] = await Promise.all([
+      ResourceModel.getResources({
+        limit: 6,
+        sort: 'rating',
+        order: 'desc'
+      }),
+      // 异步增加浏览次数，不阻塞响应
+      ResourceModel.incrementViewCount(gameId).catch(err => console.warn('Failed to increment view count:', err))
+    ]);
 
     // 生成详细数据
     const detailedData = {
@@ -222,26 +235,19 @@ export async function getGameDetail(gameId: string): Promise<GameDetailData | nu
     // 生成模拟评价数据
     const reviews = generateMockReviews(gameId);
 
-    // 获取相关游戏（同类型的其他游戏）
-    const relatedResourcesResult = await ResourceModel.getResources({
-      limit: 6,
-      sort: 'rating',
-      order: 'desc'
-    });
-
+    // 过滤相关游戏（排除当前游戏）
     const relatedGames = relatedResourcesResult.data
       .filter(resource => resource.id !== gameId)
       .slice(0, 4)
       .map(convertResourceToGameData);
 
-    // 增加浏览次数
-    await ResourceModel.incrementViewCount(gameId);
-
     return {
       game,
       detailedData,
       reviews,
-      relatedGames
+      relatedGames,
+      // 返回完整的资源数据供游戏详情页使用
+      resourceDetail
     };
   } catch (error) {
     console.error('获取游戏详情失败:', error);
