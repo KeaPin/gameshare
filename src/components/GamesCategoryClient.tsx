@@ -81,10 +81,6 @@ export default function GamesCategoryClient({
 
       <div className="mb-4 text-gray-400 text-sm">
         共找到 {totalCount || sortedGames.length} 款 {categoryNames[category]}
-        {/* 调试信息 */}
-        <span className="ml-4 text-xs text-blue-400">
-          (当前页显示: {sortedGames.length}/{pageSize}, 第{currentPage}/{totalPages}页)
-        </span>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">

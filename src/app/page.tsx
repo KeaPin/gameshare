@@ -6,6 +6,7 @@ import { guides } from '@/data/guides';
 import { featuredGames} from '@/data/games';
 import { getNavIcon } from '@/data/navigation';
 import { Metadata } from 'next';
+import { ResourceModel } from '@/lib/models/ResourceModel';
 
 export const metadata: Metadata = {
   title: '游戏分享 - 发现精品游戏',
@@ -13,7 +14,14 @@ export const metadata: Metadata = {
   keywords: '游戏下载,游戏攻略,安卓游戏,PC游戏,游戏分享',
 };
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  // 从数据库随机获取 8 条安卓与 8 条 PC 游戏
+  const [androidGames, pcGames] = await Promise.all([
+    ResourceModel.getRandomResourcesByCategoryAlias('android', 8),
+    ResourceModel.getRandomResourcesByCategoryAlias('pc', 8)
+  ]);
   return (
     <div className="px-3 sm:px-4 py-4 sm:py-6">
       <div className="max-w-[1208px] mx-auto">
@@ -95,7 +103,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-            {featuredGames.slice(0, 8).map((game, idx) => (
+            {androidGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
                 <GameCard game={game} />
               </div>
@@ -123,7 +131,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-            {featuredGames.slice(0, 8).map((game, idx) => (
+            {pcGames.map((game, idx) => (
               <div key={game.id} className="fade-in" style={{ animationDelay: `${idx * 0.06}s` }}>
                 <GameCard game={game} />
               </div>

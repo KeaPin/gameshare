@@ -5,28 +5,10 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'img20.360buyimg.com',
+                hostname: 'games.gamesport.store',
                 port: '',
                 pathname: '/**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'shared.cdn.queniuqe.com',
-                port: '',
-                pathname: '/**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'media.st.dl.eccdnx.com',
-                port: '',
-                pathname: '/**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'shared.st.dl.eccdnx.com',
-                port: '',
-                pathname: '/**',
-            },
+            }
         ],
     },
     eslint: {

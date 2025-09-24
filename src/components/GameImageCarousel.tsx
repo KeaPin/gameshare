@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 interface GameImageCarouselProps {
@@ -10,6 +10,7 @@ interface GameImageCarouselProps {
 
 export default function GameImageCarousel({ images, alt }: GameImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => 
@@ -27,6 +28,18 @@ export default function GameImageCarousel({ images, alt }: GameImageCarouselProp
     setCurrentIndex(index);
   };
 
+  // 预览状态下键盘支持（ESC 关闭、左右箭头切换）
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false);
+      if (e.key === 'ArrowLeft') goToPrevious();
+      if (e.key === 'ArrowRight') goToNext();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [isLightboxOpen, images.length]);
+
   if (!images || images.length === 0) {
     return null;
   }
@@ -38,7 +51,8 @@ export default function GameImageCarousel({ images, alt }: GameImageCarouselProp
         src={images[currentIndex]}
         alt={alt}
         fill
-        className="object-cover transition-opacity duration-300"
+        className="object-cover transition-opacity duration-300 cursor-zoom-in"
+        onClick={() => setIsLightboxOpen(true)}
         priority
       />
       
@@ -116,6 +130,65 @@ export default function GameImageCarousel({ images, alt }: GameImageCarouselProp
           </span>
         </div>
       </div>
+
+      {/* 图片放大预览（Lightbox） */}
+      {isLightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="图片预览"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          <div
+            className="relative w-[92vw] h-[82vh] max-w-[1600px]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={images[currentIndex]}
+              alt={alt}
+              fill
+              className="object-contain"
+              priority
+            />
+
+            {/* 关闭按钮 */}
+            <button
+              onClick={() => setIsLightboxOpen(false)}
+              className="absolute top-3 right-3 text-white/80 hover:text-white bg-black/40 hover:bg-black/60 rounded-full p-2"
+              aria-label="关闭预览"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* 左右导航 */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 text-white"
+                  aria-label="上一张"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={goToNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-3 text-white"
+                  aria-label="下一张"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

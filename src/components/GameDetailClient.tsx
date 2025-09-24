@@ -6,18 +6,199 @@ import Link from 'next/link';
 import GameImageCarousel from '@/components/GameImageCarousel';
 import DownloadDialog from '@/components/DownloadDialog';
 import type { DownloadLink } from '@/components/GameCard';
+import type { Resource } from '@/types/database';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+// import remarkBreaks from 'remark-breaks';
+
+function escapeHtml(input: string): string {
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function sanitizeUrl(url: string): string | null {
+  const trimmed = url.trim();
+  if (/^(https?:|mailto:|tel:|\/)/i.test(trimmed)) {
+    return escapeHtml(trimmed);
+  }
+  return null;
+}
+
+function renderMarkdownToHtml(markdown: string): string {
+  if (!markdown) return '';
+
+  let source = markdown.replace(/\r\n?/g, '\n');
+
+  const codeBlocks: Array<{ placeholder: string; html: string }> = [];
+  source = source.replace(/```([a-zA-Z0-9_-]+)?\n([\s\S]*?)\n?```/g, (_m, lang, code, idx) => {
+    const placeholder = `@@CODE_BLOCK_${codeBlocks.length}@@`;
+    const language = typeof lang === 'string' ? lang.trim() : '';
+    const escaped = escapeHtml(code ?? '');
+    const classAttr = language ? ` class="language-${escapeHtml(language)}"` : '';
+    codeBlocks.push({ placeholder, html: `<pre><code${classAttr}>${escaped}</code></pre>` });
+    return placeholder;
+  });
+
+  source = escapeHtml(source);
+
+  const lines = source.split('\n');
+  const htmlParts: string[] = [];
+  let inUl = false;
+  let inOl = false;
+  let inParagraph = false;
+
+  const closeLists = () => {
+    if (inUl) {
+      htmlParts.push('</ul>');
+      inUl = false;
+    }
+    if (inOl) {
+      htmlParts.push('</ol>');
+      inOl = false;
+    }
+  };
+
+  const closeParagraph = () => {
+    if (inParagraph) {
+      htmlParts.push('</p>');
+      inParagraph = false;
+    }
+  };
+
+  const renderInline = (text: string): string => {
+    let result = text;
+    result = result.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, url) => {
+      const safeUrl = sanitizeUrl(url);
+      const safeAlt = escapeHtml(alt || '');
+      if (!safeUrl) return safeAlt;
+      return `<img src="${safeUrl}" alt="${safeAlt}" loading="lazy" />`;
+    });
+    result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, textContent, url) => {
+      const safeUrl = sanitizeUrl(url);
+      const safeText = escapeHtml(textContent || '');
+      if (!safeUrl) return safeText;
+      return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeText}</a>`;
+    });
+    result = result.replace(/`([^`]+)`/g, (_m, code) => `<code>${code}</code>`);
+    result = result.replace(/\*\*([^*]+)\*\*/g, (_m, bold) => `<strong>${bold}</strong>`);
+    result = result.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, (_m, pre, italic) => `${pre}<em>${italic}</em>`);
+    return result;
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine;
+
+    if (/^\s*$/.test(line)) {
+      closeParagraph();
+      closeLists();
+      continue;
+    }
+
+    const hrMatch = /^-{3,}\s*$/.test(line);
+    if (hrMatch) {
+      closeParagraph();
+      closeLists();
+      htmlParts.push('<hr />');
+      continue;
+    }
+
+    const hMatch = /^(#{1,6})\s+(.*)$/.exec(line);
+    if (hMatch) {
+      closeParagraph();
+      closeLists();
+      const level = Math.min(6, hMatch[1].length);
+      const content = renderInline(hMatch[2]);
+      htmlParts.push(`<h${level}>${content}</h${level}>`);
+      continue;
+    }
+
+    const quoteMatch = /^>\s?(.*)$/.exec(line);
+    if (quoteMatch) {
+      closeParagraph();
+      closeLists();
+      const content = renderInline(quoteMatch[1]);
+      htmlParts.push(`<blockquote><p>${content}</p></blockquote>`);
+      continue;
+    }
+
+    const ulMatch = /^\s*[-*+]\s+(.*)$/.exec(line);
+    if (ulMatch) {
+      if (!inUl) {
+        closeParagraph();
+        if (inOl) {
+          htmlParts.push('</ol>');
+          inOl = false;
+        }
+        htmlParts.push('<ul>');
+        inUl = true;
+      }
+      htmlParts.push(`<li>${renderInline(ulMatch[1])}</li>`);
+      continue;
+    }
+
+    const olMatch = /^\s*\d+\.\s+(.*)$/.exec(line);
+    if (olMatch) {
+      if (!inOl) {
+        closeParagraph();
+        if (inUl) {
+          htmlParts.push('</ul>');
+          inUl = false;
+        }
+        htmlParts.push('<ol>');
+        inOl = true;
+      }
+      htmlParts.push(`<li>${renderInline(olMatch[1])}</li>`);
+      continue;
+    }
+
+    const content = renderInline(line);
+    if (!inParagraph) {
+      closeLists();
+      htmlParts.push('<p>');
+      inParagraph = true;
+      htmlParts.push(content);
+    } else {
+      htmlParts.push(' ' + content);
+    }
+  }
+
+  closeParagraph();
+  closeLists();
+
+  let html = htmlParts.join('\n');
+  for (const block of codeBlocks) {
+    html = html.split(block.placeholder).join(block.html);
+  }
+  return html;
+}
+
+function normalizeMarkdownInput(md?: string): string {
+  if (!md) return '';
+  const src = md.replace(/\r\n?/g, '\n');
+  const fixed = src
+    .split('\n')
+    .map((line) =>
+      line.replace(/^(\s{0,3})(#{1,6})([^#\s])/u, (_m, pre, hashes, ch) => `${pre}${hashes} ${ch}`)
+    )
+    .join('\n');
+  return fixed;
+}
+
+type GameWithResource = Resource & {
+  // 兼容现有前端字段（不覆盖 Resource 原字段）
+  title?: string; // 对应 Resource.name
+  image?: string; // 对应 Resource.thumbnail
+  tags_array?: string[]; // 解析后的标签数组
+  images?: string[]; // 解析后的图片数组
+  downloadLinks?: DownloadLink[]; // 前端下载链接结构
+};
 
 interface GameDetailClientProps {
-  game: {
-    id: string;
-    title: string;
-    image: string;
-    rating?: number;
-    tags: string[];
-    description?: string;
-    downloadLinks?: DownloadLink[];
-    images?: string[];
-  };
+  game: GameWithResource;
   gameDetail: {
     preorderCount: string;
     reviewCount: string;
@@ -55,6 +236,27 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
   const [ratingDistribution, setRatingDistribution] = useState<number[]>([]);
   const [ratingCounts, setRatingCounts] = useState<number[]>([]);
 
+  // 解析工具
+  const parseStringList = (value?: string): string[] => {
+    if (!value) return [];
+    try {
+      const parsed = JSON.parse(value);
+      if (Array.isArray(parsed)) return parsed.filter(Boolean);
+    } catch {}
+    return value
+      .split(',')
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+  };
+
+  const gameTitle = game.title || game.name || '未知游戏';
+  const gameImage = game.image || game.thumbnail || '/default.webp';
+  const tagsArray = Array.isArray(game.tags_array)
+    ? game.tags_array
+    : parseStringList(game.tags);
+  const imagesToShow = parseStringList(game.galleries);
+  const normalizedDetail = normalizeMarkdownInput(game.detail || '');
+
   // 监听滚动事件，显示/隐藏回到顶部按钮
   useEffect(() => {
     const handleScroll = () => {
@@ -88,8 +290,8 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
           <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden">
             {/* 游戏轮播图 */}
             <GameImageCarousel
-              images={game.images || [game.image]}
-              alt={game.title}
+              images={imagesToShow}
+              alt={gameTitle}
             />
 
             {/* 游戏信息 */}
@@ -98,25 +300,25 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image
-                      src={game.image}
-                      alt={game.title}
+                      src={gameImage}
+                      alt={gameTitle}
                       width={64}
                       height={64}
                       className="object-cover w-full h-full"
                     />
                   </div>
                   <div>
-                    <h1 className="text-2xl font-bold text-white mb-1">{game.title}</h1>
+                    <h1 className="text-2xl font-bold text-white mb-1">{gameTitle}</h1>
                     <div className="flex items-center gap-2 text-sm text-gray-400">
-                      <span>{gameDetail.developer}</span>
+                      <span>{gameDetail.platforms.join(', ')}</span>
                       <span>•</span>
-                      <span>官方公社</span>
+                      <span>{gameDetail.version}</span>
                     </div>
                   </div>
                 </div>
                 <div className="text-right">
                   <div className="text-2xl font-bold text-blue-300 mb-1">
-                    {game.rating?.toFixed(1) || "暂无"}
+                    {game.rating || "暂无"}
                   </div>
                   <div className="text-sm text-gray-400">评分品质</div>
                 </div>
@@ -125,16 +327,16 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
               {/* 统计数据 */}
               <div className="grid grid-cols-4 gap-4 mb-6">
                 <div className="text-center">
-                  <div className="text-lg font-bold text-white">{gameDetail.preorderCount}</div>
-                  <div className="text-sm text-gray-400">预约</div>
+                  <div className="text-lg font-bold text-white">{gameDetail.size}</div>
+                  <div className="text-sm text-gray-400">游戏大小</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-lg font-bold text-white">{gameDetail.reviewCount}</div>
-                  <div className="text-sm text-gray-400">评分用户</div>
+                  <div className="text-lg font-bold text-white">{gameDetail.language}</div>
+                  <div className="text-sm text-gray-400">支持语言</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-lg font-bold text-white">{gameDetail.followCount}</div>
-                  <div className="text-sm text-gray-400">关注</div>
+                  <div className="text-lg font-bold text-white">{gameDetail.version}</div>
+                  <div className="text-sm text-gray-400">当前版本</div>
                 </div>
                 <div className="text-center">
                   <div className="text-lg font-bold text-white">{gameDetail.releaseDate}</div>
@@ -144,7 +346,7 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
 
               {/* 标签 */}
               <div className="flex flex-wrap gap-2 mb-6">
-                {game.tags.map((tag: string, index: number) => (
+                {tagsArray.map((tag: string, index: number) => (
                   <span
                     key={index}
                     className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm"
@@ -185,79 +387,21 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
             </div>
           </div>
 
-          {/* 游戏规格信息 */}
-          <div className="bg-[#1a1a1a] rounded-2xl p-6">
-            <h2 className="text-lg font-bold text-white mb-4">游戏规格</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-gray-800/30 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                  <div className="text-gray-400 text-sm">开发商</div>
-                </div>
-                <div className="text-white font-medium">{gameDetail.developer}</div>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6.5" />
-                  </svg>
-                  <div className="text-gray-400 text-sm">发行商</div>
-                </div>
-                <div className="text-white font-medium">{gameDetail.publisher}</div>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                  </svg>
-                  <div className="text-gray-400 text-sm">游戏大小</div>
-                </div>
-                <div className="text-white font-medium">{gameDetail.size}</div>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                  </svg>
-                  <div className="text-gray-400 text-sm">支持语言</div>
-                </div>
-                <div className="text-white font-medium">{gameDetail.language}</div>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <div className="text-gray-400 text-sm">支持平台</div>
-                </div>
-                <div className="text-white font-medium">{gameDetail.platforms.join(', ')}</div>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 11V9a1 1 0 011-1h8a1 1 0 011 1v6M5 15v2a2 2 0 002 2h10a2 2 0 002-2v-2" />
-                  </svg>
-                  <div className="text-gray-400 text-sm">当前版本</div>
-                </div>
-                <div className="text-white font-medium">{gameDetail.version}</div>
-              </div>
-            </div>
-          </div>
-
           {/* 游戏描述 */}
           <div className="bg-[#1a1a1a] rounded-2xl p-6">
             <h2 className="text-lg font-bold text-white mb-4">游戏介绍</h2>
             <div className="prose prose-invert max-w-none">
-              <p className="text-gray-300 leading-relaxed mb-4">
-                {game.description}
-              </p>
-              <div className="bg-gray-800/50 rounded-lg p-4 border-l-4 border-blue-500">
-                <h3 className="text-blue-300 font-semibold mb-2">开发者公告</h3>
-                <p className="text-gray-300 leading-relaxed text-sm">
-                  {gameDetail.announcement}
-                </p>
+              <div className="text-gray-300 leading-relaxed mb-4 text-sm">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm /*, (remarkBreaks as any)*/]}
+                  components={{
+                    h1: ({ node, ...props }) => <h1 className="text-xl font-bold mt-4 mb-2" {...props} />,
+                    h2: ({ node, ...props }) => <h2 className="text-lg font-semibold mt-4 mb-2" {...props} />,
+                    h3: ({ node, ...props }) => <h3 className="text-base font-semibold mt-3 mb-2" {...props} />,
+                  }}
+                >
+                  {normalizedDetail}
+                </ReactMarkdown>
               </div>
             </div>
           </div>
@@ -267,7 +411,6 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
                 <h2 className="text-lg font-bold text-white">用户评价</h2>
-                <span className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm font-medium">104 条</span>
               </div>
               <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -281,7 +424,7 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
             <div className="bg-gray-800/30 rounded-xl p-4 mb-6">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-300 mb-1">{game.rating?.toFixed(1) || "N/A"}</div>
+                  <div className="text-3xl font-bold text-blue-300 mb-1">{game.rating || "暂无"}</div>
                   <div className="flex justify-center text-yellow-400 mb-1">
                     {Array.from({ length: 5 }, (_, i) => (
                       <span key={i} className={i < Math.floor(game.rating || 0) ? "★" : "☆"}>★</span>
@@ -305,7 +448,6 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
                 </div>
                 <div className="flex flex-col justify-center text-center text-sm text-gray-400">
                   <div>推荐度: <span className="text-green-400 font-semibold">85%</span></div>
-                  <div className="mt-1">基于 104 条评价</div>
                 </div>
               </div>
             </div>
@@ -392,7 +534,7 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
                       </h4>
                       <div className="flex items-center gap-1 text-xs text-blue-300 mb-1">
                         <span>★</span>
-                        <span>{relatedGame.rating?.toFixed(1) || "暂无"}</span>
+                        <span>{relatedGame.rating || "暂无"}</span>
                       </div>
                       <div className="text-xs text-gray-400 line-clamp-1">
                         {relatedGame.tags.slice(0, 2).join(' · ')}
@@ -414,7 +556,7 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
           <div className="bg-[#1a1a1a] rounded-2xl p-5">
             <h3 className="text-lg font-bold text-white mb-4">游戏标签</h3>
             <div className="flex flex-wrap gap-2">
-              {game.tags.map((tag: string, index: number) => (
+              {tagsArray.map((tag: string, index: number) => (
                 <span
                   key={index}
                   className="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg text-sm transition-colors cursor-pointer"
@@ -463,7 +605,7 @@ export default function GameDetailClient({ game, gameDetail, reviews, relatedGam
       <DownloadDialog
         isOpen={isDownloadDialogOpen}
         onClose={() => setIsDownloadDialogOpen(false)}
-        gameTitle={game.title}
+        gameTitle={gameTitle}
         downloadLinks={game.downloadLinks || []}
       />
     </>

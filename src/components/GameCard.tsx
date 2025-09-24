@@ -48,8 +48,8 @@ export default function GameCard({ game }: GameCardProps) {
     }
   }
 
-  const hasRating = typeof game.rating === 'number' && !Number.isNaN(game.rating);
-  const ratingText = hasRating ? (game.rating as number).toFixed(1) : '暂无评分';
+  const hasRating = game.rating;
+  const ratingText = game.rating?game.rating : '暂无评分';
 
   return (
     <Link href={`/game/${game.id}`} className="block">

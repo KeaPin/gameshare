@@ -1,9 +1,10 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { featuredGames } from '@/data/games';
 import GameDetailClient from '@/components/GameDetailClient';
 import { Metadata } from 'next';
+import { getGameDetail } from '@/lib/services/gameService';
+import { ResourceModel } from '@/lib/models/ResourceModel';
 
 interface GameDetailPageProps {
     params: Promise<{
@@ -13,27 +14,27 @@ interface GameDetailPageProps {
 
 export async function generateMetadata({ params }: GameDetailPageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const gameId = parseInt(resolvedParams.id, 10);
-  const game = featuredGames.find(g => g.id === gameId);
+  const gameId = resolvedParams.id;
   
-  if (!game) {
+  // 从数据库获取游戏信息用于生成元数据
+  const gameDetailData = await getGameDetail(gameId);
+  
+  if (!gameDetailData) {
     return {
       title: '游戏未找到 - 游戏分享',
       description: '您查找的游戏不存在或已被移除。',
     };
   }
   
+  const { game } = gameDetailData;
+  
   return {
     title: `${game.title} - 游戏详情`,
     description: game.description || `下载和了解更多关于${game.title}的信息，包括游戏截图、评价和系统要求。`,
     keywords: [
-      game.title ?? '',
+      game.title,
       '游戏下载',
-      ...(
-        Array.isArray(game.tags)
-          ? game.tags
-          : (typeof game.tags === 'string' ? [game.tags] : [])
-      ),
+      ...game.tags,
       '游戏评价'
     ],
   };
@@ -41,74 +42,64 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
 
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
     const resolvedParams = await params;
-    const gameId = parseInt(resolvedParams.id, 10);
-    const game = featuredGames.find(g => g.id === gameId);
+    const gameId = resolvedParams.id;
+    
+    // 从数据库获取游戏详情数据
+    const gameDetailData = await getGameDetail(gameId);
 
-    if (!game) {
+    if (!gameDetailData) {
         notFound();
     }
 
-    // 获取相关游戏推荐（转换为组件所需的字符串 id 与规范化字段）
-    const relatedGames = featuredGames
-        .filter(g => g.id !== gameId)
-        .slice(0, 8)
-        .map(g => ({
-            id: String(g.id),
-            title: g.title || '未知游戏',
-            image: g.image || '/default.webp',
-            rating: typeof g.rating === 'number' ? g.rating : undefined,
-            tags: Array.isArray(g.tags) ? g.tags : (typeof g.tags === 'string' ? [g.tags] : []),
-        }));
+    const { game, detailedData, reviews, relatedGames } = gameDetailData;
 
-    // 确保 game 对象符合 GameDetailClientProps 的要求
+    // 获取完整的资源字段（包含 Resource 的所有字段）
+    const resourceDetail = await ResourceModel.getResourceById(gameId);
+    if (!resourceDetail) {
+        notFound();
+    }
+
+    // 合并生成前端所需的 game 对象：包含 Resource 全字段 + 兼容的前端字段
     const gameForClient = {
-        id: String(game.id),
-        title: game.title || '未知游戏',
-        image: game.image || '/default.webp',
+        ...resourceDetail,
+        title: game.title,
+        image: game.image,
         rating: game.rating,
-        tags: Array.isArray(game.tags) ? game.tags : [],
+        // Resource.tags 为字符串，这里保留，同时提供解析后的数组以供前端直接使用
+        tags_array: game.tags,
         description: game.description,
-        downloadLinks: (game.downloadLinks || []) as any,
+        detail: game.detail,
+        downloadLinks: game.downloadLinks?.map(link => ({
+            name: link.platform,
+            url: link.url,
+            password: link.password
+        })),
         images: game.images
     };
 
-    // 模拟游戏详细数据
+    // 构建游戏详细信息
     const gameDetail = {
-        ...game,
         preorderCount: "2.4万",
         reviewCount: "2.2万",
         followCount: "26年02",
-        releaseDate: "8+",
-        developer: "官方公社",
-        publisher: "半糖工作室",
-        platforms: ["PC", "移动端"],
-        version: "1.0.0",
-        size: "2.1GB",
-        language: "中文",
-        announcement: "《大侠立志传外传》测试版正式公测，名位大侠好好玩，两年的时光精心制作，不负大家深等待！！，可是就怕大家不满意下单，来总是体验这不错，未来有..."
+        releaseDate: game.releaseDate || "未知",
+        developer: game.developer || "未知开发商",
+        publisher: game.publisher || "未知发行商",
+        platforms: game.platforms ? game.platforms.split(',') : ["PC"],
+        version: game.version || "1.0.0",
+        size: game.size || "未知",
+        language: game.language || "中文",
+        announcement: "游戏详情页面，欢迎体验！"
     };
 
-    // 模拟用户评价数据
-    const reviews = [
-        {
-            id: '1',
-            username: "心动",
-            rating: 5,
-            date: "1打",
-            content: "一代大侠现身争夺大侠人的小的，所有的DLC包含天人无大人的，当时真的是有意想不到的微妙角色设计感官界面也比较清爽的来。也承担不出现回血次数保值白白老婆这种状况，也是愿意是一位人的是现真人...",
-            helpful: 2,
-            device: "Redmi K70 Pro"
-        },
-        {
-            id: '2',
-            username: "学不会",
-            rating: 5,
-            date: "19小时前",
-            content: "所有的效果真的棒极好了，更别说下面白应该，一起感应不见这个神感不错也蛮真技术很完善不错，玩起来想干什么出现天神的这。是天气预报：还不中文化妹子 0.5星1分玩这0.5星",
-            helpful: 0,
-            device: "口袋里"
-        }
-    ];
+    // 转换相关游戏数据
+    const relatedGamesForClient = relatedGames.map(relatedGame => ({
+        id: String(relatedGame.id),
+        title: relatedGame.title,
+        image: relatedGame.image,
+        rating: relatedGame.rating,
+        tags: relatedGame.tags
+    }));
 
     return (
         <div className="min-h-screen bg-[#0a0a0a]">
@@ -132,7 +123,7 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
                     game={gameForClient}
                     gameDetail={gameDetail}
                     reviews={reviews}
-                    relatedGames={relatedGames}
+                    relatedGames={relatedGamesForClient}
                 />
             </div>
         </div>

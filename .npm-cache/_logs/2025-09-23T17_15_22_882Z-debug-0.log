@@ -1,0 +1,1638 @@
+0 verbose cli /Applications/ServBay/package/node/20/20.19.3/bin/node /Applications/ServBay/package/node/current/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.19.3
+3 silly config load:file:/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/tink/Desktop/TinkProject/gameshare/.npmrc
+5 silly config load:file:/Users/tink/.npmrc
+6 silly config load:file:/Applications/ServBay/package/node/20/20.19.3/etc/npmrc
+7 verbose title npm i react-markdown remark-gfm
+8 verbose argv "i" "react-markdown" "remark-gfm" "--save" "--registry" "https://registry.npmjs.org"
+9 verbose logfile logs-max:10 dir:/Users/tink/Desktop/TinkProject/gameshare/.npm-cache/_logs/2025-09-23T17_15_22_882Z-
+10 verbose logfile /Users/tink/Desktop/TinkProject/gameshare/.npm-cache/_logs/2025-09-23T17_15_22_882Z-debug-0.log
+11 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest react-markdown@*
+15 silly packumentCache full:https://registry.npmjs.org/react-markdown cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/npm 1561ms
+17 http fetch GET 200 https://registry.npmjs.org/react-markdown 1695ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/react-markdown set size:undefined disposed:false
+19 silly fetch manifest @types/react@19.0.10
+20 silly packumentCache full:https://registry.npmjs.org/@types%2freact cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/@types%2freact 380ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/@types%2freact set size:undefined disposed:false
+23 silly fetch manifest react@19.0.0
+24 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/react 1074ms (cache miss)
+26 silly packumentCache full:https://registry.npmjs.org/react set size:undefined disposed:false
+27 silly fetch manifest remark-gfm@*
+28 silly packumentCache full:https://registry.npmjs.org/remark-gfm cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/remark-gfm 221ms (cache miss)
+30 silly packumentCache full:https://registry.npmjs.org/remark-gfm set size:undefined disposed:false
+31 silly placeDep ROOT react-markdown@10.1.0 OK for:  want: *
+32 silly placeDep ROOT remark-gfm@4.0.1 OK for:  want: *
+33 silly fetch manifest @types/hast@^3.0.0
+34 silly packumentCache full:https://registry.npmjs.org/@types%2fhast cache-miss
+35 silly fetch manifest @types/mdast@^4.0.0
+36 silly packumentCache full:https://registry.npmjs.org/@types%2fmdast cache-miss
+37 silly fetch manifest devlop@^1.0.0
+38 silly packumentCache full:https://registry.npmjs.org/devlop cache-miss
+39 silly fetch manifest hast-util-to-jsx-runtime@^2.0.0
+40 silly packumentCache full:https://registry.npmjs.org/hast-util-to-jsx-runtime cache-miss
+41 silly fetch manifest html-url-attributes@^3.0.0
+42 silly packumentCache full:https://registry.npmjs.org/html-url-attributes cache-miss
+43 silly fetch manifest mdast-util-to-hast@^13.0.0
+44 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-hast cache-miss
+45 silly fetch manifest remark-parse@^11.0.0
+46 silly packumentCache full:https://registry.npmjs.org/remark-parse cache-miss
+47 silly fetch manifest remark-rehype@^11.0.0
+48 silly packumentCache full:https://registry.npmjs.org/remark-rehype cache-miss
+49 silly fetch manifest unified@^11.0.0
+50 silly packumentCache full:https://registry.npmjs.org/unified cache-miss
+51 http fetch GET 200 https://registry.npmjs.org/@types%2fhast 217ms (cache miss)
+52 silly packumentCache full:https://registry.npmjs.org/@types%2fhast set size:undefined disposed:false
+53 silly fetch manifest unist-util-visit@^5.0.0
+54 silly packumentCache full:https://registry.npmjs.org/unist-util-visit cache-miss
+55 http fetch GET 200 https://registry.npmjs.org/@types%2fmdast 235ms (cache miss)
+56 silly packumentCache full:https://registry.npmjs.org/@types%2fmdast set size:undefined disposed:false
+57 silly fetch manifest vfile@^6.0.0
+58 silly packumentCache full:https://registry.npmjs.org/vfile cache-miss
+59 http fetch GET 200 https://registry.npmjs.org/unist-util-visit 198ms (cache miss)
+60 silly packumentCache full:https://registry.npmjs.org/unist-util-visit set size:undefined disposed:false
+61 silly fetch manifest mdast-util-gfm@^3.0.0
+62 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm cache-miss
+63 http fetch GET 200 https://registry.npmjs.org/vfile 423ms (cache miss)
+64 silly packumentCache full:https://registry.npmjs.org/vfile set size:undefined disposed:false
+65 silly fetch manifest micromark-extension-gfm@^3.0.0
+66 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm cache-miss
+67 http fetch GET 200 https://registry.npmjs.org/devlop 723ms (cache miss)
+68 silly packumentCache full:https://registry.npmjs.org/devlop set size:undefined disposed:false
+69 silly fetch manifest remark-parse@^11.0.0
+70 silly packumentCache full:https://registry.npmjs.org/remark-parse cache-miss
+71 http fetch GET 200 https://registry.npmjs.org/hast-util-to-jsx-runtime 737ms (cache miss)
+72 silly packumentCache full:https://registry.npmjs.org/hast-util-to-jsx-runtime set size:undefined disposed:false
+73 silly fetch manifest remark-stringify@^11.0.0
+74 silly packumentCache full:https://registry.npmjs.org/remark-stringify cache-miss
+75 http fetch GET 200 https://registry.npmjs.org/html-url-attributes 740ms (cache miss)
+76 silly packumentCache full:https://registry.npmjs.org/html-url-attributes set size:undefined disposed:false
+77 silly fetch manifest unified@^11.0.0
+78 silly packumentCache full:https://registry.npmjs.org/unified cache-miss
+79 http fetch GET 200 https://registry.npmjs.org/remark-rehype 743ms (cache miss)
+80 silly packumentCache full:https://registry.npmjs.org/remark-rehype set size:undefined disposed:false
+81 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-hast 745ms (cache miss)
+82 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-hast set size:undefined disposed:false
+83 http fetch GET 200 https://registry.npmjs.org/mdast-util-gfm 414ms (cache miss)
+84 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm set size:undefined disposed:false
+85 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm 198ms (cache miss)
+86 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm set size:undefined disposed:false
+87 http fetch GET 200 https://registry.npmjs.org/remark-parse 207ms (cache miss)
+88 silly packumentCache full:https://registry.npmjs.org/remark-parse set size:undefined disposed:false
+89 http fetch GET 200 https://registry.npmjs.org/remark-stringify 204ms (cache miss)
+90 silly packumentCache full:https://registry.npmjs.org/remark-stringify set size:undefined disposed:false
+91 http fetch GET 200 https://registry.npmjs.org/remark-parse 944ms (cache miss)
+92 silly packumentCache full:https://registry.npmjs.org/remark-parse set size:undefined disposed:false
+93 http fetch GET 200 https://registry.npmjs.org/unified 1001ms (cache miss)
+94 silly packumentCache full:https://registry.npmjs.org/unified set size:undefined disposed:false
+95 http fetch GET 200 https://registry.npmjs.org/unified 378ms (cache miss)
+96 silly packumentCache full:https://registry.npmjs.org/unified set size:undefined disposed:false
+97 silly placeDep ROOT @types/hast@3.0.4 OK for: react-markdown@10.1.0 want: ^3.0.0
+98 silly placeDep ROOT @types/mdast@4.0.4 OK for: react-markdown@10.1.0 want: ^4.0.0
+99 silly placeDep ROOT devlop@1.1.0 OK for: react-markdown@10.1.0 want: ^1.0.0
+100 silly placeDep ROOT hast-util-to-jsx-runtime@2.3.6 OK for: react-markdown@10.1.0 want: ^2.0.0
+101 silly placeDep ROOT html-url-attributes@3.0.1 OK for: react-markdown@10.1.0 want: ^3.0.0
+102 silly placeDep ROOT mdast-util-to-hast@13.2.0 OK for: react-markdown@10.1.0 want: ^13.0.0
+103 silly placeDep ROOT remark-parse@11.0.0 OK for: react-markdown@10.1.0 want: ^11.0.0
+104 silly placeDep ROOT remark-rehype@11.1.2 OK for: react-markdown@10.1.0 want: ^11.0.0
+105 silly placeDep ROOT unified@11.0.5 OK for: react-markdown@10.1.0 want: ^11.0.0
+106 silly placeDep ROOT unist-util-visit@5.0.0 OK for: react-markdown@10.1.0 want: ^5.0.0
+107 silly placeDep ROOT vfile@6.0.3 OK for: react-markdown@10.1.0 want: ^6.0.0
+108 silly fetch manifest @types/unist@*
+109 silly packumentCache full:https://registry.npmjs.org/@types%2funist cache-miss
+110 silly fetch manifest @types/unist@*
+111 silly packumentCache full:https://registry.npmjs.org/@types%2funist cache-miss
+112 silly fetch manifest dequal@^2.0.0
+113 silly packumentCache full:https://registry.npmjs.org/dequal cache-miss
+114 silly fetch manifest @types/unist@^3.0.0
+115 silly packumentCache full:https://registry.npmjs.org/@types%2funist cache-miss
+116 silly fetch manifest comma-separated-tokens@^2.0.0
+117 silly packumentCache full:https://registry.npmjs.org/comma-separated-tokens cache-miss
+118 silly fetch manifest estree-util-is-identifier-name@^3.0.0
+119 silly packumentCache full:https://registry.npmjs.org/estree-util-is-identifier-name cache-miss
+120 silly fetch manifest hast-util-whitespace@^3.0.0
+121 silly packumentCache full:https://registry.npmjs.org/hast-util-whitespace cache-miss
+122 silly fetch manifest mdast-util-mdx-expression@^2.0.0
+123 silly packumentCache full:https://registry.npmjs.org/mdast-util-mdx-expression cache-miss
+124 silly fetch manifest mdast-util-mdx-jsx@^3.0.0
+125 silly packumentCache full:https://registry.npmjs.org/mdast-util-mdx-jsx cache-miss
+126 http fetch GET 200 https://registry.npmjs.org/dequal 185ms (cache miss)
+127 silly packumentCache full:https://registry.npmjs.org/dequal set size:undefined disposed:false
+128 silly fetch manifest mdast-util-mdxjs-esm@^2.0.0
+129 silly packumentCache full:https://registry.npmjs.org/mdast-util-mdxjs-esm cache-miss
+130 http fetch GET 200 https://registry.npmjs.org/estree-util-is-identifier-name 196ms (cache miss)
+131 silly packumentCache full:https://registry.npmjs.org/estree-util-is-identifier-name set size:undefined disposed:false
+132 silly fetch manifest property-information@^7.0.0
+133 silly packumentCache full:https://registry.npmjs.org/property-information cache-miss
+134 http fetch GET 200 https://registry.npmjs.org/mdast-util-mdx-jsx 199ms (cache miss)
+135 silly packumentCache full:https://registry.npmjs.org/mdast-util-mdx-jsx set size:undefined disposed:false
+136 silly fetch manifest space-separated-tokens@^2.0.0
+137 silly packumentCache full:https://registry.npmjs.org/space-separated-tokens cache-miss
+138 http fetch GET 200 https://registry.npmjs.org/comma-separated-tokens 201ms (cache miss)
+139 silly packumentCache full:https://registry.npmjs.org/comma-separated-tokens set size:undefined disposed:false
+140 silly fetch manifest style-to-js@^1.0.0
+141 silly packumentCache full:https://registry.npmjs.org/style-to-js cache-miss
+142 http fetch GET 200 https://registry.npmjs.org/mdast-util-mdx-expression 209ms (cache miss)
+143 silly packumentCache full:https://registry.npmjs.org/mdast-util-mdx-expression set size:undefined disposed:false
+144 silly fetch manifest unist-util-position@^5.0.0
+145 silly packumentCache full:https://registry.npmjs.org/unist-util-position cache-miss
+146 http fetch GET 200 https://registry.npmjs.org/@types%2funist 217ms (cache miss)
+147 silly packumentCache full:https://registry.npmjs.org/@types%2funist set size:undefined disposed:false
+148 silly fetch manifest vfile-message@^4.0.0
+149 silly packumentCache full:https://registry.npmjs.org/vfile-message cache-miss
+150 http fetch GET 200 https://registry.npmjs.org/@types%2funist 234ms (cache miss)
+151 silly packumentCache full:https://registry.npmjs.org/@types%2funist set size:undefined disposed:false
+152 silly fetch manifest @ungap/structured-clone@^1.0.0
+153 silly packumentCache full:https://registry.npmjs.org/@ungap%2fstructured-clone cache-miss
+154 http fetch GET 200 https://registry.npmjs.org/mdast-util-mdxjs-esm 202ms (cache miss)
+155 silly packumentCache full:https://registry.npmjs.org/mdast-util-mdxjs-esm set size:undefined disposed:false
+156 silly fetch manifest micromark-util-sanitize-uri@^2.0.0
+157 silly packumentCache full:https://registry.npmjs.org/micromark-util-sanitize-uri cache-miss
+158 http fetch GET 200 https://registry.npmjs.org/style-to-js 212ms (cache miss)
+159 silly packumentCache full:https://registry.npmjs.org/style-to-js set size:undefined disposed:false
+160 silly fetch manifest trim-lines@^3.0.0
+161 silly packumentCache full:https://registry.npmjs.org/trim-lines cache-miss
+162 http fetch GET 200 https://registry.npmjs.org/@types%2funist 421ms (cache miss)
+163 silly packumentCache full:https://registry.npmjs.org/@types%2funist set size:undefined disposed:false
+164 silly fetch manifest unist-util-position@^5.0.0
+165 silly packumentCache full:https://registry.npmjs.org/unist-util-position cache-miss
+166 http fetch GET 200 https://registry.npmjs.org/vfile-message 207ms (cache miss)
+167 silly packumentCache full:https://registry.npmjs.org/vfile-message set size:undefined disposed:false
+168 silly fetch manifest mdast-util-from-markdown@^2.0.0
+169 silly packumentCache full:https://registry.npmjs.org/mdast-util-from-markdown cache-miss
+170 http fetch GET 200 https://registry.npmjs.org/hast-util-whitespace 428ms (cache miss)
+171 silly packumentCache full:https://registry.npmjs.org/hast-util-whitespace set size:undefined disposed:false
+172 silly fetch manifest micromark-util-types@^2.0.0
+173 silly packumentCache full:https://registry.npmjs.org/micromark-util-types cache-miss
+174 http fetch GET 200 https://registry.npmjs.org/property-information 293ms (cache miss)
+175 silly packumentCache full:https://registry.npmjs.org/property-information set size:undefined disposed:false
+176 silly fetch manifest bail@^2.0.0
+177 silly packumentCache full:https://registry.npmjs.org/bail cache-miss
+178 http fetch GET 200 https://registry.npmjs.org/micromark-util-sanitize-uri 197ms (cache miss)
+179 silly packumentCache full:https://registry.npmjs.org/micromark-util-sanitize-uri set size:undefined disposed:false
+180 silly fetch manifest extend@^3.0.0
+181 silly packumentCache full:https://registry.npmjs.org/extend cache-miss
+182 http fetch GET 200 https://registry.npmjs.org/trim-lines 200ms (cache miss)
+183 silly packumentCache full:https://registry.npmjs.org/trim-lines set size:undefined disposed:false
+184 silly fetch manifest is-plain-obj@^4.0.0
+185 silly packumentCache full:https://registry.npmjs.org/is-plain-obj cache-miss
+186 http fetch GET 200 https://registry.npmjs.org/unist-util-position 199ms (cache miss)
+187 silly packumentCache full:https://registry.npmjs.org/unist-util-position set size:undefined disposed:false
+188 silly fetch manifest trough@^2.0.0
+189 silly packumentCache full:https://registry.npmjs.org/trough cache-miss
+190 http fetch GET 200 https://registry.npmjs.org/mdast-util-from-markdown 205ms (cache miss)
+191 silly packumentCache full:https://registry.npmjs.org/mdast-util-from-markdown set size:undefined disposed:false
+192 silly fetch manifest unist-util-is@^6.0.0
+193 silly packumentCache full:https://registry.npmjs.org/unist-util-is cache-miss
+194 http fetch GET 200 https://registry.npmjs.org/micromark-util-types 211ms (cache miss)
+195 silly packumentCache full:https://registry.npmjs.org/micromark-util-types set size:undefined disposed:false
+196 silly fetch manifest unist-util-visit-parents@^6.0.0
+197 silly packumentCache full:https://registry.npmjs.org/unist-util-visit-parents cache-miss
+198 http fetch GET 200 https://registry.npmjs.org/@ungap%2fstructured-clone 454ms (cache miss)
+199 silly packumentCache full:https://registry.npmjs.org/@ungap%2fstructured-clone set size:undefined disposed:false
+200 http fetch GET 200 https://registry.npmjs.org/extend 206ms (cache miss)
+201 silly packumentCache full:https://registry.npmjs.org/extend set size:undefined disposed:false
+202 http fetch GET 200 https://registry.npmjs.org/is-plain-obj 220ms (cache miss)
+203 silly packumentCache full:https://registry.npmjs.org/is-plain-obj set size:undefined disposed:false
+204 http fetch GET 200 https://registry.npmjs.org/unist-util-visit-parents 203ms (cache miss)
+205 silly packumentCache full:https://registry.npmjs.org/unist-util-visit-parents set size:undefined disposed:false
+206 http fetch GET 200 https://registry.npmjs.org/bail 400ms (cache miss)
+207 silly packumentCache full:https://registry.npmjs.org/bail set size:undefined disposed:false
+208 http fetch GET 200 https://registry.npmjs.org/unist-util-is 413ms (cache miss)
+209 silly packumentCache full:https://registry.npmjs.org/unist-util-is set size:undefined disposed:false
+210 http fetch GET 200 https://registry.npmjs.org/space-separated-tokens 967ms (cache miss)
+211 silly packumentCache full:https://registry.npmjs.org/space-separated-tokens set size:undefined disposed:false
+212 http fetch GET 200 https://registry.npmjs.org/trough 821ms (cache miss)
+213 silly packumentCache full:https://registry.npmjs.org/trough set size:undefined disposed:false
+214 http fetch GET 200 https://registry.npmjs.org/unist-util-position 1524ms (cache miss)
+215 silly packumentCache full:https://registry.npmjs.org/unist-util-position set size:undefined disposed:false
+216 silly placeDep ROOT @types/unist@3.0.3 OK for: @types/hast@3.0.4 want: *
+217 silly placeDep ROOT dequal@2.0.3 OK for: devlop@1.1.0 want: ^2.0.0
+218 silly placeDep ROOT comma-separated-tokens@2.0.3 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+219 silly placeDep ROOT estree-util-is-identifier-name@3.0.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+220 silly placeDep ROOT hast-util-whitespace@3.0.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+221 silly placeDep ROOT mdast-util-mdx-expression@2.0.1 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+222 silly placeDep ROOT mdast-util-mdx-jsx@3.2.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^3.0.0
+223 silly placeDep ROOT mdast-util-mdxjs-esm@2.0.1 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+224 silly placeDep ROOT property-information@7.1.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^7.0.0
+225 silly placeDep ROOT space-separated-tokens@2.0.2 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^2.0.0
+226 silly placeDep ROOT style-to-js@1.1.17 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^1.0.0
+227 silly placeDep ROOT unist-util-position@5.0.0 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^5.0.0
+228 silly placeDep ROOT vfile-message@4.0.3 OK for: hast-util-to-jsx-runtime@2.3.6 want: ^4.0.0
+229 silly fetch manifest @types/estree-jsx@^1.0.0
+230 silly packumentCache full:https://registry.npmjs.org/@types%2festree-jsx cache-miss
+231 silly fetch manifest mdast-util-to-markdown@^2.0.0
+232 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-markdown cache-miss
+233 silly fetch manifest @types/estree-jsx@^1.0.0
+234 silly packumentCache full:https://registry.npmjs.org/@types%2festree-jsx cache-miss
+235 silly fetch manifest ccount@^2.0.0
+236 silly packumentCache full:https://registry.npmjs.org/ccount cache-miss
+237 silly fetch manifest mdast-util-to-markdown@^2.0.0
+238 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-markdown cache-miss
+239 silly fetch manifest parse-entities@^4.0.0
+240 silly packumentCache full:https://registry.npmjs.org/parse-entities cache-miss
+241 silly fetch manifest stringify-entities@^4.0.0
+242 silly packumentCache full:https://registry.npmjs.org/stringify-entities cache-miss
+243 silly fetch manifest unist-util-stringify-position@^4.0.0
+244 silly packumentCache full:https://registry.npmjs.org/unist-util-stringify-position cache-miss
+245 silly fetch manifest @types/estree-jsx@^1.0.0
+246 silly packumentCache full:https://registry.npmjs.org/@types%2festree-jsx cache-miss
+247 http fetch GET 200 https://registry.npmjs.org/unist-util-stringify-position 203ms (cache miss)
+248 silly packumentCache full:https://registry.npmjs.org/unist-util-stringify-position set size:undefined disposed:false
+249 silly fetch manifest mdast-util-to-markdown@^2.0.0
+250 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-markdown cache-miss
+251 http fetch GET 200 https://registry.npmjs.org/@types%2festree-jsx 216ms (cache miss)
+252 silly packumentCache full:https://registry.npmjs.org/@types%2festree-jsx set size:undefined disposed:false
+253 silly fetch manifest style-to-object@1.0.9
+254 silly packumentCache full:https://registry.npmjs.org/style-to-object cache-miss
+255 http fetch GET 200 https://registry.npmjs.org/@types%2festree-jsx 222ms (cache miss)
+256 silly packumentCache full:https://registry.npmjs.org/@types%2festree-jsx set size:undefined disposed:false
+257 http fetch GET 200 https://registry.npmjs.org/@types%2festree-jsx 240ms (cache miss)
+258 silly packumentCache full:https://registry.npmjs.org/@types%2festree-jsx set size:undefined disposed:false
+259 http fetch GET 200 https://registry.npmjs.org/parse-entities 247ms (cache miss)
+260 silly packumentCache full:https://registry.npmjs.org/parse-entities set size:undefined disposed:false
+261 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-markdown 278ms (cache miss)
+262 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-markdown set size:undefined disposed:false
+263 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-markdown 229ms (cache miss)
+264 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-markdown set size:undefined disposed:false
+265 http fetch GET 200 https://registry.npmjs.org/style-to-object 216ms (cache miss)
+266 silly packumentCache full:https://registry.npmjs.org/style-to-object set size:undefined disposed:false
+267 http fetch GET 200 https://registry.npmjs.org/stringify-entities 443ms (cache miss)
+268 silly packumentCache full:https://registry.npmjs.org/stringify-entities set size:undefined disposed:false
+269 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-markdown 488ms (cache miss)
+270 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-markdown set size:undefined disposed:false
+271 http fetch GET 200 https://registry.npmjs.org/ccount 1083ms (cache miss)
+272 silly packumentCache full:https://registry.npmjs.org/ccount set size:undefined disposed:false
+273 silly placeDep ROOT @types/estree-jsx@1.0.5 OK for: mdast-util-mdx-expression@2.0.1 want: ^1.0.0
+274 silly placeDep ROOT mdast-util-from-markdown@2.0.2 OK for: mdast-util-mdx-expression@2.0.1 want: ^2.0.0
+275 silly placeDep ROOT mdast-util-to-markdown@2.1.2 OK for: mdast-util-mdx-expression@2.0.1 want: ^2.0.0
+276 silly fetch manifest decode-named-character-reference@^1.0.0
+277 silly packumentCache full:https://registry.npmjs.org/decode-named-character-reference cache-miss
+278 silly fetch manifest mdast-util-to-string@^4.0.0
+279 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-string cache-miss
+280 silly fetch manifest micromark@^4.0.0
+281 silly packumentCache full:https://registry.npmjs.org/micromark cache-miss
+282 silly fetch manifest micromark-util-decode-numeric-character-reference@^2.0.0
+283 silly packumentCache full:https://registry.npmjs.org/micromark-util-decode-numeric-character-reference cache-miss
+284 silly fetch manifest micromark-util-decode-string@^2.0.0
+285 silly packumentCache full:https://registry.npmjs.org/micromark-util-decode-string cache-miss
+286 silly fetch manifest micromark-util-normalize-identifier@^2.0.0
+287 silly packumentCache full:https://registry.npmjs.org/micromark-util-normalize-identifier cache-miss
+288 silly fetch manifest micromark-util-symbol@^2.0.0
+289 silly packumentCache full:https://registry.npmjs.org/micromark-util-symbol cache-miss
+290 silly fetch manifest longest-streak@^3.0.0
+291 silly packumentCache full:https://registry.npmjs.org/longest-streak cache-miss
+292 silly fetch manifest mdast-util-phrasing@^4.0.0
+293 silly packumentCache full:https://registry.npmjs.org/mdast-util-phrasing cache-miss
+294 http fetch GET 200 https://registry.npmjs.org/mdast-util-phrasing 194ms (cache miss)
+295 silly packumentCache full:https://registry.npmjs.org/mdast-util-phrasing set size:undefined disposed:false
+296 silly fetch manifest mdast-util-to-string@^4.0.0
+297 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-string cache-miss
+298 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-string 202ms (cache miss)
+299 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-string set size:undefined disposed:false
+300 silly fetch manifest micromark-util-classify-character@^2.0.0
+301 silly packumentCache full:https://registry.npmjs.org/micromark-util-classify-character cache-miss
+302 http fetch GET 200 https://registry.npmjs.org/micromark-util-normalize-identifier 202ms (cache miss)
+303 silly packumentCache full:https://registry.npmjs.org/micromark-util-normalize-identifier set size:undefined disposed:false
+304 silly fetch manifest micromark-util-decode-string@^2.0.0
+305 silly packumentCache full:https://registry.npmjs.org/micromark-util-decode-string cache-miss
+306 http fetch GET 200 https://registry.npmjs.org/micromark-util-symbol 203ms (cache miss)
+307 silly packumentCache full:https://registry.npmjs.org/micromark-util-symbol set size:undefined disposed:false
+308 silly fetch manifest zwitch@^2.0.0
+309 silly packumentCache full:https://registry.npmjs.org/zwitch cache-miss
+310 http fetch GET 200 https://registry.npmjs.org/micromark-util-decode-numeric-character-reference 207ms (cache miss)
+311 silly packumentCache full:https://registry.npmjs.org/micromark-util-decode-numeric-character-reference set size:undefined disposed:false
+312 http fetch GET 200 https://registry.npmjs.org/micromark-util-decode-string 214ms (cache miss)
+313 silly packumentCache full:https://registry.npmjs.org/micromark-util-decode-string set size:undefined disposed:false
+314 http fetch GET 200 https://registry.npmjs.org/decode-named-character-reference 242ms (cache miss)
+315 silly packumentCache full:https://registry.npmjs.org/decode-named-character-reference set size:undefined disposed:false
+316 http fetch GET 200 https://registry.npmjs.org/longest-streak 357ms (cache miss)
+317 silly packumentCache full:https://registry.npmjs.org/longest-streak set size:undefined disposed:false
+318 http fetch GET 200 https://registry.npmjs.org/mdast-util-to-string 227ms (cache miss)
+319 silly packumentCache full:https://registry.npmjs.org/mdast-util-to-string set size:undefined disposed:false
+320 http fetch GET 200 https://registry.npmjs.org/micromark-util-classify-character 239ms (cache miss)
+321 silly packumentCache full:https://registry.npmjs.org/micromark-util-classify-character set size:undefined disposed:false
+322 http fetch GET 200 https://registry.npmjs.org/micromark 443ms (cache miss)
+323 silly packumentCache full:https://registry.npmjs.org/micromark set size:undefined disposed:false
+324 http fetch GET 200 https://registry.npmjs.org/zwitch 429ms (cache miss)
+325 silly packumentCache full:https://registry.npmjs.org/zwitch set size:undefined disposed:false
+326 http fetch GET 200 https://registry.npmjs.org/micromark-util-decode-string 820ms (cache miss)
+327 silly packumentCache full:https://registry.npmjs.org/micromark-util-decode-string set size:undefined disposed:false
+328 silly placeDep ROOT decode-named-character-reference@1.2.0 OK for: mdast-util-from-markdown@2.0.2 want: ^1.0.0
+329 silly placeDep ROOT mdast-util-to-string@4.0.0 OK for: mdast-util-from-markdown@2.0.2 want: ^4.0.0
+330 silly placeDep ROOT micromark@4.0.2 OK for: mdast-util-from-markdown@2.0.2 want: ^4.0.0
+331 silly placeDep ROOT micromark-util-decode-numeric-character-reference@2.0.2 OK for: mdast-util-from-markdown@2.0.2 want: ^2.0.0
+332 silly placeDep ROOT micromark-util-decode-string@2.0.1 OK for: mdast-util-from-markdown@2.0.2 want: ^2.0.0
+333 silly placeDep ROOT micromark-util-normalize-identifier@2.0.1 OK for: mdast-util-from-markdown@2.0.2 want: ^2.0.0
+334 silly placeDep ROOT micromark-util-symbol@2.0.1 OK for: mdast-util-from-markdown@2.0.2 want: ^2.0.0
+335 silly placeDep ROOT micromark-util-types@2.0.2 OK for: mdast-util-from-markdown@2.0.2 want: ^2.0.0
+336 silly placeDep ROOT unist-util-stringify-position@4.0.0 OK for: mdast-util-from-markdown@2.0.2 want: ^4.0.0
+337 silly fetch manifest character-entities@^2.0.0
+338 silly packumentCache full:https://registry.npmjs.org/character-entities cache-miss
+339 silly fetch manifest @types/debug@^4.0.0
+340 silly packumentCache full:https://registry.npmjs.org/@types%2fdebug cache-miss
+341 silly fetch manifest micromark-core-commonmark@^2.0.0
+342 silly packumentCache full:https://registry.npmjs.org/micromark-core-commonmark cache-miss
+343 silly fetch manifest micromark-factory-space@^2.0.0
+344 silly packumentCache full:https://registry.npmjs.org/micromark-factory-space cache-miss
+345 silly fetch manifest micromark-util-character@^2.0.0
+346 silly packumentCache full:https://registry.npmjs.org/micromark-util-character cache-miss
+347 silly fetch manifest micromark-util-chunked@^2.0.0
+348 silly packumentCache full:https://registry.npmjs.org/micromark-util-chunked cache-miss
+349 silly fetch manifest micromark-util-combine-extensions@^2.0.0
+350 silly packumentCache full:https://registry.npmjs.org/micromark-util-combine-extensions cache-miss
+351 silly fetch manifest micromark-util-encode@^2.0.0
+352 silly packumentCache full:https://registry.npmjs.org/micromark-util-encode cache-miss
+353 silly fetch manifest micromark-util-resolve-all@^2.0.0
+354 silly packumentCache full:https://registry.npmjs.org/micromark-util-resolve-all cache-miss
+355 http fetch GET 200 https://registry.npmjs.org/micromark-util-combine-extensions 211ms (cache miss)
+356 silly packumentCache full:https://registry.npmjs.org/micromark-util-combine-extensions set size:undefined disposed:false
+357 silly fetch manifest micromark-util-subtokenize@^2.0.0
+358 silly packumentCache full:https://registry.npmjs.org/micromark-util-subtokenize cache-miss
+359 http fetch GET 200 https://registry.npmjs.org/micromark-util-encode 221ms (cache miss)
+360 silly packumentCache full:https://registry.npmjs.org/micromark-util-encode set size:undefined disposed:false
+361 silly fetch manifest micromark-util-character@^2.0.0
+362 silly packumentCache full:https://registry.npmjs.org/micromark-util-character cache-miss
+363 http fetch GET 200 https://registry.npmjs.org/micromark-core-commonmark 252ms (cache miss)
+364 silly packumentCache full:https://registry.npmjs.org/micromark-core-commonmark set size:undefined disposed:false
+365 http fetch GET 200 https://registry.npmjs.org/micromark-factory-space 355ms (cache miss)
+366 silly packumentCache full:https://registry.npmjs.org/micromark-factory-space set size:undefined disposed:false
+367 http fetch GET 200 https://registry.npmjs.org/micromark-util-subtokenize 194ms (cache miss)
+368 silly packumentCache full:https://registry.npmjs.org/micromark-util-subtokenize set size:undefined disposed:false
+369 http fetch GET 200 https://registry.npmjs.org/micromark-util-character 198ms (cache miss)
+370 silly packumentCache full:https://registry.npmjs.org/micromark-util-character set size:undefined disposed:false
+371 http fetch GET 200 https://registry.npmjs.org/micromark-util-resolve-all 431ms (cache miss)
+372 silly packumentCache full:https://registry.npmjs.org/micromark-util-resolve-all set size:undefined disposed:false
+373 http fetch GET 200 https://registry.npmjs.org/character-entities 434ms (cache miss)
+374 silly packumentCache full:https://registry.npmjs.org/character-entities set size:undefined disposed:false
+375 http fetch GET 200 https://registry.npmjs.org/micromark-util-chunked 437ms (cache miss)
+376 silly packumentCache full:https://registry.npmjs.org/micromark-util-chunked set size:undefined disposed:false
+377 http fetch GET 200 https://registry.npmjs.org/@types%2fdebug 473ms (cache miss)
+378 silly packumentCache full:https://registry.npmjs.org/@types%2fdebug set size:undefined disposed:false
+379 http fetch GET 200 https://registry.npmjs.org/micromark-util-character 597ms (cache miss)
+380 silly packumentCache full:https://registry.npmjs.org/micromark-util-character set size:undefined disposed:false
+381 silly placeDep ROOT character-entities@2.0.2 OK for: decode-named-character-reference@1.2.0 want: ^2.0.0
+382 silly placeDep ROOT ccount@2.0.1 OK for: mdast-util-mdx-jsx@3.2.0 want: ^2.0.0
+383 silly placeDep ROOT parse-entities@4.0.2 OK for: mdast-util-mdx-jsx@3.2.0 want: ^4.0.0
+384 silly placeDep ROOT stringify-entities@4.0.4 OK for: mdast-util-mdx-jsx@3.2.0 want: ^4.0.0
+385 silly fetch manifest @types/unist@^2.0.0
+386 silly packumentCache full:https://registry.npmjs.org/@types%2funist cache-miss
+387 silly fetch manifest character-entities-legacy@^3.0.0
+388 silly packumentCache full:https://registry.npmjs.org/character-entities-legacy cache-miss
+389 silly fetch manifest character-reference-invalid@^2.0.0
+390 silly packumentCache full:https://registry.npmjs.org/character-reference-invalid cache-miss
+391 silly fetch manifest is-alphanumerical@^2.0.0
+392 silly packumentCache full:https://registry.npmjs.org/is-alphanumerical cache-miss
+393 silly fetch manifest is-decimal@^2.0.0
+394 silly packumentCache full:https://registry.npmjs.org/is-decimal cache-miss
+395 silly fetch manifest is-hexadecimal@^2.0.0
+396 silly packumentCache full:https://registry.npmjs.org/is-hexadecimal cache-miss
+397 silly fetch manifest character-entities-html4@^2.0.0
+398 silly packumentCache full:https://registry.npmjs.org/character-entities-html4 cache-miss
+399 silly fetch manifest character-entities-legacy@^3.0.0
+400 silly packumentCache full:https://registry.npmjs.org/character-entities-legacy cache-miss
+401 http fetch GET 200 https://registry.npmjs.org/@types%2funist 14ms (cache hit)
+402 silly packumentCache full:https://registry.npmjs.org/@types%2funist set size:39215 disposed:false
+403 http fetch GET 200 https://registry.npmjs.org/character-entities-html4 200ms (cache miss)
+404 silly packumentCache full:https://registry.npmjs.org/character-entities-html4 set size:undefined disposed:false
+405 http fetch GET 200 https://registry.npmjs.org/is-alphanumerical 221ms (cache miss)
+406 silly packumentCache full:https://registry.npmjs.org/is-alphanumerical set size:undefined disposed:false
+407 http fetch GET 200 https://registry.npmjs.org/is-decimal 223ms (cache miss)
+408 silly packumentCache full:https://registry.npmjs.org/is-decimal set size:undefined disposed:false
+409 http fetch GET 200 https://registry.npmjs.org/character-entities-legacy 235ms (cache miss)
+410 silly packumentCache full:https://registry.npmjs.org/character-entities-legacy set size:undefined disposed:false
+411 http fetch GET 200 https://registry.npmjs.org/character-reference-invalid 370ms (cache miss)
+412 silly packumentCache full:https://registry.npmjs.org/character-reference-invalid set size:undefined disposed:false
+413 http fetch GET 200 https://registry.npmjs.org/is-hexadecimal 458ms (cache miss)
+414 silly packumentCache full:https://registry.npmjs.org/is-hexadecimal set size:undefined disposed:false
+415 http fetch GET 200 https://registry.npmjs.org/character-entities-legacy 558ms (cache miss)
+416 silly packumentCache full:https://registry.npmjs.org/character-entities-legacy set size:undefined disposed:false
+417 silly placeDep ROOT @ungap/structured-clone@1.3.0 OK for: mdast-util-to-hast@13.2.0 want: ^1.0.0
+418 silly placeDep ROOT micromark-util-sanitize-uri@2.0.1 OK for: mdast-util-to-hast@13.2.0 want: ^2.0.0
+419 silly placeDep ROOT trim-lines@3.0.1 OK for: mdast-util-to-hast@13.2.0 want: ^3.0.0
+420 silly placeDep ROOT longest-streak@3.1.0 OK for: mdast-util-to-markdown@2.1.2 want: ^3.0.0
+421 silly placeDep ROOT mdast-util-phrasing@4.1.0 OK for: mdast-util-to-markdown@2.1.2 want: ^4.0.0
+422 silly placeDep ROOT micromark-util-classify-character@2.0.1 OK for: mdast-util-to-markdown@2.1.2 want: ^2.0.0
+423 silly placeDep ROOT zwitch@2.0.4 OK for: mdast-util-to-markdown@2.1.2 want: ^2.0.0
+424 silly placeDep ROOT unist-util-is@6.0.0 OK for: mdast-util-phrasing@4.1.0 want: ^6.0.0
+425 silly placeDep ROOT @types/debug@4.1.12 OK for: micromark@4.0.2 want: ^4.0.0
+426 silly placeDep ROOT micromark-core-commonmark@2.0.3 OK for: micromark@4.0.2 want: ^2.0.0
+427 silly placeDep ROOT micromark-factory-space@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+428 silly placeDep ROOT micromark-util-character@2.1.1 OK for: micromark@4.0.2 want: ^2.0.0
+429 silly placeDep ROOT micromark-util-chunked@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+430 silly placeDep ROOT micromark-util-combine-extensions@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+431 silly placeDep ROOT micromark-util-encode@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+432 silly placeDep ROOT micromark-util-resolve-all@2.0.1 OK for: micromark@4.0.2 want: ^2.0.0
+433 silly placeDep ROOT micromark-util-subtokenize@2.1.0 OK for: micromark@4.0.2 want: ^2.0.0
+434 silly fetch manifest @types/ms@*
+435 silly packumentCache full:https://registry.npmjs.org/@types%2fms cache-miss
+436 silly fetch manifest micromark-factory-destination@^2.0.0
+437 silly packumentCache full:https://registry.npmjs.org/micromark-factory-destination cache-miss
+438 silly fetch manifest micromark-factory-label@^2.0.0
+439 silly packumentCache full:https://registry.npmjs.org/micromark-factory-label cache-miss
+440 silly fetch manifest micromark-factory-title@^2.0.0
+441 silly packumentCache full:https://registry.npmjs.org/micromark-factory-title cache-miss
+442 silly fetch manifest micromark-factory-whitespace@^2.0.0
+443 silly packumentCache full:https://registry.npmjs.org/micromark-factory-whitespace cache-miss
+444 silly fetch manifest micromark-util-html-tag-name@^2.0.0
+445 silly packumentCache full:https://registry.npmjs.org/micromark-util-html-tag-name cache-miss
+446 http fetch GET 200 https://registry.npmjs.org/micromark-factory-title 191ms (cache miss)
+447 silly packumentCache full:https://registry.npmjs.org/micromark-factory-title set size:undefined disposed:false
+448 http fetch GET 200 https://registry.npmjs.org/micromark-factory-whitespace 206ms (cache miss)
+449 silly packumentCache full:https://registry.npmjs.org/micromark-factory-whitespace set size:undefined disposed:false
+450 http fetch GET 200 https://registry.npmjs.org/micromark-util-html-tag-name 205ms (cache miss)
+451 silly packumentCache full:https://registry.npmjs.org/micromark-util-html-tag-name set size:undefined disposed:false
+452 http fetch GET 200 https://registry.npmjs.org/@types%2fms 222ms (cache miss)
+453 silly packumentCache full:https://registry.npmjs.org/@types%2fms set size:undefined disposed:false
+454 http fetch GET 200 https://registry.npmjs.org/micromark-factory-label 222ms (cache miss)
+455 silly packumentCache full:https://registry.npmjs.org/micromark-factory-label set size:undefined disposed:false
+456 http fetch GET 200 https://registry.npmjs.org/micromark-factory-destination 238ms (cache miss)
+457 silly packumentCache full:https://registry.npmjs.org/micromark-factory-destination set size:undefined disposed:false
+458 silly placeDep ROOT @types/ms@2.1.0 OK for: @types/debug@4.1.12 want: *
+459 silly placeDep ROOT micromark-factory-destination@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+460 silly placeDep ROOT micromark-factory-label@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+461 silly placeDep ROOT micromark-factory-title@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+462 silly placeDep ROOT micromark-factory-whitespace@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+463 silly placeDep ROOT micromark-util-html-tag-name@2.0.1 OK for: micromark-core-commonmark@2.0.3 want: ^2.0.0
+464 silly placeDep node_modules/parse-entities @types/unist@2.0.11 OK for: parse-entities@4.0.2 want: ^2.0.0
+465 silly placeDep ROOT character-entities-legacy@3.0.0 OK for: parse-entities@4.0.2 want: ^3.0.0
+466 silly placeDep ROOT character-reference-invalid@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+467 silly placeDep ROOT is-alphanumerical@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+468 silly placeDep ROOT is-decimal@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+469 silly placeDep ROOT is-hexadecimal@2.0.1 OK for: parse-entities@4.0.2 want: ^2.0.0
+470 silly fetch manifest is-alphabetical@^2.0.0
+471 silly packumentCache full:https://registry.npmjs.org/is-alphabetical cache-miss
+472 http fetch GET 200 https://registry.npmjs.org/is-alphabetical 328ms (cache miss)
+473 silly packumentCache full:https://registry.npmjs.org/is-alphabetical set size:undefined disposed:false
+474 silly placeDep ROOT is-alphabetical@2.0.1 OK for: is-alphanumerical@2.0.1 want: ^2.0.0
+475 silly placeDep ROOT mdast-util-gfm@3.1.0 OK for: remark-gfm@4.0.1 want: ^3.0.0
+476 silly placeDep ROOT micromark-extension-gfm@3.0.0 OK for: remark-gfm@4.0.1 want: ^3.0.0
+477 silly placeDep ROOT remark-stringify@11.0.0 OK for: remark-gfm@4.0.1 want: ^11.0.0
+478 silly fetch manifest mdast-util-gfm-autolink-literal@^2.0.0
+479 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-autolink-literal cache-miss
+480 silly fetch manifest mdast-util-gfm-footnote@^2.0.0
+481 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-footnote cache-miss
+482 silly fetch manifest mdast-util-gfm-strikethrough@^2.0.0
+483 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-strikethrough cache-miss
+484 silly fetch manifest mdast-util-gfm-table@^2.0.0
+485 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-table cache-miss
+486 silly fetch manifest mdast-util-gfm-task-list-item@^2.0.0
+487 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-task-list-item cache-miss
+488 silly fetch manifest micromark-extension-gfm-autolink-literal@^2.0.0
+489 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-autolink-literal cache-miss
+490 silly fetch manifest micromark-extension-gfm-footnote@^2.0.0
+491 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-footnote cache-miss
+492 silly fetch manifest micromark-extension-gfm-strikethrough@^2.0.0
+493 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-strikethrough cache-miss
+494 silly fetch manifest micromark-extension-gfm-table@^2.0.0
+495 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-table cache-miss
+496 http fetch GET 200 https://registry.npmjs.org/mdast-util-gfm-task-list-item 206ms (cache miss)
+497 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-task-list-item set size:undefined disposed:false
+498 silly fetch manifest micromark-extension-gfm-tagfilter@^2.0.0
+499 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-tagfilter cache-miss
+500 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm-footnote 206ms (cache miss)
+501 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-footnote set size:undefined disposed:false
+502 silly fetch manifest micromark-extension-gfm-task-list-item@^2.0.0
+503 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-task-list-item cache-miss
+504 http fetch GET 200 https://registry.npmjs.org/mdast-util-gfm-table 251ms (cache miss)
+505 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-table set size:undefined disposed:false
+506 http fetch GET 200 https://registry.npmjs.org/mdast-util-gfm-strikethrough 254ms (cache miss)
+507 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-strikethrough set size:undefined disposed:false
+508 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm-strikethrough 410ms (cache miss)
+509 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-strikethrough set size:undefined disposed:false
+510 http fetch GET 200 https://registry.npmjs.org/mdast-util-gfm-footnote 414ms (cache miss)
+511 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-footnote set size:undefined disposed:false
+512 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm-autolink-literal 416ms (cache miss)
+513 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-autolink-literal set size:undefined disposed:false
+514 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm-tagfilter 222ms (cache miss)
+515 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-tagfilter set size:undefined disposed:false
+516 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm-task-list-item 276ms (cache miss)
+517 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-task-list-item set size:undefined disposed:false
+518 http fetch GET 200 https://registry.npmjs.org/mdast-util-gfm-autolink-literal 524ms (cache miss)
+519 silly packumentCache full:https://registry.npmjs.org/mdast-util-gfm-autolink-literal set size:undefined disposed:false
+520 http fetch GET 200 https://registry.npmjs.org/micromark-extension-gfm-table 547ms (cache miss)
+521 silly packumentCache full:https://registry.npmjs.org/micromark-extension-gfm-table set size:undefined disposed:false
+522 silly placeDep ROOT mdast-util-gfm-autolink-literal@2.0.1 OK for: mdast-util-gfm@3.1.0 want: ^2.0.0
+523 silly placeDep ROOT mdast-util-gfm-footnote@2.1.0 OK for: mdast-util-gfm@3.1.0 want: ^2.0.0
+524 silly placeDep ROOT mdast-util-gfm-strikethrough@2.0.0 OK for: mdast-util-gfm@3.1.0 want: ^2.0.0
+525 silly placeDep ROOT mdast-util-gfm-table@2.0.0 OK for: mdast-util-gfm@3.1.0 want: ^2.0.0
+526 silly placeDep ROOT mdast-util-gfm-task-list-item@2.0.0 OK for: mdast-util-gfm@3.1.0 want: ^2.0.0
+527 silly fetch manifest mdast-util-find-and-replace@^3.0.0
+528 silly packumentCache full:https://registry.npmjs.org/mdast-util-find-and-replace cache-miss
+529 silly fetch manifest markdown-table@^3.0.0
+530 silly packumentCache full:https://registry.npmjs.org/markdown-table cache-miss
+531 http fetch GET 200 https://registry.npmjs.org/markdown-table 207ms (cache miss)
+532 silly packumentCache full:https://registry.npmjs.org/markdown-table set size:undefined disposed:false
+533 http fetch GET 200 https://registry.npmjs.org/mdast-util-find-and-replace 227ms (cache miss)
+534 silly packumentCache full:https://registry.npmjs.org/mdast-util-find-and-replace set size:undefined disposed:false
+535 silly placeDep ROOT mdast-util-find-and-replace@3.0.2 OK for: mdast-util-gfm-autolink-literal@2.0.1 want: ^3.0.0
+536 silly fetch manifest escape-string-regexp@^5.0.0
+537 silly packumentCache full:https://registry.npmjs.org/escape-string-regexp cache-miss
+538 http fetch GET 200 https://registry.npmjs.org/escape-string-regexp 439ms (cache miss)
+539 silly packumentCache full:https://registry.npmjs.org/escape-string-regexp set size:undefined disposed:false
+540 silly placeDep node_modules/mdast-util-find-and-replace escape-string-regexp@5.0.0 OK for: mdast-util-find-and-replace@3.0.2 want: ^5.0.0
+541 silly placeDep ROOT unist-util-visit-parents@6.0.1 OK for: mdast-util-find-and-replace@3.0.2 want: ^6.0.0
+542 silly placeDep ROOT markdown-table@3.0.4 OK for: mdast-util-gfm-table@2.0.0 want: ^3.0.0
+543 silly placeDep ROOT micromark-extension-gfm-autolink-literal@2.1.0 OK for: micromark-extension-gfm@3.0.0 want: ^2.0.0
+544 silly placeDep ROOT micromark-extension-gfm-footnote@2.1.0 OK for: micromark-extension-gfm@3.0.0 want: ^2.0.0
+545 silly placeDep ROOT micromark-extension-gfm-strikethrough@2.1.0 OK for: micromark-extension-gfm@3.0.0 want: ^2.0.0
+546 silly placeDep ROOT micromark-extension-gfm-table@2.1.1 OK for: micromark-extension-gfm@3.0.0 want: ^2.0.0
+547 silly placeDep ROOT micromark-extension-gfm-tagfilter@2.0.0 OK for: micromark-extension-gfm@3.0.0 want: ^2.0.0
+548 silly placeDep ROOT micromark-extension-gfm-task-list-item@2.1.0 OK for: micromark-extension-gfm@3.0.0 want: ^2.0.0
+549 silly placeDep ROOT character-entities-html4@2.1.0 OK for: stringify-entities@4.0.4 want: ^2.0.0
+550 silly placeDep ROOT style-to-object@1.0.9 OK for: style-to-js@1.1.17 want: 1.0.9
+551 silly fetch manifest inline-style-parser@0.2.4
+552 silly packumentCache full:https://registry.npmjs.org/inline-style-parser cache-miss
+553 http fetch GET 200 https://registry.npmjs.org/inline-style-parser 210ms (cache miss)
+554 silly packumentCache full:https://registry.npmjs.org/inline-style-parser set size:undefined disposed:false
+555 silly placeDep ROOT inline-style-parser@0.2.4 OK for: style-to-object@1.0.9 want: 0.2.4
+556 silly placeDep ROOT bail@2.0.2 OK for: unified@11.0.5 want: ^2.0.0
+557 silly placeDep ROOT extend@3.0.2 OK for: unified@11.0.5 want: ^3.0.0
+558 silly placeDep ROOT is-plain-obj@4.1.0 OK for: unified@11.0.5 want: ^4.0.0
+559 silly placeDep ROOT trough@2.2.0 OK for: unified@11.0.5 want: ^2.0.0
+560 silly reify mark retired [
+560 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/ansi-styles'
+560 silly reify ]
+561 silly reify mark retired [
+561 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/brace-expansion'
+561 silly reify ]
+562 silly reify mark retired [ '/Users/tink/Desktop/TinkProject/gameshare/node_modules/chalk' ]
+563 silly reify mark retired [
+563 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/glob-parent'
+563 silly reify ]
+564 silly reify mark retired [
+564 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint-plugin-jsx-a11y/node_modules/emoji-regex'
+564 silly reify ]
+565 silly reify mark retired [
+565 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/emoji-regex'
+565 silly reify ]
+566 silly reify mark retired [
+566 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/glob-parent'
+566 silly reify ]
+567 silly reify mark retired [
+567 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/glob',
+567 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.bin/glob'
+567 silly reify ]
+568 silly reify mark retired [ '/Users/tink/Desktop/TinkProject/gameshare/node_modules/isexe' ]
+569 silly reify mark retired [ '/Users/tink/Desktop/TinkProject/gameshare/node_modules/lru-cache' ]
+570 silly reify mark retired [
+570 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/minimatch/node_modules/brace-expansion'
+570 silly reify ]
+571 silly reify mark retired [
+571 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/path-scurry/node_modules/lru-cache'
+571 silly reify ]
+572 silly reify mark retired [ '/Users/tink/Desktop/TinkProject/gameshare/node_modules/postcss' ]
+573 silly reify mark retired [
+573 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/sharp/node_modules/@img/sharp-libvips-darwin-arm64'
+573 silly reify ]
+574 silly reify mark retired [
+574 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/string-width/node_modules/emoji-regex'
+574 silly reify ]
+575 silly reify mark retired [
+575 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/which',
+575 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.bin/node-which'
+575 silly reify ]
+576 silly reify mark retired [
+576 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/wrap-ansi/node_modules/ansi-styles'
+576 silly reify ]
+577 silly reify mark retired [
+577 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32c/node_modules/@aws-sdk/types'
+577 silly reify ]
+578 silly reify mark retired [
+578 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32c/node_modules/@smithy/types'
+578 silly reify ]
+579 silly reify mark retired [
+579 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32/node_modules/@smithy/types'
+579 silly reify ]
+580 silly reify mark retired [
+580 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32/node_modules/@aws-sdk/types'
+580 silly reify ]
+581 silly reify mark retired [
+581 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha256-browser'
+581 silly reify ]
+582 silly reify mark retired [
+582 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@aws-sdk/types'
+582 silly reify ]
+583 silly reify mark retired [
+583 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@smithy/types'
+583 silly reify ]
+584 silly reify mark retired [
+584 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@smithy/util-utf8'
+584 silly reify ]
+585 silly reify mark retired [
+585 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha256-js'
+585 silly reify ]
+586 silly reify mark retired [
+586 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/sha256-js'
+586 silly reify ]
+587 silly reify mark retired [
+587 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/sha256-browser'
+587 silly reify ]
+588 silly reify mark retired [
+588 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/util'
+588 silly reify ]
+589 silly reify mark retired [
+589 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/supports-web-crypto'
+589 silly reify ]
+590 silly reify mark retired [
+590 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/credential-provider-ini'
+590 silly reify ]
+591 silly reify mark retired [
+591 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-host-header'
+591 silly reify ]
+592 silly reify mark retired [
+592 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-recursion-detection'
+592 silly reify ]
+593 silly reify mark retired [
+593 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/credential-provider-node'
+593 silly reify ]
+594 silly reify mark retired [
+594 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/types'
+594 silly reify ]
+595 silly reify mark retired [
+595 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-user-agent'
+595 silly reify ]
+596 silly reify mark retired [
+596 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-logger'
+596 silly reify ]
+597 silly reify mark retired [
+597 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/util-endpoints'
+597 silly reify ]
+598 silly reify mark retired [
+598 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/util-user-agent-browser'
+598 silly reify ]
+599 silly reify mark retired [
+599 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/util-user-agent-node'
+599 silly reify ]
+600 silly reify mark retired [
+600 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/config-resolver'
+600 silly reify ]
+601 silly reify mark retired [
+601 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/hash-node'
+601 silly reify ]
+602 silly reify mark retired [
+602 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/fetch-http-handler'
+602 silly reify ]
+603 silly reify mark retired [
+603 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/invalid-dependency'
+603 silly reify ]
+604 silly reify mark retired [
+604 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/xml-builder'
+604 silly reify ]
+605 silly reify mark retired [
+605 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-content-length'
+605 silly reify ]
+606 silly reify mark retired [
+606 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-retry'
+606 silly reify ]
+607 silly reify mark retired [
+607 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-serde'
+607 silly reify ]
+608 silly reify mark retired [
+608 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-endpoint'
+608 silly reify ]
+609 silly reify mark retired [
+609 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/node-config-provider'
+609 silly reify ]
+610 silly reify mark retired [
+610 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/node-http-handler'
+610 silly reify ]
+611 silly reify mark retired [
+611 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/smithy-client'
+611 silly reify ]
+612 silly reify mark retired [
+612 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/protocol-http'
+612 silly reify ]
+613 silly reify mark retired [
+613 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-stack'
+613 silly reify ]
+614 silly reify mark retired [
+614 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/querystring-parser'
+614 silly reify ]
+615 silly reify mark retired [
+615 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/types'
+615 silly reify ]
+616 silly reify mark retired [
+616 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/url-parser'
+616 silly reify ]
+617 silly reify mark retired [
+617 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/property-provider'
+617 silly reify ]
+618 silly reify mark retired [
+618 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-base64'
+618 silly reify ]
+619 silly reify mark retired [
+619 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-body-length-node'
+619 silly reify ]
+620 silly reify mark retired [
+620 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-body-length-browser'
+620 silly reify ]
+621 silly reify mark retired [
+621 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-config-provider'
+621 silly reify ]
+622 silly reify mark retired [
+622 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-defaults-mode-browser'
+622 silly reify ]
+623 silly reify mark retired [
+623 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-middleware'
+623 silly reify ]
+624 silly reify mark retired [
+624 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-defaults-mode-node'
+624 silly reify ]
+625 silly reify mark retired [
+625 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-hex-encoding'
+625 silly reify ]
+626 silly reify mark retired [
+626 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-stream'
+626 silly reify ]
+627 silly reify mark retired [
+627 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-utf8'
+627 silly reify ]
+628 silly reify mark retired [
+628 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-waiter'
+628 silly reify ]
+629 silly reify mark retired [
+629 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-retry'
+629 silly reify ]
+630 silly reify mark retired [
+630 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/supports-web-crypto'
+630 silly reify ]
+631 silly reify mark retired [
+631 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/util'
+631 silly reify ]
+632 silly reify mark retired [
+632 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-env/node_modules/@aws-sdk/types'
+632 silly reify ]
+633 silly reify mark retired [
+633 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-env/node_modules/@smithy/types'
+633 silly reify ]
+634 silly reify mark retired [
+634 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/sha256-browser'
+634 silly reify ]
+635 silly reify mark retired [
+635 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/sha256-js'
+635 silly reify ]
+636 silly reify mark retired [
+636 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/util'
+636 silly reify ]
+637 silly reify mark retired [
+637 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/supports-web-crypto'
+637 silly reify ]
+638 silly reify mark retired [
+638 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/credential-provider-node'
+638 silly reify ]
+639 silly reify mark retired [
+639 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-host-header'
+639 silly reify ]
+640 silly reify mark retired [
+640 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-recursion-detection'
+640 silly reify ]
+641 silly reify mark retired [
+641 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-user-agent'
+641 silly reify ]
+642 silly reify mark retired [
+642 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/util-endpoints'
+642 silly reify ]
+643 silly reify mark retired [
+643 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/util-user-agent-browser'
+643 silly reify ]
+644 silly reify mark retired [
+644 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/util-user-agent-node'
+644 silly reify ]
+645 silly reify mark retired [
+645 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/credential-provider-ini'
+645 silly reify ]
+646 silly reify mark retired [
+646 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/config-resolver'
+646 silly reify ]
+647 silly reify mark retired [
+647 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/types'
+647 silly reify ]
+648 silly reify mark retired [
+648 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/hash-node'
+648 silly reify ]
+649 silly reify mark retired [
+649 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/invalid-dependency'
+649 silly reify ]
+650 silly reify mark retired [
+650 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-logger'
+650 silly reify ]
+651 silly reify mark retired [
+651 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-endpoint'
+651 silly reify ]
+652 silly reify mark retired [
+652 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-content-length'
+652 silly reify ]
+653 silly reify mark retired [
+653 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/fetch-http-handler'
+653 silly reify ]
+654 silly reify mark retired [
+654 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-retry'
+654 silly reify ]
+655 silly reify mark retired [
+655 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-serde'
+655 silly reify ]
+656 silly reify mark retired [
+656 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-stack'
+656 silly reify ]
+657 silly reify mark retired [
+657 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/node-config-provider'
+657 silly reify ]
+658 silly reify mark retired [
+658 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/node-http-handler'
+658 silly reify ]
+659 silly reify mark retired [
+659 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/protocol-http'
+659 silly reify ]
+660 silly reify mark retired [
+660 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/property-provider'
+660 silly reify ]
+661 silly reify mark retired [
+661 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/smithy-client'
+661 silly reify ]
+662 silly reify mark retired [
+662 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/querystring-parser'
+662 silly reify ]
+663 silly reify mark retired [
+663 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/types'
+663 silly reify ]
+664 silly reify mark retired [
+664 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/url-parser'
+664 silly reify ]
+665 silly reify mark retired [
+665 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-base64'
+665 silly reify ]
+666 silly reify mark retired [
+666 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-body-length-browser'
+666 silly reify ]
+667 silly reify mark retired [
+667 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-body-length-node'
+667 silly reify ]
+668 silly reify mark retired [
+668 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-defaults-mode-browser'
+668 silly reify ]
+669 silly reify mark retired [
+669 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-config-provider'
+669 silly reify ]
+670 silly reify mark retired [
+670 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-defaults-mode-node'
+670 silly reify ]
+671 silly reify mark retired [
+671 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-middleware'
+671 silly reify ]
+672 silly reify mark retired [
+672 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-hex-encoding'
+672 silly reify ]
+673 silly reify mark retired [
+673 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-retry'
+673 silly reify ]
+674 silly reify mark retired [
+674 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-stream'
+674 silly reify ]
+675 silly reify mark retired [
+675 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-utf8'
+675 silly reify ]
+676 silly reify mark retired [
+676 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-ini'
+676 silly reify ]
+677 silly reify mark retired [
+677 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-process/node_modules/@aws-sdk/types'
+677 silly reify ]
+678 silly reify mark retired [
+678 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-process/node_modules/@smithy/types'
+678 silly reify ]
+679 silly reify mark retired [
+679 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/sha256-browser'
+679 silly reify ]
+680 silly reify mark retired [
+680 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/sha256-js'
+680 silly reify ]
+681 silly reify mark retired [
+681 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/util'
+681 silly reify ]
+682 silly reify mark retired [
+682 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/supports-web-crypto'
+682 silly reify ]
+683 silly reify mark retired [
+683 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-host-header'
+683 silly reify ]
+684 silly reify mark retired [
+684 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-logger'
+684 silly reify ]
+685 silly reify mark retired [
+685 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-user-agent'
+685 silly reify ]
+686 silly reify mark retired [
+686 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-recursion-detection'
+686 silly reify ]
+687 silly reify mark retired [
+687 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/types'
+687 silly reify ]
+688 silly reify mark retired [
+688 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/util-endpoints'
+688 silly reify ]
+689 silly reify mark retired [
+689 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/util-user-agent-browser'
+689 silly reify ]
+690 silly reify mark retired [
+690 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/util-user-agent-node'
+690 silly reify ]
+691 silly reify mark retired [
+691 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/config-resolver'
+691 silly reify ]
+692 silly reify mark retired [
+692 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/fetch-http-handler'
+692 silly reify ]
+693 silly reify mark retired [
+693 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/hash-node'
+693 silly reify ]
+694 silly reify mark retired [
+694 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/invalid-dependency'
+694 silly reify ]
+695 silly reify mark retired [
+695 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-content-length'
+695 silly reify ]
+696 silly reify mark retired [
+696 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-endpoint'
+696 silly reify ]
+697 silly reify mark retired [
+697 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-serde'
+697 silly reify ]
+698 silly reify mark retired [
+698 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-stack'
+698 silly reify ]
+699 silly reify mark retired [
+699 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/node-config-provider'
+699 silly reify ]
+700 silly reify mark retired [
+700 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/node-http-handler'
+700 silly reify ]
+701 silly reify mark retired [
+701 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/property-provider'
+701 silly reify ]
+702 silly reify mark retired [
+702 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/protocol-http'
+702 silly reify ]
+703 silly reify mark retired [
+703 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/querystring-parser'
+703 silly reify ]
+704 silly reify mark retired [
+704 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/smithy-client'
+704 silly reify ]
+705 silly reify mark retired [
+705 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/types'
+705 silly reify ]
+706 silly reify mark retired [
+706 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/url-parser'
+706 silly reify ]
+707 silly reify mark retired [
+707 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-base64'
+707 silly reify ]
+708 silly reify mark retired [
+708 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-retry'
+708 silly reify ]
+709 silly reify mark retired [
+709 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-body-length-browser'
+709 silly reify ]
+710 silly reify mark retired [
+710 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-config-provider'
+710 silly reify ]
+711 silly reify mark retired [
+711 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-body-length-node'
+711 silly reify ]
+712 silly reify mark retired [
+712 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-defaults-mode-browser'
+712 silly reify ]
+713 silly reify mark retired [
+713 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-hex-encoding'
+713 silly reify ]
+714 silly reify mark retired [
+714 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-middleware'
+714 silly reify ]
+715 silly reify mark retired [
+715 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-defaults-mode-node'
+715 silly reify ]
+716 silly reify mark retired [
+716 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-utf8'
+716 silly reify ]
+717 silly reify mark retired [
+717 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-stream'
+717 silly reify ]
+718 silly reify mark retired [
+718 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-retry'
+718 silly reify ]
+719 silly reify mark retired [
+719 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-web-identity/node_modules/@aws-sdk/types'
+719 silly reify ]
+720 silly reify mark retired [
+720 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-web-identity/node_modules/@smithy/types'
+720 silly reify ]
+721 silly reify mark retired [
+721 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-node'
+721 silly reify ]
+722 silly reify mark retired [
+722 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-host-header'
+722 silly reify ]
+723 silly reify mark retired [
+723 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-logger'
+723 silly reify ]
+724 silly reify mark retired [
+724 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-recursion-detection'
+724 silly reify ]
+725 silly reify mark retired [
+725 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-sdk-sts/node_modules/@aws-sdk/types'
+725 silly reify ]
+726 silly reify mark retired [
+726 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-sdk-sts/node_modules/@smithy/types'
+726 silly reify ]
+727 silly reify mark retired [
+727 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-user-agent'
+727 silly reify ]
+728 silly reify mark retired [
+728 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/sha256-browser'
+728 silly reify ]
+729 silly reify mark retired [
+729 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/supports-web-crypto'
+729 silly reify ]
+730 silly reify mark retired [
+730 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/sha256-js'
+730 silly reify ]
+731 silly reify mark retired [
+731 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-logger'
+731 silly reify ]
+732 silly reify mark retired [
+732 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-host-header'
+732 silly reify ]
+733 silly reify mark retired [
+733 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/util'
+733 silly reify ]
+734 silly reify mark retired [
+734 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-user-agent'
+734 silly reify ]
+735 silly reify mark retired [
+735 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/util-endpoints'
+735 silly reify ]
+736 silly reify mark retired [
+736 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-recursion-detection'
+736 silly reify ]
+737 silly reify mark retired [
+737 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/util-user-agent-browser'
+737 silly reify ]
+738 silly reify mark retired [
+738 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/util-user-agent-node'
+738 silly reify ]
+739 silly reify mark retired [
+739 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/types'
+739 silly reify ]
+740 silly reify mark retired [
+740 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/invalid-dependency'
+740 silly reify ]
+741 silly reify mark retired [
+741 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-content-length'
+741 silly reify ]
+742 silly reify mark retired [
+742 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-endpoint'
+742 silly reify ]
+743 silly reify mark retired [
+743 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/fetch-http-handler'
+743 silly reify ]
+744 silly reify mark retired [
+744 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/hash-node'
+744 silly reify ]
+745 silly reify mark retired [
+745 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-retry'
+745 silly reify ]
+746 silly reify mark retired [
+746 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-stack'
+746 silly reify ]
+747 silly reify mark retired [
+747 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/node-http-handler'
+747 silly reify ]
+748 silly reify mark retired [
+748 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-serde'
+748 silly reify ]
+749 silly reify mark retired [
+749 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/protocol-http'
+749 silly reify ]
+750 silly reify mark retired [
+750 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/querystring-parser'
+750 silly reify ]
+751 silly reify mark retired [
+751 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/smithy-client'
+751 silly reify ]
+752 silly reify mark retired [
+752 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/config-resolver'
+752 silly reify ]
+753 silly reify mark retired [
+753 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/node-config-provider'
+753 silly reify ]
+754 silly reify mark retired [
+754 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/types'
+754 silly reify ]
+755 silly reify mark retired [
+755 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/url-parser'
+755 silly reify ]
+756 silly reify mark retired [
+756 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-body-length-browser'
+756 silly reify ]
+757 silly reify mark retired [
+757 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-base64'
+757 silly reify ]
+758 silly reify mark retired [
+758 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-body-length-node'
+758 silly reify ]
+759 silly reify mark retired [
+759 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-defaults-mode-node'
+759 silly reify ]
+760 silly reify mark retired [
+760 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-retry'
+760 silly reify ]
+761 silly reify mark retired [
+761 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-defaults-mode-browser'
+761 silly reify ]
+762 silly reify mark retired [
+762 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-config-provider'
+762 silly reify ]
+763 silly reify mark retired [
+763 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-stream'
+763 silly reify ]
+764 silly reify mark retired [
+764 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-middleware'
+764 silly reify ]
+765 silly reify mark retired [
+765 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-hex-encoding'
+765 silly reify ]
+766 silly reify mark retired [
+766 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-utf8'
+766 silly reify ]
+767 silly reify mark retired [
+767 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/types'
+767 silly reify ]
+768 silly reify mark retired [
+768 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@aws-sdk/types'
+768 silly reify ]
+769 silly reify mark retired [
+769 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/protocol-http'
+769 silly reify ]
+770 silly reify mark retired [
+770 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/types'
+770 silly reify ]
+771 silly reify mark retired [
+771 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/util-utf8'
+771 silly reify ]
+772 silly reify mark retired [
+772 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/util-endpoints'
+772 silly reify ]
+773 silly reify mark retired [
+773 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/util-user-agent-browser'
+773 silly reify ]
+774 silly reify mark retired [
+774 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/xml-builder'
+774 silly reify ]
+775 silly reify mark retired [
+775 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/util-user-agent-node'
+775 silly reify ]
+776 silly reify mark retired [
+776 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-sso/node_modules/@aws-sdk/types'
+776 silly reify ]
+777 silly reify mark retired [
+777 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-sso/node_modules/@smithy/types'
+777 silly reify ]
+778 silly reify mark retired [
+778 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/isexe'
+778 silly reify ]
+779 silly reify mark retired [
+779 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/which',
+779 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/.bin/node-which'
+779 silly reify ]
+780 silly reify mark retired [
+780 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@img/sharp-libvips-darwin-arm64'
+780 silly reify ]
+781 silly reify mark retired [
+781 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@img/sharp-darwin-arm64/node_modules/@img/sharp-libvips-darwin-arm64'
+781 silly reify ]
+782 silly reify mark retired [
+782 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@opennextjs/aws/node_modules/chalk'
+782 silly reify ]
+783 silly reify mark retired [
+783 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/abort-controller/node_modules/@smithy/types'
+783 silly reify ]
+784 silly reify mark retired [
+784 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/config-resolver'
+784 silly reify ]
+785 silly reify mark retired [
+785 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/node-config-provider'
+785 silly reify ]
+786 silly reify mark retired [
+786 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/querystring-parser'
+786 silly reify ]
+787 silly reify mark retired [
+787 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/types'
+787 silly reify ]
+788 silly reify mark retired [
+788 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/url-parser'
+788 silly reify ]
+789 silly reify mark retired [
+789 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/fetch-http-handler'
+789 silly reify ]
+790 silly reify mark retired [
+790 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/invalid-dependency'
+790 silly reify ]
+791 silly reify mark retired [
+791 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-content-length'
+791 silly reify ]
+792 silly reify mark retired [
+792 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-retry'
+792 silly reify ]
+793 silly reify mark retired [
+793 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-endpoint'
+793 silly reify ]
+794 silly reify mark retired [
+794 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/hash-node'
+794 silly reify ]
+795 silly reify mark retired [
+795 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-stack'
+795 silly reify ]
+796 silly reify mark retired [
+796 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-serde'
+796 silly reify ]
+797 silly reify mark retired [
+797 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/node-config-provider'
+797 silly reify ]
+798 silly reify mark retired [
+798 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/node-http-handler'
+798 silly reify ]
+799 silly reify mark retired [
+799 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/protocol-http'
+799 silly reify ]
+800 silly reify mark retired [
+800 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/querystring-builder/node_modules/@smithy/types'
+800 silly reify ]
+801 silly reify mark retired [
+801 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/service-error-classification/node_modules/@smithy/types'
+801 silly reify ]
+802 silly reify mark retired [
+802 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/querystring-parser'
+802 silly reify ]
+803 silly reify mark retired [
+803 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/shared-ini-file-loader/node_modules/@smithy/types'
+803 silly reify ]
+804 silly reify mark retired [
+804 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/url-parser'
+804 silly reify ]
+805 silly reify mark retired [
+805 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/smithy-client'
+805 silly reify ]
+806 silly reify mark retired [
+806 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-base64'
+806 silly reify ]
+807 silly reify mark retired [
+807 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-body-length-browser'
+807 silly reify ]
+808 silly reify mark retired [
+808 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/types'
+808 silly reify ]
+809 silly reify mark retired [
+809 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-body-length-node'
+809 silly reify ]
+810 silly reify mark retired [
+810 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-defaults-mode-node'
+810 silly reify ]
+811 silly reify mark retired [
+811 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-defaults-mode-browser'
+811 silly reify ]
+812 silly reify mark retired [
+812 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-retry'
+812 silly reify ]
+813 silly reify mark retired [
+813 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-stream'
+813 silly reify ]
+814 silly reify mark retired [
+814 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-waiter'
+814 silly reify ]
+815 silly reify mark retired [
+815 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-utf8'
+815 silly reify ]
+816 silly reify mark retired [
+816 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@tailwindcss/postcss/node_modules/postcss'
+816 silly reify ]
+817 silly reify moves {
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/ansi-styles': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.ansi-styles-a2v2bQoq',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/brace-expansion': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.brace-expansion-wwTc80Si',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/chalk': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.chalk-zWOHOLHy',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/glob-parent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/.glob-parent-i1qUzxy8',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint-plugin-jsx-a11y/node_modules/emoji-regex': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint-plugin-jsx-a11y/node_modules/.emoji-regex-OZ1VfmRJ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/emoji-regex': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.emoji-regex-ClGFFJS6',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/glob-parent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.glob-parent-FyBYWxHA',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/glob': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.glob-AbWKYP0F',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.bin/glob': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.bin/.glob-ZIl56bB8',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/isexe': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.isexe-lixK8gFi',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/lru-cache': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.lru-cache-fxegQolJ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/minimatch/node_modules/brace-expansion': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/minimatch/node_modules/.brace-expansion-sbjXbWCL',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/path-scurry/node_modules/lru-cache': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/path-scurry/node_modules/.lru-cache-Pmy8Lejl',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/postcss': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.postcss-tq3iWBLC',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/sharp/node_modules/@img/sharp-libvips-darwin-arm64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/sharp/node_modules/@img/.sharp-libvips-darwin-arm64-CJBL3p6N',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/string-width/node_modules/emoji-regex': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/string-width/node_modules/.emoji-regex-LBStqpod',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/which': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.which-eioKeTd3',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.bin/node-which': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/.bin/.node-which-EE7Kdrtd',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/wrap-ansi/node_modules/ansi-styles': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/wrap-ansi/node_modules/.ansi-styles-vWUFb4Ye',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32c/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32c/node_modules/@aws-sdk/.types-SApzLT86',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32c/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32c/node_modules/@smithy/.types-aWnNKRY7',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32/node_modules/@smithy/.types-CuLUEwkD',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/crc32/node_modules/@aws-sdk/.types-gp6iDMoX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha256-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/.sha256-browser-qCqH3qDy',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@aws-sdk/.types-JD6e2uCY',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@smithy/.types-68hlJRVU',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha1-browser/node_modules/@smithy/.util-utf8-PfElw8Ug',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/sha256-js': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/.sha256-js-Nzw7lsgZ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/sha256-js': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/.sha256-js-r2t4BWWb',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/sha256-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/.sha256-browser-GOH6SKCa',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/util': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/.util-kVognBI7',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/supports-web-crypto': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-crypto/.supports-web-crypto-yZmdbBzW',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/credential-provider-ini': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.credential-provider-ini-wcDf4Cb1',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-host-header': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.middleware-host-header-bJawjjin',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-recursion-detection': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.middleware-recursion-detection-XSXcDx1n',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/credential-provider-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.credential-provider-node-mXkXzdmz',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.types-EQwi9HPK',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-user-agent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.middleware-user-agent-88qV8kmL',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/middleware-logger': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.middleware-logger-94tRZ708',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/util-endpoints': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.util-endpoints-kpJICKEw',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/util-user-agent-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.util-user-agent-browser-KV0MoE9D',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/util-user-agent-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.util-user-agent-node-6iw5335z',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/config-resolver': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.config-resolver-aW5gnxZP',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/hash-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.hash-node-91KPRQsy',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/fetch-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.fetch-http-handler-btuKrz2c',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/invalid-dependency': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.invalid-dependency-82awzp2N',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/xml-builder': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@aws-sdk/.xml-builder-5R5LMmwp',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-content-length': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.middleware-content-length-mXqh2hlW',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.middleware-retry-ZooxM6yD',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-serde': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.middleware-serde-5Thrb02W',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-endpoint': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.middleware-endpoint-BcbpiFga',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/node-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.node-config-provider-bXeKwzo5',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/node-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.node-http-handler-xEhVmm01',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/smithy-client': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.smithy-client-3BqP3CjI',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/protocol-http': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.protocol-http-0MT5GYMX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/middleware-stack': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.middleware-stack-H9dWhZJq',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/querystring-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.querystring-parser-TlHk9H6H',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.types-XKBShZDt',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/url-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.url-parser-jjJRidZz',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/property-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.property-provider-kfzrqu5h',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-base64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-base64-cF1isjIA',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-body-length-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-body-length-node-z57IUhX2',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-body-length-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-body-length-browser-8O5kFdO6',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-config-provider-mEasc6Ix',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-defaults-mode-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-defaults-mode-browser-AABlWo1l',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-middleware': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-middleware-YGAU5NZg',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-defaults-mode-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-defaults-mode-node-zeRNDsmK',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-hex-encoding': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-hex-encoding-cooYb8sT',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-stream': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-stream-kuYhuv7t',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-utf8-rjV8mVms',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-waiter': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-waiter-VN6kW2FY',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/util-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-cloudfront/node_modules/@smithy/.util-retry-3IWtsPaR',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/supports-web-crypto': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/.supports-web-crypto-d30Xjg0r',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/util': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-crypto/.util-p0mldmXk',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-env/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-env/node_modules/@aws-sdk/.types-1clrX7Av',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-env/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-env/node_modules/@smithy/.types-XS9n4GX4',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/sha256-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/.sha256-browser-KxXKwAjS',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/sha256-js': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/.sha256-js-csshv1k3',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/util': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/.util-QxqJuHoa',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/supports-web-crypto': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-crypto/.supports-web-crypto-F3faqk2e',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/credential-provider-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.credential-provider-node-brjHpMwq',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-host-header': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.middleware-host-header-XPEVOO7x',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-recursion-detection': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.middleware-recursion-detection-zIGV2uNZ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-user-agent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.middleware-user-agent-Qp0jcqRi',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/util-endpoints': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.util-endpoints-a7yjtyEr',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/util-user-agent-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.util-user-agent-browser-XbL6mkMM',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/util-user-agent-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.util-user-agent-node-6FCtNGqY',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/credential-provider-ini': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.credential-provider-ini-VyPhleCt',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/config-resolver': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.config-resolver-68DpomwS',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.types-w7m092ZW',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/hash-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.hash-node-gCxe368Z',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/invalid-dependency': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.invalid-dependency-4M00YolD',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/middleware-logger': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@aws-sdk/.middleware-logger-42aynNaw',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-endpoint': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.middleware-endpoint-XlzXHeQJ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-content-length': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.middleware-content-length-GcuMzY7M',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/fetch-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.fetch-http-handler-WQ7TjDOI',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.middleware-retry-crdCrCGv',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-serde': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.middleware-serde-mRtbonZS',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/middleware-stack': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.middleware-stack-WtTJ7g2T',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/node-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.node-config-provider-LBGhstX0',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/node-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.node-http-handler-sdpp1GrH',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/protocol-http': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.protocol-http-8lk2urEU',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/property-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.property-provider-S6Fyk88V',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/smithy-client': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.smithy-client-8vZiotqx',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/querystring-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.querystring-parser-qr8PYLUP',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.types-jeaNAV4r',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/url-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.url-parser-x8mFL6rU',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-base64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-base64-G9QUc83h',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-body-length-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-body-length-browser-XCagaCTr',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-body-length-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-body-length-node-sbq5OBMR',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-defaults-mode-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-defaults-mode-browser-TU4YEqZw',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-config-provider-v1AOrwZ2',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-defaults-mode-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-defaults-mode-node-wrK8IDZv',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-middleware': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-middleware-xQqlZXIs',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-hex-encoding': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-hex-encoding-25JXATXg',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-retry-9LVvB9wo',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-stream': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-stream-FGuuFmI8',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sts/node_modules/@smithy/.util-utf8-iIQ1SZO8',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-ini': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.credential-provider-ini-hVLMIaQd',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-process/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-process/node_modules/@aws-sdk/.types-5vogbRY4',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-process/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-process/node_modules/@smithy/.types-X6X2QEh6',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/sha256-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/.sha256-browser-2csezrar',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/sha256-js': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/.sha256-js-bGi5ZowQ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/util': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/.util-xntpRBUG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/supports-web-crypto': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-crypto/.supports-web-crypto-BIPwbIlM',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-host-header': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.middleware-host-header-1S39msMC',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-logger': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.middleware-logger-QnTgx37Y',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-user-agent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.middleware-user-agent-3KpaZXPC',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/middleware-recursion-detection': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.middleware-recursion-detection-oq1IP86K',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.types-kYC9wJ0L',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/util-endpoints': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.util-endpoints-wU8EffVI',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/util-user-agent-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.util-user-agent-browser-lPoORaox',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/util-user-agent-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@aws-sdk/.util-user-agent-node-g2SMn2js',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/config-resolver': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.config-resolver-kd0Fjl2y',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/fetch-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.fetch-http-handler-1m7GubTn',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/hash-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.hash-node-PLn8KofP',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/invalid-dependency': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.invalid-dependency-9cFtcKk3',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-content-length': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.middleware-content-length-nmcM49Q9',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-endpoint': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.middleware-endpoint-8qaxKmpa',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-serde': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.middleware-serde-f1LtrNNG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-stack': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.middleware-stack-eemKCuL1',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/node-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.node-config-provider-ZntgKURX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/node-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.node-http-handler-W9GTPz4W',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/property-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.property-provider-LdgzAzxa',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/protocol-http': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.protocol-http-VpmpQf5W',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/querystring-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.querystring-parser-vw5RnDEe',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/smithy-client': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.smithy-client-FXHnb0r0',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.types-fbUBYgQ4',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/url-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.url-parser-8RvwpFK3',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-base64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-base64-FwonyeXy',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/middleware-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.middleware-retry-T4hvX05o',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-body-length-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-body-length-browser-qhyBs1FZ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-config-provider-t9jfMsXS',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-body-length-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-body-length-node-Jbh4YmHR',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-defaults-mode-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-defaults-mode-browser-ssHaSY3i',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-hex-encoding': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-hex-encoding-8ZE61bQn',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-middleware': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-middleware-fdwtpO3U',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-defaults-mode-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-defaults-mode-node-pNG4xJDG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-utf8-3cvztxHV',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-stream': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-stream-iflOVg2j',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/util-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/client-sso/node_modules/@smithy/.util-retry-OeIKcH3g',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-web-identity/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-web-identity/node_modules/@aws-sdk/.types-KQHKy4eX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-web-identity/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-web-identity/node_modules/@smithy/.types-7CsKoekV',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.credential-provider-node-TTYVU5jG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-host-header': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.middleware-host-header-xvq75HmD',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-logger': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.middleware-logger-q6CrDfjU',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-recursion-detection': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.middleware-recursion-detection-zZaQ7IL6',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-sdk-sts/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-sdk-sts/node_modules/@aws-sdk/.types-GpuDI3LX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-sdk-sts/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-sdk-sts/node_modules/@smithy/.types-hF9AmkQz',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-user-agent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.middleware-user-agent-fflmgEUY',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/sha256-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/.sha256-browser-B6bY16ni',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/supports-web-crypto': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/.supports-web-crypto-F9d7NGRo',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/sha256-js': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/.sha256-js-LqlfX3bx',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-logger': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.middleware-logger-ZDvdUEj1',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-host-header': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.middleware-host-header-CA4JjWX3',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/util': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-crypto/.util-7MkRIrDk',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-user-agent': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.middleware-user-agent-olJ9IMVO',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/util-endpoints': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.util-endpoints-4S4iCLtd',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/middleware-recursion-detection': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.middleware-recursion-detection-SmbywY3q',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/util-user-agent-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.util-user-agent-browser-eMp8nFp5',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/util-user-agent-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.util-user-agent-node-sX5ivFTw',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@aws-sdk/.types-ezz9R5gJ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/invalid-dependency': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.invalid-dependency-ey4AVied',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-content-length': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.middleware-content-length-U137ezBJ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-endpoint': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.middleware-endpoint-WsxSdWhM',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/fetch-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.fetch-http-handler-nJnHf0nA',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/hash-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.hash-node-nJOgvpsB',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.middleware-retry-jV3pWdNu',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-stack': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.middleware-stack-ry3QyDe2',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/node-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.node-http-handler-KocPV7Xe',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/middleware-serde': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.middleware-serde-n1owwYnz',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/protocol-http': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.protocol-http-ldmJSAUM',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/querystring-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.querystring-parser-PKAiJf4x',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/smithy-client': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.smithy-client-VTjdxDpd',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/config-resolver': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.config-resolver-Ciu4IU3r',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/node-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.node-config-provider-yUBNrqjE',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.types-HG6Mtmiy',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/url-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.url-parser-N5PG7cK1',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-body-length-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-body-length-browser-W3LtaebH',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-base64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-base64-83LuWJgB',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-body-length-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-body-length-node-mlwnUEK3',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-defaults-mode-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-defaults-mode-node-xbFWDD1x',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-retry-438R6DNz',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-defaults-mode-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-defaults-mode-browser-2dk7g1YX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-config-provider-RDtYppoo',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-stream': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-stream-Uqn3V1KO',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-middleware': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-middleware-uDo60fMT',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-hex-encoding': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-hex-encoding-AthggY7s',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/token-providers/node_modules/@smithy/.util-utf8-TsTj1PMd',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.types-POrNujjd',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@aws-sdk/.types-0ao08BnA',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/protocol-http': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/.protocol-http-mAX8TGKQ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/.types-ltiyNZ0O',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/middleware-signing/node_modules/@smithy/.util-utf8-oeZH98JQ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/util-endpoints': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.util-endpoints-i3Mzrusi',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/util-user-agent-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.util-user-agent-browser-NncMpAt2',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/xml-builder': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.xml-builder-5vsLi7Ou',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/util-user-agent-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/.util-user-agent-node-bkKVsMHh',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-sso/node_modules/@aws-sdk/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-sso/node_modules/@aws-sdk/.types-wVkelK6W',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-sso/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@aws-sdk/credential-provider-sso/node_modules/@smithy/.types-QZmITz0U',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/isexe': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/.isexe-As1jx6N9',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/which': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/.which-pSrijvMY',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/.bin/node-which': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@dotenvx/dotenvx/node_modules/.bin/.node-which-1WJ1CBrq',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@img/sharp-libvips-darwin-arm64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@img/.sharp-libvips-darwin-arm64-VEZrOmwr',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@img/sharp-darwin-arm64/node_modules/@img/sharp-libvips-darwin-arm64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@img/sharp-darwin-arm64/node_modules/@img/.sharp-libvips-darwin-arm64-yjdsC1NI',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@opennextjs/aws/node_modules/chalk': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@opennextjs/aws/node_modules/.chalk-0A7QaTqh',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/abort-controller/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/abort-controller/node_modules/@smithy/.types-zSjq5SDX',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/config-resolver': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.config-resolver-rSHmNF7L',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/node-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/.node-config-provider-WOrzFTr8',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/querystring-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/.querystring-parser-LVthIBxG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/.types-ycM2ve1H',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/url-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/credential-provider-imds/node_modules/@smithy/.url-parser-EU8k477s',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/fetch-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.fetch-http-handler-0tlLdn8j',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/invalid-dependency': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.invalid-dependency-KiafgmFC',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-content-length': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.middleware-content-length-LMdTAU6w',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.middleware-retry-KvGs632r',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-endpoint': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.middleware-endpoint-JquX9NGc',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/hash-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.hash-node-eyAFnLmG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-stack': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.middleware-stack-So8xx7H2',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/middleware-serde': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.middleware-serde-S55aB79H',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/node-config-provider': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.node-config-provider-Mypu7aVB',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/node-http-handler': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.node-http-handler-9IP83LTT',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/protocol-http': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.protocol-http-RkrwKsbR',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/querystring-builder/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/querystring-builder/node_modules/@smithy/.types-DzQeQM6p',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/service-error-classification/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/service-error-classification/node_modules/@smithy/.types-wlButnL7',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/querystring-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.querystring-parser-MIgdonzl',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/shared-ini-file-loader/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/shared-ini-file-loader/node_modules/@smithy/.types-pjlBNViG',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/url-parser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.url-parser-ueBEPIKV',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/smithy-client': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.smithy-client-IjzaCYcu',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-base64': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-base64-H2cMbPaW',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-body-length-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-body-length-browser-VAtCJyDl',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/types': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.types-acjpb9i9',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-body-length-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-body-length-node-dKmipbpc',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-defaults-mode-node': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-defaults-mode-node-8xyHLVMR',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-defaults-mode-browser': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-defaults-mode-browser-4dzQFqnn',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-retry': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-retry-FgSidmFI',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-stream': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-stream-KK3Mt7Ff',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-waiter': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-waiter-WjoIOIcJ',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/util-utf8': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@smithy/.util-utf8-abolRo7W',
+817 silly reify   '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@tailwindcss/postcss/node_modules/postcss': '/Users/tink/Desktop/TinkProject/gameshare/node_modules/@tailwindcss/postcss/node_modules/.postcss-eQzrFfol'
+817 silly reify }
+818 verbose stack Error: EACCES: permission denied, rename '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/glob-parent' -> '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/.glob-parent-i1qUzxy8'
+818 verbose stack     at async Object.rename (node:internal/fs/promises:782:10)
+818 verbose stack     at async moveFile (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/node_modules/@npmcli/fs/lib/move-file.js:30:5)
+818 verbose stack     at async Promise.allSettled (index 3)
+818 verbose stack     at async [reifyPackages] (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:325:11)
+818 verbose stack     at async Arborist.reify (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:142:5)
+818 verbose stack     at async Install.exec (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/lib/commands/install.js:150:5)
+818 verbose stack     at async Npm.exec (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/lib/npm.js:207:9)
+818 verbose stack     at async module.exports (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/lib/cli/entry.js:74:5)
+819 error code EACCES
+820 error syscall rename
+821 error path /Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/glob-parent
+822 error dest /Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/.glob-parent-i1qUzxy8
+823 error errno -13
+824 error Error: EACCES: permission denied, rename '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/glob-parent' -> '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/.glob-parent-i1qUzxy8'
+824 error     at async Object.rename (node:internal/fs/promises:782:10)
+824 error     at async moveFile (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/node_modules/@npmcli/fs/lib/move-file.js:30:5)
+824 error     at async Promise.allSettled (index 3)
+824 error     at async [reifyPackages] (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:325:11)
+824 error     at async Arborist.reify (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:142:5)
+824 error     at async Install.exec (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/lib/commands/install.js:150:5)
+824 error     at async Npm.exec (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/lib/npm.js:207:9)
+824 error     at async module.exports (/Applications/ServBay/package/node/20/20.19.3/lib/node_modules/npm/lib/cli/entry.js:74:5) {
+824 error   errno: -13,
+824 error   code: 'EACCES',
+824 error   syscall: 'rename',
+824 error   path: '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/glob-parent',
+824 error   dest: '/Users/tink/Desktop/TinkProject/gameshare/node_modules/eslint/node_modules/.glob-parent-i1qUzxy8'
+824 error }
+825 error
+825 error The operation was rejected by your operating system.
+825 error It is likely you do not have the permissions to access this file as the current user
+825 error
+825 error If you believe this might be a permissions issue, please double-check the
+825 error permissions of the file and its containing directories, or try running
+825 error the command again as root/Administrator.
+826 silly unfinished npm timer reify 1758647722983
+827 silly unfinished npm timer reify:retireShallow 1758647734942
+828 verbose cwd /Users/tink/Desktop/TinkProject/gameshare
+829 verbose os Darwin 24.6.0
+830 verbose node v20.19.3
+831 verbose npm  v10.8.2
+832 notice
+832 notice New [31mmajor[39m version of npm available! [31m10.8.2[39m -> [34m11.6.0[39m
+832 notice Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.6.0[39m
+832 notice To update run: [4mnpm install -g npm@11.6.0[24m
+832 notice  { force: true, [Symbol(proc-log.meta)]: true }
+833 verbose exit -13
+834 verbose code -13
+835 error A complete log of this run can be found in: /Users/tink/Desktop/TinkProject/gameshare/.npm-cache/_logs/2025-09-23T17_15_22_882Z-debug-0.log

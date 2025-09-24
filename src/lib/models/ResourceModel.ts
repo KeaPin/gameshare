@@ -170,6 +170,61 @@ export class ResourceModel {
   }
 
   /**
+   * 按分类ID集合随机获取资源
+   * @param categoryIds 分类ID数组
+   * @param limit 返回数量
+   */
+  static async getRandomResourcesByCategoryIds(categoryIds: string[], limit: number = 8): Promise<Resource[]> {
+    if (!Array.isArray(categoryIds) || categoryIds.length === 0) {
+      return [];
+    }
+
+    const placeholders = categoryIds.map(() => '?').join(',');
+    const sql = `
+      SELECT r.*
+      FROM resource r
+      WHERE r.status = 'active'
+        AND r.id IN (
+          SELECT DISTINCT rc.resource_id
+          FROM resource_category rc
+          WHERE rc.category_id IN (${placeholders})
+        )
+      ORDER BY RAND()
+      LIMIT ?
+    `;
+
+    return await query<(Resource & RowDataPacket)[]>(sql, [...categoryIds, limit]);
+  }
+
+  /**
+   * 按顶级分类别名随机获取资源（自动聚合其子分类）
+   * @param alias 顶级分类的 alias（如 android、pc）
+   * @param limit 返回数量
+   */
+  static async getRandomResourcesByCategoryAlias(alias: string, limit: number = 8): Promise<Resource[]> {
+    // 查找顶级分类
+    const parentRows = await query<(RowDataPacket & { id: string })[]>(
+      `SELECT id FROM category WHERE level = 0 AND alias = ? AND status = ? LIMIT 1`,
+      [alias, 'active']
+    );
+
+    if (parentRows.length === 0) {
+      return [];
+    }
+
+    const parentId = parentRows[0].id;
+
+    // 查找其子分类
+    const childRows = await query<(RowDataPacket & { id: string })[]>(
+      `SELECT id FROM category WHERE parent_id = ? AND status = ?`,
+      [parentId, 'active']
+    );
+
+    const categoryIds = childRows.length > 0 ? childRows.map(r => r.id) : [parentId];
+    return await this.getRandomResourcesByCategoryIds(categoryIds, limit);
+  }
+
+  /**
    * 获取高评分资源
    * @param limit 限制数量
    * @returns 高评分资源列表

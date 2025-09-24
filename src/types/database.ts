@@ -43,7 +43,7 @@ export interface Resource extends BaseEntity, BaseStatus {
   description?: string;
   rating?: number; // 0.0-10.0
   thumbnail?: string;
-  galleries?: string; // JSON 格式的图片数组
+  galleries?: string; // 图片数组，用逗号分隔
   tags?: string;
   developer?: string;
   publisher?: string;
