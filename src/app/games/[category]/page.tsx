@@ -12,6 +12,7 @@ interface GamesCategoryPageProps {
   }>;
   searchParams: Promise<{
     page?: string;
+    subcategory?: string; // 新增子分类参数
   }>;
 }
 
@@ -58,7 +59,8 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
   const category = resolvedParams.category;
-  
+  const selectedSubcategory = resolvedSearchParams.subcategory;
+
   // 分页参数
   const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
   const pageSize = 16;
@@ -83,21 +85,56 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
 
   // 2. 查询该父分类下的所有子分类
   const childCategories = await CategoryModel.getSubCategories(parentCategory.id);
-  
-  if (childCategories.length === 0) {
+
+  // 3. 根据是否有选中的子分类来查询游戏
+  let filteredGames: Resource[];
+  let totalCount: number;
+  let totalPages: number;
+
+  if (selectedSubcategory && childCategories.length > 0) {
+    // 如果选中了子分类，只查询该子分类的游戏
+    const selectedChild = childCategories.find(cat =>
+      cat.alias === selectedSubcategory || cat.id === selectedSubcategory
+    );
+
+    if (selectedChild) {
+      const resourcesResult = await ResourceModel.getResources({
+        category_id: selectedChild.id,
+        page: currentPage,
+        limit: pageSize,
+        sort: 'download_count',
+        order: 'desc'
+      });
+      filteredGames = resourcesResult.data;
+      totalCount = resourcesResult.total;
+      totalPages = resourcesResult.totalPages;
+    } else {
+      // 如果找不到子分类，显示所有子分类的游戏
+      const childCategoryIds = childCategories.map(c => c.id);
+      const result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
+        page: currentPage,
+        limit: pageSize,
+        sort: 'download_count',
+        order: 'desc'
+      });
+      filteredGames = result.data;
+      totalCount = result.total;
+      totalPages = result.totalPages;
+    }
+  } else if (childCategories.length === 0) {
     // 如果没有子分类，直接查询父分类的资源（分页）
     const resourcesResult = await ResourceModel.getResources({
       category_id: parentCategory.id,
       page: currentPage,
       limit: pageSize,
-      sort: 'download_count', 
+      sort: 'download_count',
       order: 'desc'
     });
-    var filteredGames = resourcesResult.data;
-    var totalCount = resourcesResult.total;
-    var totalPages = resourcesResult.totalPages;
+    filteredGames = resourcesResult.data;
+    totalCount = resourcesResult.total;
+    totalPages = resourcesResult.totalPages;
   } else {
-    // 3. 跨子分类一次性分页查询（避免 N+1 慢查询）
+    // 没有选中子分类，显示所有子分类的游戏
     const childCategoryIds = childCategories.map(c => c.id);
     const result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
       page: currentPage,
@@ -105,9 +142,9 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
       sort: 'download_count',
       order: 'desc'
     });
-    var filteredGames = result.data;
-    var totalCount = result.total;
-    var totalPages = result.totalPages;
+    filteredGames = result.data;
+    totalCount = result.total;
+    totalPages = result.totalPages;
   }
 
   return (
@@ -132,9 +169,11 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
         </div>
 
         {/* 客户端交互组件 */}
-        <GamesCategoryClient 
+        <GamesCategoryClient
           category={category}
           categoryNames={categoryNames}
+          subCategories={childCategories}
+          selectedSubcategory={selectedSubcategory}
           filteredGames={filteredGames}
           totalCount={totalCount}
           currentPage={currentPage}

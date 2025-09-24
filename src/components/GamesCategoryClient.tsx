@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import GameCard from '@/components/GameCard';
 import Link from 'next/link';
-import { Resource } from '@/types/database';
+import { Resource, Category } from '@/types/database';
+import { useRouter } from 'next/navigation';
 
 interface GamesCategoryClientProps {
   category: string;
   categoryNames: Record<string, string>;
+  subCategories: Category[];  // 新增子分类数据
+  selectedSubcategory?: string; // 当前选中的子分类
   filteredGames: Resource[];
   totalCount?: number;
   currentPage: number;
@@ -15,9 +18,11 @@ interface GamesCategoryClientProps {
   pageSize: number;
 }
 
-export default function GamesCategoryClient({ 
-  category, 
-  categoryNames, 
+export default function GamesCategoryClient({
+  category,
+  categoryNames,
+  subCategories,
+  selectedSubcategory,
   filteredGames,
   totalCount,
   currentPage,
@@ -25,6 +30,21 @@ export default function GamesCategoryClient({
   pageSize
 }: GamesCategoryClientProps) {
   const [sortBy, setSortBy] = useState('newest');
+  const router = useRouter();
+
+  // 处理子分类选择变化
+  const handleSubcategoryChange = (selectedValue: string) => {
+    if (selectedValue === 'all') {
+      router.push(`/games/${category}`);
+    } else {
+      router.push(`/games/${category}?subcategory=${selectedValue}`);
+    }
+  };
+
+  // 处理主分类选择变化
+  const handleCategoryChange = (selectedValue: string) => {
+    router.push(`/games/${selectedValue}`);
+  };
 
   // 排序游戏
   const sortedGames = [...filteredGames].sort((a, b) => {
@@ -44,23 +64,46 @@ export default function GamesCategoryClient({
   });
 
   return (
-    <>
+    <div>
       {/* 筛选和排序 */}
       <div className="mb-6 flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-        <div className="flex flex-wrap gap-2">
-          {Object.entries(categoryNames).map(([key, name]) => (
-            <Link
-              key={key}
-              href={`/games/${key}`}
-              className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer select-none touch-manipulation ${
-                category === key
-                  ? 'bg-blue-600 text-white shadow-lg scale-105'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 active:bg-gray-600 active:scale-95'
-              }`}
-            >
-              {name}
-            </Link>
-          ))}
+        <div className="flex items-center gap-4">
+          {/* 如果有子分类，显示子分类下拉选择；否则显示父分类下拉选择 */}
+          {subCategories.length > 0 ? (
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400 text-sm">子分类:</span>
+              <select
+                value={selectedSubcategory || 'all'}
+                onChange={(e) => handleSubcategoryChange(e.target.value)}
+                className="bg-gray-800 text-white px-3 py-2 rounded-lg text-sm border border-gray-700 focus:border-blue-500 focus:outline-none min-w-[120px]"
+              >
+                <option value="all">全部</option>
+                {subCategories.map((subcategory) => (
+                  <option
+                    key={subcategory.id}
+                    value={subcategory.alias || subcategory.id}
+                  >
+                    {subcategory.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400 text-sm">分类:</span>
+              <select
+                value={category}
+                onChange={(e) => handleCategoryChange(e.target.value)}
+                className="bg-gray-800 text-white px-3 py-2 rounded-lg text-sm border border-gray-700 focus:border-blue-500 focus:outline-none min-w-[120px]"
+              >
+                {Object.entries(categoryNames).map(([key, name]) => (
+                  <option key={key} value={key}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
@@ -85,9 +128,9 @@ export default function GamesCategoryClient({
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         {sortedGames.map((game, idx) => (
-          <div 
-            key={game.id} 
-            className="fade-in" 
+          <div
+            key={game.id}
+            className="fade-in"
             style={{ animationDelay: `${idx * 0.05}s` }}
           >
             <GameCard game={game} />
@@ -116,7 +159,7 @@ export default function GamesCategoryClient({
           {/* 上一页 */}
           {currentPage > 1 ? (
             <Link
-              href={`/games/${category}?page=${currentPage - 1}`}
+              href={`/games/${category}?page=${currentPage - 1}${selectedSubcategory ? `&subcategory=${selectedSubcategory}` : ''}`}
               className="px-3 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
             >
               上一页
@@ -146,7 +189,7 @@ export default function GamesCategoryClient({
               return (
                 <Link
                   key={pageNum}
-                  href={`/games/${category}?page=${pageNum}`}
+                  href={`/games/${category}?page=${pageNum}${selectedSubcategory ? `&subcategory=${selectedSubcategory}` : ''}`}
                   className={`px-3 py-2 rounded-lg transition-colors ${
                     pageNum === currentPage
                       ? 'bg-blue-600 text-white'
@@ -162,7 +205,7 @@ export default function GamesCategoryClient({
           {/* 下一页 */}
           {currentPage < totalPages ? (
             <Link
-              href={`/games/${category}?page=${currentPage + 1}`}
+              href={`/games/${category}?page=${currentPage + 1}${selectedSubcategory ? `&subcategory=${selectedSubcategory}` : ''}`}
               className="px-3 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
             >
               下一页
@@ -174,6 +217,6 @@ export default function GamesCategoryClient({
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
