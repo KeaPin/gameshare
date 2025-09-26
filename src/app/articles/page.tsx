@@ -138,12 +138,12 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
               <ArticleCard guide={{
-                id: article.id,
+                id: Number(article.id),
                 title: article.title,
                 summary: article.summary || '暂无摘要',
-                thumbnail: article.thumbnail || '/default.webp',
+                image: article.thumbnail || '/default.webp',
                 category: selectedCategory !== 'all' ? selectedCategory : '游戏攻略',
-                publishDate: article.created_time,
+                publishDate: new Date(article.created_time).toLocaleDateString('zh-CN'),
                 views: article.view_count || 0,
                 author: '游戏攻略组'
               }} />

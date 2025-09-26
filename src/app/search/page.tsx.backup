@@ -9,17 +9,14 @@ export const metadata: Metadata = {
   keywords: '游戏搜索,找游戏,游戏发现,游戏下载',
 };
 
-interface SearchPageProps {
-  searchParams: Promise<{ q?: string; page?: string; limit?: string }>;
-}
-
 export default async function SearchPage({
   searchParams
-}: SearchPageProps) {
-  const params = await searchParams;
-  const q = typeof params?.q === 'string' ? params.q : '';
-  const page = Number(params?.page ?? 1) || 1;
-  const limit = Number(params?.limit ?? 12) || 12;
+}: {
+  searchParams?: { q?: string; page?: string; limit?: string };
+}) {
+  const q = typeof searchParams?.q === 'string' ? searchParams.q : '';
+  const page = Number(searchParams?.page ?? 1) || 1;
+  const limit = Number(searchParams?.limit ?? 12) || 12;
 
   const result = await ResourceModel.getResources({
     search: q ? q : undefined,
