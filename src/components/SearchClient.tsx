@@ -3,85 +3,36 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GameCard from '@/components/GameCard';
-import { GameData } from '@/components/GameCard';
+import type { Resource } from '@/types/database';
+import EmptyState from '@/components/EmptyState';
 
 interface SearchClientProps {
-  uniqueGames: GameData[];
+  results: Resource[];
+  initialQuery: string;
+  total: number;
+  page?: number;
+  totalPages?: number;
+  limit?: number;
 }
 
-export default function SearchClient({ uniqueGames }: SearchClientProps) {
+export default function SearchClient({ results, initialQuery, total }: SearchClientProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<GameData[]>([]);
+  const [query, setQuery] = useState(initialQuery || '');
 
-  // 从URL参数获取搜索关键词
+  // 从URL参数获取搜索关键词，保持与地址栏同步
   useEffect(() => {
     const searchQuery = searchParams.get('q') || '';
     setQuery(searchQuery);
   }, [searchParams]);
 
-  // 搜索逻辑
-  useEffect(() => {
-    let filteredGames = uniqueGames;
-
-    const normalizeTags = (tags: string[] | string | null | undefined): string[] => {
-      if (Array.isArray(tags)) return tags;
-      if (typeof tags === 'string') {
-        try {
-          const parsed = JSON.parse(tags);
-          if (Array.isArray(parsed)) return parsed as string[];
-        } catch {}
-        return String(tags).split(',').map(t => t.trim()).filter(Boolean);
-      }
-      return [];
-    };
-
-    // 如果有搜索关键词，进行搜索过滤
-    if (query.trim()) {
-      const searchTerm = query.toLowerCase().trim();
-      filteredGames = uniqueGames.filter(game => {
-        const titleText = (game.title ?? '').toLowerCase();
-        const titleMatch = titleText.includes(searchTerm);
-        const tagsArr = normalizeTags(game.tags);
-        const tagsMatch = tagsArr.some(tag => tag.toLowerCase().includes(searchTerm));
-        const descriptionText = (game.description ?? '').toLowerCase();
-        const descriptionMatch = descriptionText.includes(searchTerm);
-        
-        return titleMatch || tagsMatch || descriptionMatch;
-      });
-
-      // 相关性排序：标题匹配 > 标签匹配 > 描述匹配
-      filteredGames.sort((a, b) => {
-        const getRelevanceScore = (game: GameData) => {
-          let score = 0;
-          const titleText = (game.title ?? '').toLowerCase();
-          if (titleText.includes(searchTerm)) score += 100;
-          normalizeTags(game.tags).forEach(tag => {
-            if (tag.toLowerCase().includes(searchTerm)) score += 50;
-          });
-          const descText = (game.description ?? '').toLowerCase();
-          if (descText.includes(searchTerm)) score += 10;
-          return score;
-        };
-        return getRelevanceScore(b) - getRelevanceScore(a);
-      });
-    } else {
-      // 如果没有搜索关键词，按ID倒序显示所有游戏
-      filteredGames = [...uniqueGames].sort((a, b) => {
-        const aId = Number(a.id);
-        const bId = Number(b.id);
-        return (isNaN(bId) ? 0 : bId) - (isNaN(aId) ? 0 : aId);
-      });
-    }
-
-    setResults(filteredGames);
-  }, [query, uniqueGames]);
-
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+    const next = query.trim();
+    if (next) {
+      router.push(`/search?q=${encodeURIComponent(next)}`);
+    } else {
+      router.push('/search');
     }
   };
 
@@ -125,7 +76,7 @@ export default function SearchClient({ uniqueGames }: SearchClientProps) {
 
       {/* 结果统计 */}
       <div className="mb-4 text-gray-400 text-sm">
-        {query ? `找到 ${results.length} 款相关游戏` : `共有 ${results.length} 款游戏`}
+        {query ? `找到 ${total} 款相关游戏` : `共有 ${total} 款游戏`}
       </div>
 
       {/* 游戏结果列表 */}
@@ -142,34 +93,31 @@ export default function SearchClient({ uniqueGames }: SearchClientProps) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12">
-          <div className="text-gray-500 text-lg mb-2">
-            {query ? '没有找到相关游戏' : '暂无游戏'}
-          </div>
-          {query && (
-            <div className="text-gray-400 text-sm mb-4">
-              尝试使用其他关键词
-            </div>
-          )}
-          <div
-            onClick={() => {
+        <EmptyState
+          icon="search"
+          title={query ? '没有找到相关游戏' : '暂无游戏'}
+          description={
+            query
+              ? '试试简化关键词、换一种说法，或浏览热门分类。'
+              : '当前没有可展示的游戏资源。你可以浏览热门分类或返回首页。'
+          }
+          suggestions={query ? [
+            '检查关键词是否有拼写错误',
+            '尝试使用更通用的词语（例如：动作、赛车）',
+            '前往游戏分类页进行筛选'
+          ] : []}
+          primaryAction={{
+            label: query ? '清除搜索条件' : '浏览游戏',
+            onClick: () => {
               setQuery('');
-              router.push('/search');
-            }}
-            className="text-blue-500 hover:text-blue-600 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setQuery('');
-                router.push('/search');
-              }
-            }}
-          >
-            清除搜索条件
-          </div>
-        </div>
+              router.push(query ? '/search' : '/games');
+            }
+          }}
+          secondaryAction={{
+            label: '返回首页',
+            href: '/'
+          }}
+        />
       )}
     </>
   );

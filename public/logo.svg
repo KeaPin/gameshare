@@ -1,0 +1,83 @@
+<svg viewBox="0 0 512 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="探玩游戏 tanplaygame.com robot head logo">
+  <defs>
+    <linearGradient id="gradPrimary" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22D3EE"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+    <linearGradient id="gradVisor" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.35"/>
+      <stop offset="70%" stop-color="#0EA5E9" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowSoft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowStrong" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur stdDeviation="5.5" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#93C5FD"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Robot head icon (tech + gaming) -->
+  <g id="robot" transform="translate(0,0)">
+    <!-- ambient glow -->
+    <circle cx="64" cy="64" r="44" fill="url(#bgGlow)"/>
+
+    <!-- head shell -->
+    <path d="M64 22c-20 0-36 16-36 36v18c0 19 17 34 36 34s36-15 36-34V58c0-20-16-36-36-36z"
+          fill="#0B1220" opacity="0.9" stroke="url(#gradPrimary)" stroke-width="2.5" filter="url(#glowSoft)"/>
+
+    <!-- side ears -->
+    <circle cx="26" cy="64" r="7.5" fill="#0B1220" stroke="url(#gradPrimary)" stroke-width="2" opacity="0.9"/>
+    <circle cx="102" cy="64" r="7.5" fill="#0B1220" stroke="url(#gradPrimary)" stroke-width="2" opacity="0.9"/>
+
+    <!-- antenna -->
+    <line x1="64" y1="18" x2="64" y2="10" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="64" cy="8" r="3.5" fill="#22D3EE" filter="url(#glowStrong)"/>
+
+    <!-- visor -->
+    <rect x="40" y="52" width="48" height="22" rx="11" fill="url(#gradVisor)" filter="url(#glowStrong)"/>
+    <circle cx="52" cy="63" r="4.5" fill="#E6F4FF" filter="url(#glowSoft)"/>
+    <circle cx="76" cy="63" r="4.5" fill="#E6F4FF" filter="url(#glowSoft)"/>
+
+    <!-- mouth grill -->
+    <line x1="50" y1="84" x2="78" y2="84" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="54" y1="88" x2="74" y2="88" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- small tech accents -->
+    <path d="M86 30l6-6M92 30l6-6" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+    <path d="M28 96h12M42 96h6" stroke="#22D3EE" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <g id="wordmark">
+    <!-- glow stroke for legibility -->
+    <text x="136" y="60" fill="none" stroke="#38BDF8" stroke-opacity="0.35" stroke-width="1.4"
+          font-family="Orbitron, Oxanium, Rajdhani, Poppins, Inter, 'Noto Sans SC', 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="36" font-weight="900" letter-spacing="1" filter="url(#glowSoft)">探玩游戏</text>
+    <text x="136" y="60" fill="url(#textGrad)"
+          font-family="Orbitron, Oxanium, Rajdhani, Poppins, Inter, 'Noto Sans SC', 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="36" font-weight="900" letter-spacing="1">探玩游戏</text>
+
+    <text x="136" y="94" fill="#93C5FD"
+          font-family="JetBrains Mono, 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+          font-size="16" font-weight="700" letter-spacing="0.5" opacity="0.9">tanplaygame.com</text>
+  </g>
+</svg>
+
+

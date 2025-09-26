@@ -15,8 +15,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GameShare - 游戏资源分享平台",
+  metadataBase: new URL("https://tanplaygame.com"),
+  title: "探玩游戏 - 游戏资源分享平台",
   description: "发现最新最热门的游戏，分享游戏体验，连接游戏玩家社区",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "探玩游戏 - 游戏资源分享平台",
+    siteName: "探玩游戏",
+    url: "https://tanplaygame.com",
+    type: "website",
+  }
 };
 
 export default function RootLayout({

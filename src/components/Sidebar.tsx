@@ -19,7 +19,7 @@ export default function Sidebar() {
     <aside className="hidden lg:flex flex-col w-[232px] shrink-0 bg-[#0a0a0a] text-white/90 h-screen sticky top-0">
       <div className="px-6 pt-6 pb-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-3xl font-extrabold leading-none text-blue-600">TapTap</span>
+          <span className="text-3xl font-extrabold leading-none text-blue-600">探玩游戏</span>
         </Link>
       </div>
 

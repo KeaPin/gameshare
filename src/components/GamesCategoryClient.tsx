@@ -5,6 +5,7 @@ import GameCard from '@/components/GameCard';
 import Link from 'next/link';
 import { Resource, Category } from '@/types/database';
 import { useRouter } from 'next/navigation';
+import EmptyState from '@/components/EmptyState';
 
 interface GamesCategoryClientProps {
   category: string;
@@ -139,18 +140,22 @@ export default function GamesCategoryClient({
       </div>
 
       {sortedGames.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-gray-500 text-lg mb-2">暂无 {categoryNames[category]}</div>
-          <div className="text-gray-400 text-sm mb-4">
-            该分类下的游戏正在收录中，敬请期待...
-          </div>
-          <Link
-            href="/games/android"
-            className="text-blue-500 hover:text-blue-600 active:text-blue-600 cursor-pointer select-none touch-manipulation inline-block transition-colors duration-200"
-          >
-            查看安卓游戏
-          </Link>
-        </div>
+        <EmptyState
+          icon="game"
+          title={`暂无 ${categoryNames[category]}`}
+          description={
+            '该分类下的游戏正在收录中，敬请期待。你可以尝试选择其他子分类或平台。'
+          }
+          suggestions={subCategories.length > 0 ? [
+            '在上方切换到其它子分类',
+            '前往游戏分类页浏览其它平台'
+          ] : [
+            '尝试选择其他平台分类',
+            '前往游戏分类页浏览其它平台'
+          ]}
+          primaryAction={{ label: '返回游戏分类', href: '/games' }}
+          secondaryAction={{ label: '返回首页', href: '/' }}
+        />
       )}
 
       {/* 分页导航 */}

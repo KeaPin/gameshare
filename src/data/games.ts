@@ -8,7 +8,7 @@ export const featuredGames: GameData[] = [
     image: '/default.webp',
     images: ['/default.webp', '/file.svg', '/globe.svg', '/next.svg'],
     tags: ['模拟', '角色扮演', '冒险'],
-    description: '正式上线，TapTap专属折扣开启中！国产原始题材生存沙盒游戏，从零开始壮大氏族',
+    description: '正式上线，探玩游戏专属折扣开启中！国产原始题材生存沙盒游戏，从零开始壮大氏族',
     downloadLinks: [
       {
         name: '百度网盘',

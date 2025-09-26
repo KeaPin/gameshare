@@ -2,7 +2,7 @@
   "name": "gameshare",
   "description": "Build a full-stack web application with Next.js.",
   "private": true,
-  "packageManager": "npm@10.9.2",
+  "packageManager": "yarn@1.22.22",
   "cloudflare": {
     "label": "Next.js Framework Starter",
     "products": [

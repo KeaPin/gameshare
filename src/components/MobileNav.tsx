@@ -40,7 +40,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           {/* 头部 */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
             <Link href="/" className="flex items-center gap-2" onClick={onClose}>
-              <span className="text-2xl font-extrabold leading-none text-blue-600">TapTap</span>
+              <span className="text-2xl font-extrabold leading-none text-blue-600">探玩游戏</span>
             </Link>
             <div
               onClick={onClose}
@@ -76,7 +76,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           {/* 底部信息 */}
           <div className="px-6 py-4 border-t border-white/10">
             <div className="text-sm text-white/60">
-              GameShare - 游戏资源分享平台
+              探玩游戏 - 游戏资源分享平台
             </div>
           </div>
         </div>

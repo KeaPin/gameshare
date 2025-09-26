@@ -35,7 +35,7 @@ export const getCachedCategoryTree = cache(async (type?: string) => {
 
 // 缓存按分类别名获取资源
 export const getCachedResourcesByCategoryAlias = cache(async (alias: string, limit: number = 8) => {
-  return ResourceModel.getRandomResourcesByCategoryAlias(alias, limit);
+  return ResourceModel.getResourcesByCategoryAliasOrderedByWeight(alias, limit);
 });
 
 // 缓存按分类ID获取资源

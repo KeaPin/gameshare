@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import { getCachedResourcesByCategoryAlias, getCachedHotGames } from '@/lib/utils/cache';
 
 export const metadata: Metadata = {
-  title: '游戏分享 - 发现精品游戏',
+  title: '探玩游戏 - 发现精品游戏',
   description: '探索最新最热门的游戏，包括安卓游戏、PC游戏、怀旧游戏等，还有详细的游戏攻略指南。',
   keywords: '游戏下载,游戏攻略,安卓游戏,PC游戏,游戏分享',
 };
@@ -39,7 +39,7 @@ export default async function Home() {
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold drop-shadow">TapTap 专属折扣中！</h2>
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold drop-shadow">探玩游戏 专属折扣中！</h2>
                 </div>
               </div>
               <div className="col-span-12 xl:col-span-3 mt-4 xl:mt-0">

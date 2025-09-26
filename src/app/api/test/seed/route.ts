@@ -35,7 +35,7 @@ const seedCategories = [
 const seedResources = [
   {
     name: '大侠立志传外传',
-    description: '正式上线，TapTap专属折扣开启中！国产原始题材生存沙盒游戏，从零开始壮大氏族',
+    description: '正式上线，探玩游戏专属折扣开启中！国产原始题材生存沙盒游戏，从零开始壮大氏族',
     rating: 9.4,
     thumbnail: '/default.webp',
     galleries: JSON.stringify(['/default.webp', '/file.svg', '/globe.svg']),
