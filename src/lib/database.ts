@@ -6,6 +6,7 @@
 import { Pool, PoolClient } from 'pg';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { getDbConfig } from './db-config';
+import { logError } from './utils/logger';
 
 // 全局连接池实例（本地/Node 环境使用）
 let pool: Pool | null = null;
@@ -56,6 +57,7 @@ export async function query<T = any[]>(sql: string, params?: any[]): Promise<T> 
         return result.rows as unknown as T;
       } catch (error) {
         ctx?.waitUntil?.(client.end());
+        await logError('DB query via Hyperdrive failed', { sql, params, error: error instanceof Error ? error.message : String(error) });
         throw error;
       }
     }
@@ -87,6 +89,7 @@ export async function execute(sql: string, params?: any[]): Promise<{ rowCount: 
         return { rowCount: result.rowCount ?? 0 };
       } catch (error) {
         ctx?.waitUntil?.(client.end());
+        await logError('DB execute via Hyperdrive failed', { sql, params, error: error instanceof Error ? error.message : String(error) });
         throw error;
       }
     }

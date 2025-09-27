@@ -5,6 +5,7 @@ import { getCachedTopLevelCategories, getCachedFeaturedGames, getCachedHotGames 
 import { CategoryModel } from '@/lib/models/CategoryModel';
 import { ResourceModel } from '@/lib/models/ResourceModel';
 import { Resource, Category } from '@/types/database';
+import { logError } from '@/lib/utils/logger';
 
 // 该页面依赖数据库实时数据，但可以短时间缓存
 export const dynamic = 'force-dynamic';
@@ -48,6 +49,7 @@ export default async function GamesPage() {
     ]);
   } catch (error) {
     console.error('Failed to load /games data:', error);
+    await logError('Failed to load /games data', { error: error instanceof Error ? error.message : String(error) });
     // 回退为空数据，页面仍可渲染
   }
 
@@ -64,6 +66,7 @@ export default async function GamesPage() {
       allSubCategories = await CategoryModel.getBatchSubCategories(parentIds);
     } catch (error) {
       console.error('Failed to load batch subcategories for /games:', error);
+      await logError('Failed to load batch subcategories for /games', { error: error instanceof Error ? error.message : String(error), parentIds });
     }
   }
 
@@ -107,6 +110,7 @@ export default async function GamesPage() {
       });
     } catch (error) {
       console.error('Failed to load batch resource counts for /games:', error);
+      await logError('Failed to load batch resource counts for /games', { error: error instanceof Error ? error.message : String(error), categoryIds: allCategoryIds });
     }
   }
 

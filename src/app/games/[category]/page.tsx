@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { CategoryModel } from '@/lib/models/CategoryModel';
 import { ResourceModel } from '@/lib/models/ResourceModel';
 import { Resource, Category } from '@/types/database';
+import { logError } from '@/lib/utils/logger';
 
 interface GamesCategoryPageProps {
   params: Promise<{
@@ -79,6 +80,7 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
     allCategories = await CategoryModel.getCategories();
   } catch (error) {
     console.error('Failed to load categories for /games/[category]:', error);
+    await logError('Failed to load categories for /games/[category]', { error: error instanceof Error ? error.message : String(error) });
   }
   const parentCategory = allCategories.find(cat => 
     cat.level === 0 && cat.alias === dbAlias
@@ -91,6 +93,7 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
       childCategories = await CategoryModel.getSubCategories(parentCategory.id);
     } catch (error) {
       console.error('Failed to load subcategories for /games/[category]:', error);
+       await logError('Failed to load subcategories for /games/[category]', { error: error instanceof Error ? error.message : String(error), parentId: parentCategory.id });
     }
   }
 
@@ -117,6 +120,7 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
         });
       } catch (error) {
         console.error('Failed to load resources for selected subcategory:', error);
+        await logError('Failed to load resources for selected subcategory', { error: error instanceof Error ? error.message : String(error), categoryId: selectedChild.id, page: currentPage, limit: pageSize });
       }
       resourcesResult = resourcesResult || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
       filteredGames = resourcesResult.data;
@@ -135,6 +139,7 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
         });
       } catch (error) {
         console.error('Failed to load resources by category ids:', error);
+        await logError('Failed to load resources by category ids', { error: error instanceof Error ? error.message : String(error), categoryIds: childCategoryIds, page: currentPage, limit: pageSize });
       }
       result = result || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
       filteredGames = result.data;
@@ -154,6 +159,7 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
       });
     } catch (error) {
       console.error('Failed to load resources for parent category:', error);
+      await logError('Failed to load resources for parent category', { error: error instanceof Error ? error.message : String(error), parentId: parentCategory.id, page: currentPage, limit: pageSize });
     }
     resourcesResult = resourcesResult || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
     filteredGames = resourcesResult.data;
@@ -172,6 +178,7 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
       });
     } catch (error) {
       console.error('Failed to load resources for all subcategories:', error);
+      await logError('Failed to load resources for all subcategories', { error: error instanceof Error ? error.message : String(error), categoryIds: childCategoryIds, page: currentPage, limit: pageSize });
     }
     result = result || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
     filteredGames = result.data;
