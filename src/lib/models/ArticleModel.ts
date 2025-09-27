@@ -107,7 +107,7 @@ export class ArticleModel {
       try {
         tags_parsed = JSON.parse(article.tags);
       } catch (e) {
-        tags_parsed = article.tags.split(',').map(tag => tag.trim());
+        tags_parsed = article.tags.split(',').map((tag: string) => tag.trim());
       }
     }
 
