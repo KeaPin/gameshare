@@ -5,14 +5,13 @@ import { guides } from '@/data/guides';
 import { Metadata } from 'next';
 
 interface ArticleDetailPageProps {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 }
 
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const articleId = parseInt(resolvedParams.id);
+  const articleId = parseInt(params.id);
   const article = guides.find(g => g.id === articleId);
   
   if (!article) {
@@ -30,8 +29,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
 }
 
 export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
-  const resolvedParams = await params;
-  const articleId = parseInt(resolvedParams.id);
+  const articleId = parseInt(params.id);
   const article = guides.find(g => g.id === articleId);
 
   if (!article) {

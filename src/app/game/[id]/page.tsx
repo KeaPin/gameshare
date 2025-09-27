@@ -6,14 +6,13 @@ import { Metadata } from 'next';
 import { getGameDetail } from '@/lib/services/gameService';
 
 interface GameDetailPageProps {
-    params: Promise<{
+    params: {
         id: string;
-    }>;
+    };
 }
 
 export async function generateMetadata({ params }: GameDetailPageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const gameId = resolvedParams.id;
+  const gameId = params.id;
   
   // 从数据库获取游戏信息用于生成元数据
   const gameDetailData = await getGameDetail(gameId);
@@ -40,8 +39,7 @@ export async function generateMetadata({ params }: GameDetailPageProps): Promise
 }
 
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
-    const resolvedParams = await params;
-    const gameId = resolvedParams.id;
+    const gameId = params.id;
 
     // 从服务层获取优化后的游戏详情数据（包含完整资源信息）
     const gameDetailData = await getGameDetail(gameId);
