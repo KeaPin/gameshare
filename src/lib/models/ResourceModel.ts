@@ -321,36 +321,27 @@ export class ResourceModel {
     const countRows = await query<any[]>(countSql, [status, ...categoryIds]);
     const total = countRows[0]?.total ?? 0;
 
-    // 查询数据：先取到去重后的资源ID，再回表拿完整字段，保证排序与分页正确且避免 DISTINCT 全行的性能开销
-    const idSql = `
-      SELECT DISTINCT r.id
-      FROM resource r
-      INNER JOIN resource_category rc ON rc.resource_id = r.id
-      WHERE r.status = ? AND rc.category_id IN (${placeholders})
-      ORDER BY r.${sort} ${order.toUpperCase()}
-      LIMIT ? OFFSET ?
-    `;
-    const idRows = await query<(any & { id: string })[]>(idSql, [status, ...categoryIds, limit, offset]);
-    const ids = idRows.map(r => r.id);
-
-    if (ids.length === 0) {
-      return {
-        data: [],
-        total,
-        page,
-        limit,
-        totalPages: Math.ceil(total / limit)
-      };
-    }
-
-    const dataPlaceholders = ids.map(() => '?').join(',');
-    const dataSql = `
+    // 使用 CTE 聚合并分页，避免 DISTINCT 与 ORDER BY 的限制，同时保持稳定排序
+    const pageSql = `
+      WITH base AS (
+        SELECT r.id, MAX(r.${sort}) AS sort_value
+        FROM resource r
+        INNER JOIN resource_category rc ON rc.resource_id = r.id
+        WHERE r.status = ? AND rc.category_id IN (${placeholders})
+        GROUP BY r.id
+      ),
+      page_ids AS (
+        SELECT id
+        FROM base
+        ORDER BY sort_value ${order.toUpperCase()}
+        LIMIT ? OFFSET ?
+      )
       SELECT r.*
       FROM resource r
-      WHERE r.id IN (${dataPlaceholders})
+      INNER JOIN page_ids p ON p.id = r.id
       ORDER BY r.${sort} ${order.toUpperCase()}
     `;
-    const resources = await query<(Resource & any)[]>(dataSql, ids);
+    const resources = await query<(Resource & any)[]>(pageSql, [status, ...categoryIds, limit, offset]);
 
     return {
       data: resources,

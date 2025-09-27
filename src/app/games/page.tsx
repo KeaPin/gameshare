@@ -35,12 +35,21 @@ const categoryNames: Record<string, string> = {
 };
 
 export default async function GamesPage() {
-  // 从数据库获取分类信息和资源数据（使用缓存版本）
-  const [categories, featuredResources, hotResources] = await Promise.all([
-    getCachedTopLevelCategories(),
-    getCachedFeaturedGames(8),
-    getCachedHotGames(8)
-  ]);
+  // 从数据库获取分类信息和资源数据（使用缓存版本），线下容错
+  let categories: Category[] = [];
+  let featuredResources: Resource[] = [];
+  let hotResources: Resource[] = [];
+
+  try {
+    [categories, featuredResources, hotResources] = await Promise.all([
+      getCachedTopLevelCategories(),
+      getCachedFeaturedGames(8),
+      getCachedHotGames(8)
+    ]);
+  } catch (error) {
+    console.error('Failed to load /games data:', error);
+    // 回退为空数据，页面仍可渲染
+  }
 
   // 预构建：alias -> 父分类
   const parentByAlias: Record<string, Category | undefined> = Object.fromEntries(
@@ -49,7 +58,14 @@ export default async function GamesPage() {
 
   // 一次性获取所有父分类的子分类（批量查询避免N+1问题）
   const parentIds = Object.values(parentByAlias).filter(Boolean).map(p => p!.id);
-  const allSubCategories = parentIds.length > 0 ? await CategoryModel.getBatchSubCategories(parentIds) : [];
+  let allSubCategories: Category[] = [];
+  if (parentIds.length > 0) {
+    try {
+      allSubCategories = await CategoryModel.getBatchSubCategories(parentIds);
+    } catch (error) {
+      console.error('Failed to load batch subcategories for /games:', error);
+    }
+  }
 
   // 按父分类ID分组子分类
   const subCategoriesGrouped: Record<string, Category[]> = {};
@@ -83,12 +99,15 @@ export default async function GamesPage() {
   const categoryResourceCounts: Record<string, number> = {};
 
   if (allCategoryIds.length > 0) {
-    const batchCounts = await ResourceModel.getBatchResourceCountsByCategoryIds(allCategoryIds);
-
-    // 聚合每个key的总数
-    Object.entries(categoryIdsByKey).forEach(([key, ids]) => {
-      categoryResourceCounts[key] = ids.reduce((sum, id) => sum + (batchCounts[id] || 0), 0);
-    });
+    try {
+      const batchCounts = await ResourceModel.getBatchResourceCountsByCategoryIds(allCategoryIds);
+      // 聚合每个key的总数
+      Object.entries(categoryIdsByKey).forEach(([key, ids]) => {
+        categoryResourceCounts[key] = ids.reduce((sum, id) => sum + (batchCounts[id] || 0), 0);
+      });
+    } catch (error) {
+      console.error('Failed to load batch resource counts for /games:', error);
+    }
   }
 
   // 获取分类下的标签，用于显示

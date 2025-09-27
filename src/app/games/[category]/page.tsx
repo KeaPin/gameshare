@@ -73,18 +73,26 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
   const dbAlias = categoryAliasMapping[category];
   const categoryName = categoryNames[category];
 
-  // 1. 查询父级分类 (level=0 且 alias=android)
-  const allCategories = await CategoryModel.getCategories();
+  // 1. 查询父级分类 (level=0 且 alias=android) — 线下容错
+  let allCategories: Category[] = [];
+  try {
+    allCategories = await CategoryModel.getCategories();
+  } catch (error) {
+    console.error('Failed to load categories for /games/[category]:', error);
+  }
   const parentCategory = allCategories.find(cat => 
     cat.level === 0 && cat.alias === dbAlias
   );
-  
-  if (!parentCategory) {
-    notFound();
-  }
 
   // 2. 查询该父分类下的所有子分类
-  const childCategories = await CategoryModel.getSubCategories(parentCategory.id);
+  let childCategories: Category[] = [];
+  if (parentCategory) {
+    try {
+      childCategories = await CategoryModel.getSubCategories(parentCategory.id);
+    } catch (error) {
+      console.error('Failed to load subcategories for /games/[category]:', error);
+    }
+  }
 
   // 3. 根据是否有选中的子分类来查询游戏
   let filteredGames: Resource[];
@@ -98,50 +106,74 @@ export default async function GamesCategoryPage({ params, searchParams }: GamesC
     );
 
     if (selectedChild) {
-      const resourcesResult = await ResourceModel.getResources({
-        category_id: selectedChild.id,
-        page: currentPage,
-        limit: pageSize,
-        sort: 'download_count',
-        order: 'desc'
-      });
+      let resourcesResult;
+      try {
+        resourcesResult = await ResourceModel.getResources({
+          category_id: selectedChild.id,
+          page: currentPage,
+          limit: pageSize,
+          sort: 'download_count',
+          order: 'desc'
+        });
+      } catch (error) {
+        console.error('Failed to load resources for selected subcategory:', error);
+      }
+      resourcesResult = resourcesResult || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
       filteredGames = resourcesResult.data;
       totalCount = resourcesResult.total;
       totalPages = resourcesResult.totalPages;
     } else {
       // 如果找不到子分类，显示所有子分类的游戏
       const childCategoryIds = childCategories.map(c => c.id);
-      const result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
+      let result;
+      try {
+        result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
+          page: currentPage,
+          limit: pageSize,
+          sort: 'download_count',
+          order: 'desc'
+        });
+      } catch (error) {
+        console.error('Failed to load resources by category ids:', error);
+      }
+      result = result || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
+      filteredGames = result.data;
+      totalCount = result.total;
+      totalPages = result.totalPages;
+    }
+  } else if (childCategories.length === 0 && parentCategory) {
+    // 如果没有子分类，直接查询父分类的资源（分页）
+    let resourcesResult;
+    try {
+      resourcesResult = await ResourceModel.getResources({
+        category_id: parentCategory.id,
         page: currentPage,
         limit: pageSize,
         sort: 'download_count',
         order: 'desc'
       });
-      filteredGames = result.data;
-      totalCount = result.total;
-      totalPages = result.totalPages;
+    } catch (error) {
+      console.error('Failed to load resources for parent category:', error);
     }
-  } else if (childCategories.length === 0) {
-    // 如果没有子分类，直接查询父分类的资源（分页）
-    const resourcesResult = await ResourceModel.getResources({
-      category_id: parentCategory.id,
-      page: currentPage,
-      limit: pageSize,
-      sort: 'download_count',
-      order: 'desc'
-    });
+    resourcesResult = resourcesResult || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
     filteredGames = resourcesResult.data;
     totalCount = resourcesResult.total;
     totalPages = resourcesResult.totalPages;
   } else {
     // 没有选中子分类，显示所有子分类的游戏
     const childCategoryIds = childCategories.map(c => c.id);
-    const result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
-      page: currentPage,
-      limit: pageSize,
-      sort: 'download_count',
-      order: 'desc'
-    });
+    let result;
+    try {
+      result = await ResourceModel.getResourcesByCategoryIds(childCategoryIds, {
+        page: currentPage,
+        limit: pageSize,
+        sort: 'download_count',
+        order: 'desc'
+      });
+    } catch (error) {
+      console.error('Failed to load resources for all subcategories:', error);
+    }
+    result = result || { data: [], total: 0, page: currentPage, limit: pageSize, totalPages: 0 };
     filteredGames = result.data;
     totalCount = result.total;
     totalPages = result.totalPages;
