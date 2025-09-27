@@ -3,7 +3,6 @@
  * 处理分类相关的数据库操作
  */
 
-import { RowDataPacket } from 'mysql2/promise';
 import { query, execute } from '../database';
 import { Category } from '../../types/database';
 import { generateId } from '../utils/id-generator';
@@ -28,7 +27,7 @@ export class CategoryModel {
 
     sql += ' ORDER BY level ASC, weight DESC, name ASC';
     
-    return await query<(Category & RowDataPacket)[]>(sql, params);
+    return await query<(Category & any)[]>(sql, params);
   }
 
   /**
@@ -38,7 +37,7 @@ export class CategoryModel {
    */
   static async getCategoryById(id: string): Promise<Category | null> {
     const sql = 'SELECT * FROM category WHERE id = ? AND status = ?';
-    const result = await query<(Category & RowDataPacket)[]>(sql, [id, 'active']);
+    const result = await query<(Category & any)[]>(sql, [id, 'active']);
     return result.length > 0 ? result[0] : null;
   }
 
@@ -58,7 +57,7 @@ export class CategoryModel {
 
     sql += ' ORDER BY weight DESC, name ASC';
     
-    return await query<(Category & RowDataPacket)[]>(sql, params);
+    return await query<(Category & any)[]>(sql, params);
   }
 
   /**
@@ -73,7 +72,7 @@ export class CategoryModel {
       ORDER BY weight DESC, name ASC
     `;
     
-    return await query<(Category & RowDataPacket)[]>(sql, [parentId, 'active']);
+    return await query<(Category & any)[]>(sql, [parentId, 'active']);
   }
 
   /**
@@ -91,7 +90,7 @@ export class CategoryModel {
       ORDER BY parent_id, weight DESC, name ASC
     `;
 
-    return await query<(Category & RowDataPacket)[]>(sql, [...parentIds, 'active']);
+    return await query<(Category & any)[]>(sql, [...parentIds, 'active']);
   }
 
   /**
@@ -144,7 +143,7 @@ export class CategoryModel {
       ORDER BY level ASC, weight DESC, name ASC
     `;
     
-    return await query<(Category & RowDataPacket)[]>(sql, [type, 'active']);
+    return await query<(Category & any)[]>(sql, [type, 'active']);
   }
 
   /**
@@ -158,7 +157,7 @@ export class CategoryModel {
       ORDER BY weight DESC, name ASC
     `;
     
-    return await query<(Category & RowDataPacket)[]>(sql, ['active']);
+    return await query<(Category & any)[]>(sql, ['active']);
   }
 
   /**
@@ -172,7 +171,7 @@ export class CategoryModel {
       ORDER BY weight DESC, name ASC
     `;
     
-    return await query<(Category & RowDataPacket)[]>(sql, ['active']);
+    return await query<(Category & any)[]>(sql, ['active']);
   }
 
   /**

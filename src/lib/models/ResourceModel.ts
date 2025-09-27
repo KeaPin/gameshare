@@ -3,7 +3,6 @@
  * 处理资源相关的数据库操作
  */
 
-import { RowDataPacket } from 'mysql2/promise';
 import { query, execute } from '../database';
 import { Resource, ResourceDetail, ResourceLink, QueryParams, PaginatedResult, Category } from '../../types/database';
 import { generateId } from '../utils/id-generator';
@@ -54,7 +53,7 @@ export class ResourceModel {
 
     // 获取总数
     const countSql = `SELECT COUNT(DISTINCT r.id) as total ${baseQuery}`;
-    const countResult = await query<RowDataPacket[]>(countSql, queryParams);
+    const countResult = await query<any[]>(countSql, queryParams);
     const total = countResult[0].total;
 
     // 获取数据
@@ -66,7 +65,7 @@ export class ResourceModel {
     `;
     queryParams.push(limit, offset);
     
-    const resources = await query<(Resource & RowDataPacket)[]>(dataSql, queryParams);
+    const resources = await query<(Resource & any)[]>(dataSql, queryParams);
 
     return {
       data: resources,
@@ -85,7 +84,7 @@ export class ResourceModel {
   static async getResourceById(id: string): Promise<ResourceDetail | null> {
     // 获取基础资源信息
     const resourceSql = 'SELECT * FROM resource WHERE id = ? AND status = ?';
-    const resourceResult = await query<(Resource & RowDataPacket)[]>(resourceSql, [id, 'active']);
+    const resourceResult = await query<(Resource & any)[]>(resourceSql, [id, 'active']);
 
     if (resourceResult.length === 0) {
       return null;
@@ -100,11 +99,11 @@ export class ResourceModel {
       INNER JOIN resource_category rc ON c.id = rc.category_id
       WHERE rc.resource_id = ? AND c.status = ?
     `;
-    const categories = await query<(Category & RowDataPacket)[]>(categorySql, [id, 'active']);
+    const categories = await query<(Category & any)[]>(categorySql, [id, 'active']);
 
     // 获取下载链接
     const linkSql = 'SELECT * FROM resource_link WHERE resource_id = ? AND status = ? ORDER BY weight DESC';
-    const downloadLinks = await query<(ResourceLink & RowDataPacket)[]>(linkSql, [id, 'active']);
+    const downloadLinks = await query<(ResourceLink & any)[]>(linkSql, [id, 'active']);
 
     // 解析图片画廊
     let galleries_parsed: string[] = [];
@@ -132,11 +131,11 @@ export class ResourceModel {
   static async getHotResources(limit: number = 6): Promise<Resource[]> {
     const sql = `
       SELECT * FROM resource 
-      WHERE status = 'active' AND is_hot = 1
+      WHERE status = 'active' AND (is_hot::text IN ('1','t','true'))
       ORDER BY weight DESC, download_count DESC, view_count DESC
       LIMIT ?
     `;
-    return await query<(Resource & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Resource & any)[]>(sql, [limit]);
   }
 
   /**
@@ -147,11 +146,11 @@ export class ResourceModel {
   static async getFeaturedResources(limit: number = 8): Promise<Resource[]> {
     const sql = `
       SELECT * FROM resource 
-      WHERE status = 'active' AND is_featured = 1
+      WHERE status = 'active' AND (is_featured::text IN ('1','t','true'))
       ORDER BY weight DESC, created_time DESC
       LIMIT ?
     `;
-    return await query<(Resource & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Resource & any)[]>(sql, [limit]);
   }
 
   /**
@@ -162,11 +161,11 @@ export class ResourceModel {
   static async getNewResources(limit: number = 6): Promise<Resource[]> {
     const sql = `
       SELECT * FROM resource 
-      WHERE status = 'active' AND is_new = 1
+      WHERE status = 'active' AND (is_new::text IN ('1','t','true'))
       ORDER BY created_time DESC
       LIMIT ?
     `;
-    return await query<(Resource & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Resource & any)[]>(sql, [limit]);
   }
 
   /**
@@ -189,11 +188,11 @@ export class ResourceModel {
           FROM resource_category rc
           WHERE rc.category_id IN (${placeholders})
         )
-      ORDER BY RAND()
+      ORDER BY RANDOM()
       LIMIT ?
     `;
 
-    return await query<(Resource & RowDataPacket)[]>(sql, [...categoryIds, limit]);
+    return await query<(Resource & any)[]>(sql, [...categoryIds, limit]);
   }
 
   /**
@@ -203,7 +202,7 @@ export class ResourceModel {
    */
   static async getRandomResourcesByCategoryAlias(alias: string, limit: number = 8): Promise<Resource[]> {
     // 查找顶级分类
-    const parentRows = await query<(RowDataPacket & { id: string })[]>(
+    const parentRows = await query<(any & { id: string })[]>(
       `SELECT id FROM category WHERE level = 0 AND alias = ? AND status = ? LIMIT 1`,
       [alias, 'active']
     );
@@ -215,7 +214,7 @@ export class ResourceModel {
     const parentId = parentRows[0].id;
 
     // 查找其子分类
-    const childRows = await query<(RowDataPacket & { id: string })[]>(
+    const childRows = await query<(any & { id: string })[]>(
       `SELECT id FROM category WHERE parent_id = ? AND status = ?`,
       [parentId, 'active']
     );
@@ -231,7 +230,7 @@ export class ResourceModel {
    */
   static async getResourcesByCategoryAliasOrderedByWeight(alias: string, limit: number = 8): Promise<Resource[]> {
     // 查找顶级分类
-    const parentRows = await query<(RowDataPacket & { id: string })[]>(
+    const parentRows = await query<(any & { id: string })[]>(
       `SELECT id FROM category WHERE level = 0 AND alias = ? AND status = ? LIMIT 1`,
       [alias, 'active']
     );
@@ -243,7 +242,7 @@ export class ResourceModel {
     const parentId = parentRows[0].id;
 
     // 查找其子分类
-    const childRows = await query<(RowDataPacket & { id: string })[]>(
+    const childRows = await query<(any & { id: string })[]>(
       `SELECT id FROM category WHERE parent_id = ? AND status = ?`,
       [parentId, 'active']
     );
@@ -264,7 +263,7 @@ export class ResourceModel {
       LIMIT ?
     `;
 
-    return await query<(Resource & RowDataPacket)[]>(sql, [...categoryIds, limit]);
+    return await query<(Resource & any)[]>(sql, [...categoryIds, limit]);
   }
 
   /**
@@ -279,7 +278,7 @@ export class ResourceModel {
       ORDER BY rating DESC, view_count DESC
       LIMIT ?
     `;
-    return await query<(Resource & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Resource & any)[]>(sql, [limit]);
   }
 
   /**
@@ -319,7 +318,7 @@ export class ResourceModel {
       INNER JOIN resource_category rc ON rc.resource_id = r.id
       WHERE r.status = ? AND rc.category_id IN (${placeholders})
     `;
-    const countRows = await query<RowDataPacket[]>(countSql, [status, ...categoryIds]);
+    const countRows = await query<any[]>(countSql, [status, ...categoryIds]);
     const total = countRows[0]?.total ?? 0;
 
     // 查询数据：先取到去重后的资源ID，再回表拿完整字段，保证排序与分页正确且避免 DISTINCT 全行的性能开销
@@ -331,7 +330,7 @@ export class ResourceModel {
       ORDER BY r.${sort} ${order.toUpperCase()}
       LIMIT ? OFFSET ?
     `;
-    const idRows = await query<(RowDataPacket & { id: string })[]>(idSql, [status, ...categoryIds, limit, offset]);
+    const idRows = await query<(any & { id: string })[]>(idSql, [status, ...categoryIds, limit, offset]);
     const ids = idRows.map(r => r.id);
 
     if (ids.length === 0) {
@@ -351,7 +350,7 @@ export class ResourceModel {
       WHERE r.id IN (${dataPlaceholders})
       ORDER BY r.${sort} ${order.toUpperCase()}
     `;
-    const resources = await query<(Resource & RowDataPacket)[]>(dataSql, ids);
+    const resources = await query<(Resource & any)[]>(dataSql, ids);
 
     return {
       data: resources,
@@ -397,7 +396,7 @@ export class ResourceModel {
       GROUP BY rc.category_id
     `;
 
-    const result = await query<(RowDataPacket & { category_id: string; total: number })[]>(
+    const result = await query<(any & { category_id: string; total: number })[]>(
       sql,
       ['active', ...categoryIds]
     );

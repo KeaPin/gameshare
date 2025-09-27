@@ -1,6 +1,7 @@
 /**
  * 数据库配置文件
  * 支持本地开发和 Cloudflare Workers 生产环境
+ * 已切换为 PostgreSQL
  */
 
 export interface DBConfig {
@@ -14,12 +15,12 @@ export interface DBConfig {
 
 // 本地开发环境数据库配置
 export const LOCAL_DB_CONFIG: DBConfig = {
-  host: '1.12.227.13',
-  port: 3306,
-  user: 'games',
-  password: 'nxxbf2kJBfS4zjHN',
-  database: 'games',
-  charset: 'utf8mb4'
+  host: 'aws-1-us-east-2.pooler.supabase.com',
+  port: 6543,
+  user: 'postgres.zsayottyrtreilktmreh',
+  password: 'sFfQsPG8w60BWdQv',
+  database: 'postgres',
+  charset: 'utf8'
 };
 
 // Cloudflare Hyperdrive 连接池ID
@@ -34,7 +35,7 @@ export function getDbConfig(): DBConfig {
   // 检查是否在 Cloudflare Workers 环境中
   if (typeof globalThis !== 'undefined' && 'HYPERDRIVE' in globalThis) {
     // 生产环境使用 Hyperdrive，配置将通过 Hyperdrive 自动处理
-    return LOCAL_DB_CONFIG; // 这里的配置不会被使用，实际连接通过 Hyperdrive
+    return LOCAL_DB_CONFIG; // 这里的配置在生产不会被直接使用
   }
   
   // 本地开发环境

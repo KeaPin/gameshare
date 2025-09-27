@@ -3,7 +3,6 @@
  * 处理文章相关的数据库操作
  */
 
-import { RowDataPacket } from 'mysql2/promise';
 import { query, execute } from '../database';
 import { Article, ArticleDetail, QueryParams, PaginatedResult, Category } from '../../types/database';
 import { generateId } from '../utils/id-generator';
@@ -54,7 +53,7 @@ export class ArticleModel {
 
     // 获取总数
     const countSql = `SELECT COUNT(DISTINCT a.id) as total ${baseQuery}`;
-    const countResult = await query<RowDataPacket[]>(countSql, queryParams);
+    const countResult = await query<any[]>(countSql, queryParams);
     const total = countResult[0].total;
 
     // 获取数据
@@ -66,7 +65,7 @@ export class ArticleModel {
     `;
     queryParams.push(limit, offset);
     
-    const articles = await query<(Article & RowDataPacket)[]>(dataSql, queryParams);
+    const articles = await query<(Article & any)[]>(dataSql, queryParams);
 
     return {
       data: articles,
@@ -85,7 +84,7 @@ export class ArticleModel {
   static async getArticleById(id: string): Promise<ArticleDetail | null> {
     // 获取基础文章信息
     const articleSql = 'SELECT * FROM article WHERE id = ? AND status = ?';
-    const articleResult = await query<(Article & RowDataPacket)[]>(articleSql, [id, 'active']);
+    const articleResult = await query<(Article & any)[]>(articleSql, [id, 'active']);
 
     if (articleResult.length === 0) {
       return null;
@@ -100,7 +99,7 @@ export class ArticleModel {
       INNER JOIN article_category ac ON c.id = ac.category_id
       WHERE ac.article_id = ? AND c.status = ?
     `;
-    const categories = await query<(Category & RowDataPacket)[]>(categorySql, [id, 'active']);
+    const categories = await query<(Category & any)[]>(categorySql, [id, 'active']);
 
     // 解析标签
     let tags_parsed: string[] = [];
@@ -127,11 +126,11 @@ export class ArticleModel {
   static async getFeaturedArticles(limit: number = 6): Promise<Article[]> {
     const sql = `
       SELECT * FROM article 
-      WHERE status = 'active' AND is_featured = 1
+      WHERE status = 'active' AND (is_featured::text IN ('1','t','true'))
       ORDER BY created_time DESC
       LIMIT ?
     `;
-    return await query<(Article & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Article & any)[]>(sql, [limit]);
   }
 
   /**
@@ -142,11 +141,11 @@ export class ArticleModel {
   static async getTopArticles(limit: number = 3): Promise<Article[]> {
     const sql = `
       SELECT * FROM article 
-      WHERE status = 'active' AND is_top = 1
+      WHERE status = 'active' AND (is_top::text IN ('1','t','true'))
       ORDER BY created_time DESC
       LIMIT ?
     `;
-    return await query<(Article & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Article & any)[]>(sql, [limit]);
   }
 
   /**
@@ -161,7 +160,7 @@ export class ArticleModel {
       ORDER BY view_count DESC, like_count DESC
       LIMIT ?
     `;
-    return await query<(Article & RowDataPacket)[]>(sql, [limit]);
+    return await query<(Article & any)[]>(sql, [limit]);
   }
 
   /**
