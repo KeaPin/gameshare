@@ -4,8 +4,14 @@ import ArticleDetailClient from '@/components/ArticleDetailClient';
 import { guides } from '@/data/guides';
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
+interface ArticleDetailPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
+  const resolvedParams = await params;
   const articleId = parseInt(resolvedParams.id);
   const article = guides.find(g => g.id === articleId);
   
@@ -23,8 +29,8 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   };
 }
 
-export default async function ArticleDetailPage({ params }: any) {
-  const resolvedParams = await Promise.resolve(params);
+export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
+  const resolvedParams = await params;
   const articleId = parseInt(resolvedParams.id);
   const article = guides.find(g => g.id === articleId);
 
