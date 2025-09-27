@@ -12,7 +12,7 @@ export const featuredGames: GameData[] = [
     downloadLinks: [
       {
         name: '百度网盘',
-        url: 'https://pan.baidu.com/s/1xxxxx',
+        url: 'https://pan.baidu.com/s/xxxxx',
         password: 'abcd',
         size: '2.1GB'
       },
